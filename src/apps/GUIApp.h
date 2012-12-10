@@ -13,6 +13,7 @@ namespace ipn
 	class TextWidget;
 	class PageIndicatorWidget;
 	class FlickArea;
+    class ImageWidget;
 
 	class GUIApp : public App
 	{
@@ -33,6 +34,7 @@ namespace ipn
 			TitleBarWidget *m_titleBar;
 			SwitchButtonWidget *m_switchButton;
 			SliderWidget *m_slider;
+            ImageWidget *m_image[3];
 
 			TextWidget *m_scrollText;
 			FlickArea *m_flickArea;
