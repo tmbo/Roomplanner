@@ -20,10 +20,19 @@ namespace ipn
 
 			TitleBarWidget *titleBar();
 
+
+        public slots:
+            void changePinchScaleFactor(qreal delta);
+
+
 		private:
 			TitleBarWidget *m_titleBar;
 			FlickArea *m_flickArea;
 			ImageWidget *m_image;
+
+            qreal m_currentScaleFactor;
+            QSize m_imageOriginalSize;
+            QPoint m_imageTranslation;
 	};
 
 } // namespace ipn

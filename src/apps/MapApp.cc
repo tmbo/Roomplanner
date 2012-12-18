@@ -1,7 +1,9 @@
 #include "MapApp.h"
+#include "helpers.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/FlickArea.h"
 #include "widgets/ImageWidget.h"
+#include <stdio.h>
 
 namespace ipn
 {
@@ -19,7 +21,28 @@ namespace ipn
 
 		m_image = new ImageWidget(m_flickArea);
 		m_image->setImage(":/img/backgrounds/map.png");
+
+        m_currentScaleFactor = 1.0;
+        m_imageOriginalSize = m_image->size();
+
+        connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
 	}
+
+    void MapApp::changePinchScaleFactor(qreal delta)
+    {
+        m_currentScaleFactor *= delta;
+
+        m_currentScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor, 10.0), .1);
+
+        m_image->resize(
+                    m_imageOriginalSize.width() * m_currentScaleFactor,
+                    m_imageOriginalSize.height() * m_currentScaleFactor
+        );
+
+        printf("%i\n", m_image->pos().x());
+
+        update();
+    }
 
 	TitleBarWidget *MapApp::titleBar()
 	{
