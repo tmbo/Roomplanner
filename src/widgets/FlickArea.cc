@@ -48,7 +48,7 @@ namespace ipn
 	{
 		// make sure the child exists and that it is not the overlay, else this FlickArea would
 		// handle and emit it infinitely
-		if (!m_currentChild || m_currentChild == m_overlay)
+        if (!m_currentChild || m_currentChild == m_overlay || m_currentChild == this->parentWidget())
 			return;
 
 		QPoint pos = event->pos() - m_currentChild->pos();
@@ -61,20 +61,21 @@ namespace ipn
 			type = QEvent::MouseButtonRelease;
 		}
 
-		QMouseEvent childEvent(type, pos, event->button(), event->buttons(), event->modifiers());
+        QMouseEvent childEvent(type, pos, event->button(), event->buttons(), event->modifiers());
 
-		QApplication::sendEvent(m_currentChild, &childEvent);
+        m_currentChild->setAttribute(Qt::WA_NoMousePropagation);
+        QApplication::sendEvent(m_currentChild, &childEvent);
 	}
 
 	void FlickArea::mousePressEvent(QMouseEvent *event)
 	{
-		m_mouseMovedSinceMousePress = false;
+        m_mouseMovedSinceMousePress = false;
 
 		// to determine the currently clicked child, it is necessary to hide the overlay, else
 		// childAt would return us the overlay
 		m_overlay->hide();
 		m_currentChild = childAt(event->pos());
-		forwardMouseEvent(event);
+        forwardMouseEvent(event);
 		m_overlay->show();
 
 		m_lastMousePos = event->pos();
@@ -86,7 +87,7 @@ namespace ipn
 		m_mouseMovedSinceMousePress = true;
 
 		// since the mouse was moved, simulate a mouse release event on the child
-		forwardMouseEvent(event, true);
+        //forwardMouseEvent(event, true);
 
 		QPoint moveDifference = event->pos() - m_lastMousePos;
 		m_lastMousePos = event->pos();
@@ -97,10 +98,10 @@ namespace ipn
 	{
 		// if the area was not flicked, forward the event normally,
 		// else simulate releasing the mouse outside the widget to prevent it from being clicked
-		if (!m_mouseMovedSinceMousePress)
-			forwardMouseEvent(event);
-		else
-			forwardMouseEvent(event, true);
+//        if (!m_mouseMovedSinceMousePress)
+//            forwardMouseEvent(event);
+//        else
+//            forwardMouseEvent(event, true);
 
 		m_currentChild = NULL;
 	}
