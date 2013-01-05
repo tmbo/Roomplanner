@@ -19,6 +19,8 @@ namespace ipn
         m_flickArea->move(0, 48);
 
         graphicsView = new QGraphicsView(m_flickArea);
+        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         scene = new QGraphicsScene(graphicsView);
         graphicsView->setScene(scene);
