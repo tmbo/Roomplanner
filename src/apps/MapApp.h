@@ -15,6 +15,7 @@ namespace ipn
     class PickerWidget;
     class GUIApp;
     class IPodFrameWidget;
+    class ClickableWidget;
 
 	class MapApp : public App
 	{
@@ -33,6 +34,9 @@ namespace ipn
             void showOverlay();
             void openSofaGUI();
             void placeFurniture(int);
+            void changePinchRotationAngle(qreal delta);
+            void furniturePressed();
+            void furnitureReleased();
 
 		private:
             IPodFrameWidget *m_frameWidget;
@@ -40,19 +44,23 @@ namespace ipn
             TitleBarWidget *m_titleBar;
             FlickArea *m_flickArea;
 
+            qreal m_currentScaleFactor, m_currentRotationAngle;
             ButtonWidget *m_addButton;
             GUIApp *m_guiApp;
 
-            qreal m_currentScaleFactor;
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
             BackgroundWidget* m_back;
             PickerWidget* m_picker;
+
+            ClickableWidget *m_clickable0;
+            ImageWidget *m_image0;
             QGraphicsView *graphicsView;
             QGraphicsScene *scene;
             QGraphicsPixmapItem *background;
 
             QPixmap *backgroundPixmap;
+            QPixmap *m_furniture;
 	};
 
 } // namespace ipn

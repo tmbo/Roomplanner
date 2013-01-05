@@ -8,6 +8,7 @@
 #include "widgets/PickerWidget.h"
 #include "IPodFrameWidget.h"
 #include "apps/GUIApp.h"
+#include "widgets/ImageWidget.h"
 
 namespace ipn
 {
@@ -30,6 +31,11 @@ namespace ipn
         m_flickArea->move(0, 48);
 
         graphicsView = new QGraphicsView(m_flickArea);
+        graphicsView->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+        graphicsView->setResizeAnchor(QGraphicsView::AnchorViewCenter);
+
+        m_currentScaleFactor = 1.0;
+        m_currentRotationAngle = 0;
 
         scene = new QGraphicsScene(graphicsView);
         graphicsView->setScene(scene);
@@ -56,8 +62,29 @@ namespace ipn
 
         connect(m_addButton, SIGNAL(clicked()), this, SLOT(showOverlay()));
 
+        connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
+        connect(this, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
+
+        m_clickable0 = new ClickableWidget(m_flickArea);
+        m_image0 = new ImageWidget(m_clickable0);
+        m_image0->setImage(":/assets/images/sofa2d.png");
+        connect(m_clickable0, SIGNAL(pressed()), this, SLOT(furniturePressed()));
+        connect(m_clickable0, SIGNAL(released()), this, SLOT(furnitureReleased()));
+        scene->addWidget(m_image0);
+
         update();
     }
+
+    void MapApp::furniturePressed()
+    {
+        qDebug("p");
+    }
+
+    void MapApp::furnitureReleased()
+    {
+        qDebug("r");
+    }
+
 
     void MapApp::changePinchScaleFactor(qreal delta)
     {
@@ -93,6 +120,14 @@ namespace ipn
 
         printf("idx: %d\n", idx);
         // do whatever needs to be done with the new furniture
+    }
+
+    void MapApp::changePinchRotationAngle(qreal delta)
+    {
+        m_currentRotationAngle += delta;
+        graphicsView->rotate(delta);
+        //printf("%f\n", m_currentRotationAngle);
+        update();
     }
 
 	TitleBarWidget *MapApp::titleBar()
