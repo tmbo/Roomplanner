@@ -2,6 +2,8 @@
 #define IPN_MAPAPP_H
 
 #include "App.h"
+#include <QtCore>
+#include <QtGui>
 
 namespace ipn
 {
@@ -16,14 +18,28 @@ namespace ipn
 		public:
 			MapApp(QWidget *parent = 0);
 
-			inline bool isOpaque() {return true;}
+            inline bool isOpaque() { return true; }
 
 			TitleBarWidget *titleBar();
 
+
+        public slots:
+            void changePinchScaleFactor(qreal delta);
+
+
 		private:
-			TitleBarWidget *m_titleBar;
-			FlickArea *m_flickArea;
-			ImageWidget *m_image;
+            TitleBarWidget *m_titleBar;
+            FlickArea *m_flickArea;
+
+            qreal m_currentScaleFactor;
+            QSize m_imageOriginalSize;
+            QPoint m_imageTranslation;
+
+            QGraphicsView *graphicsView;
+            QGraphicsScene *scene;
+            QGraphicsPixmapItem *background;
+
+            QPixmap *backgroundPixmap;
 	};
 
 } // namespace ipn

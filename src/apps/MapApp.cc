@@ -1,7 +1,8 @@
 #include "MapApp.h"
+#include "helpers.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/FlickArea.h"
-#include "widgets/ImageWidget.h"
+#include <stdio.h>
 
 namespace ipn
 {
@@ -13,13 +14,31 @@ namespace ipn
 		m_titleBar->move(0, 0);
 		m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
 
-		m_flickArea = new FlickArea(this);
-		m_flickArea->resize(240, 192);
-		m_flickArea->move(0, 48);
+        m_flickArea = new FlickArea(this);
+        m_flickArea->resize(240, 192);
+        m_flickArea->move(0, 48);
 
-		m_image = new ImageWidget(m_flickArea);
-		m_image->setImage(":/img/backgrounds/map.png");
-	}
+        graphicsView = new QGraphicsView(m_flickArea);
+
+        scene = new QGraphicsScene(graphicsView);
+        graphicsView->setScene(scene);
+
+        backgroundPixmap = new QPixmap(":/img/backgrounds/map.png");
+        background = scene->addPixmap(*backgroundPixmap);
+
+        m_currentScaleFactor = 1.0;
+        connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
+        update();
+    }
+
+    void MapApp::changePinchScaleFactor(qreal delta)
+    {
+        m_currentScaleFactor *= delta;
+
+        m_currentScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor, 10.0), .1);
+
+        update();
+    }
 
 	TitleBarWidget *MapApp::titleBar()
 	{
