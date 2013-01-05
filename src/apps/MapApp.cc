@@ -42,6 +42,8 @@ namespace ipn
 
         m_currentScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor, 10.0), .1);
 
+        background->scale(delta, delta);
+
         update();
     }
 

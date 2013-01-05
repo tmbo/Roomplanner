@@ -48,7 +48,7 @@ namespace ipn
 	{
 		// make sure the child exists and that it is not the overlay, else this FlickArea would
 		// handle and emit it infinitely
-        if (!m_currentChild || m_currentChild == m_overlay || m_currentChild == this->parentWidget())
+        if (!m_currentChild || m_currentChild == m_overlay)
 			return;
 
 		QPoint pos = event->pos() - m_currentChild->pos();
@@ -87,7 +87,7 @@ namespace ipn
 		m_mouseMovedSinceMousePress = true;
 
 		// since the mouse was moved, simulate a mouse release event on the child
-        //forwardMouseEvent(event, true);
+        forwardMouseEvent(event, true);
 
 		QPoint moveDifference = event->pos() - m_lastMousePos;
 		m_lastMousePos = event->pos();
@@ -98,10 +98,10 @@ namespace ipn
 	{
 		// if the area was not flicked, forward the event normally,
 		// else simulate releasing the mouse outside the widget to prevent it from being clicked
-//        if (!m_mouseMovedSinceMousePress)
-//            forwardMouseEvent(event);
-//        else
-//            forwardMouseEvent(event, true);
+        if (!m_mouseMovedSinceMousePress)
+            forwardMouseEvent(event);
+        else
+            forwardMouseEvent(event, true);
 
 		m_currentChild = NULL;
 	}
