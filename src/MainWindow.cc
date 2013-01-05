@@ -131,7 +131,7 @@ namespace ipn
 		connect(m_clockApp, SIGNAL(okButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_markingMenuApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_mapApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        //connect(m_mapApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_peepholeApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
 		connect(m_gestureApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
 		connect(m_paintApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
