@@ -23,9 +23,11 @@ namespace ipn
 		m_image->setImage(":/img/backgrounds/map.png");
 
         m_currentScaleFactor = 1.0;
+        m_currentRotationAngle = 0;
         m_imageOriginalSize = m_image->size();
 
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
+        connect(this, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
 	}
 
     void MapApp::changePinchScaleFactor(qreal delta)
@@ -41,6 +43,13 @@ namespace ipn
 
         printf("%i\n", m_image->pos().x());
 
+        update();
+    }
+
+    void MapApp::changePinchRotationAngle(qreal delta)
+    {
+        m_currentRotationAngle += delta;
+        printf("%f\n", m_currentRotationAngle);
         update();
     }
 

@@ -23,6 +23,7 @@ namespace ipn
 
         public slots:
             void changePinchScaleFactor(qreal delta);
+            void changePinchRotationAngle(qreal delta);
 
 
 		private:
@@ -30,7 +31,7 @@ namespace ipn
 			FlickArea *m_flickArea;
 			ImageWidget *m_image;
 
-            qreal m_currentScaleFactor;
+            qreal m_currentScaleFactor, m_currentRotationAngle;
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
 	};
