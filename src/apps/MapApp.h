@@ -10,6 +10,7 @@ namespace ipn
 	class TitleBarWidget;
 	class FlickArea;
 	class ImageWidget;
+    class ButtonWidget;
 
 	class MapApp : public App
 	{
@@ -33,6 +34,7 @@ namespace ipn
             FlickArea *m_flickArea;
 
             qreal m_currentScaleFactor, m_currentRotationAngle;
+            ButtonWidget *m_addButton;
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
 
