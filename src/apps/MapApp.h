@@ -11,6 +11,7 @@ namespace ipn
 	class FlickArea;
 	class ImageWidget;
     class ButtonWidget;
+    class ClickableWidget;
 
 	class MapApp : public App
 	{
@@ -27,6 +28,8 @@ namespace ipn
         public slots:
             void changePinchScaleFactor(qreal delta);
             void changePinchRotationAngle(qreal delta);
+            void furniturePressed();
+            void furnitureReleased();
 
 
 		private:
@@ -38,11 +41,14 @@ namespace ipn
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
 
+            ClickableWidget *m_clickable0;
+            ImageWidget *m_image0;
             QGraphicsView *graphicsView;
             QGraphicsScene *scene;
             QGraphicsPixmapItem *background;
 
             QPixmap *backgroundPixmap;
+            QPixmap *m_furniture;
 	};
 
 } // namespace ipn

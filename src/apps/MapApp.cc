@@ -4,6 +4,7 @@
 #include "widgets/FlickArea.h"
 #include <stdio.h>
 #include "widgets/ButtonWidget.h"
+#include "widgets/ImageWidget.h"
 
 namespace ipn
 {
@@ -39,8 +40,26 @@ namespace ipn
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
         connect(this, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
 
+        m_clickable0 = new ClickableWidget(m_flickArea);
+        m_image0 = new ImageWidget(m_clickable0);
+        m_image0->setImage(":/assets/images/sofa2d.png");
+        connect(m_clickable0, SIGNAL(pressed()), this, SLOT(furniturePressed()));
+        connect(m_clickable0, SIGNAL(released()), this, SLOT(furnitureReleased()));
+        scene->addWidget(m_image0);
+
         update();
     }
+
+    void MapApp::furniturePressed()
+    {
+        qDebug("p");
+    }
+
+    void MapApp::furnitureReleased()
+    {
+        qDebug("r");
+    }
+
 
     void MapApp::changePinchScaleFactor(qreal delta)
     {
