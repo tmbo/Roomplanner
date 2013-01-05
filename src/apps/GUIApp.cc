@@ -56,16 +56,25 @@ namespace ipn
         m_pageIndicator->setNumberOfSegments(3);
 		m_pageIndicator->move(120 - m_pageIndicator->width() / 2, 224);
 
-        /*QSignalMapper *signalMapper = new QSignalMapper(this);
+        QSignalMapper *signalMapper = new QSignalMapper(this);
         signalMapper->setMapping(m_clickable0, 0);
         signalMapper->setMapping(m_clickable1, 1);
-        signalMapper->setMapping(m_clickable2, 2);*/
+        signalMapper->setMapping(m_clickable2, 2);
 
-        //connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
-        //connect(m_clickable0, SIGNAL(released()), signalMapper, SLOT(map()));
-        //connect(m_clickable1, SIGNAL(released()), signalMapper, SLOT(map()));
-        //connect(m_clickable2, SIGNAL(released()), signalMapper, SLOT(map()));
-        //connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(furnitureSelected(int)));
+        connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
+        connect(m_clickable0, SIGNAL(released()), signalMapper, SLOT(map()));
+        connect(m_clickable1, SIGNAL(released()), signalMapper, SLOT(map()));
+        connect(m_clickable2, SIGNAL(released()), signalMapper, SLOT(map()));
+
+        connect(m_clickable0, SIGNAL(clicked()), signalMapper, SLOT(map()));
+        connect(m_clickable1, SIGNAL(clicked()), signalMapper, SLOT(map()));
+        connect(m_clickable2, SIGNAL(clicked()), signalMapper, SLOT(map()));
+
+        connect(m_clickable0, SIGNAL(pressed()), signalMapper, SLOT(map()));
+        connect(m_clickable1, SIGNAL(pressed()), signalMapper, SLOT(map()));
+        connect(m_clickable2, SIGNAL(pressed()), signalMapper, SLOT(map()));
+
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(furnitureSelected(int)));
 	}
 
 	TitleBarWidget *GUIApp::titleBar()
@@ -80,7 +89,8 @@ namespace ipn
 
     void GUIApp::furnitureSelected(int idx)
     {
-       // printf("Idx ");
+
+       printf("Idx ");
     }
 
 } // namespace ipn
