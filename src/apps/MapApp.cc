@@ -26,6 +26,11 @@ namespace ipn
         graphicsView = new QGraphicsView(m_flickArea);
         graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        graphicsView->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+        graphicsView->setResizeAnchor(QGraphicsView::AnchorViewCenter);
+
+        m_currentScaleFactor = 1.0;
+        m_currentRotationAngle = 0;
 
         scene = new QGraphicsScene(graphicsView);
         graphicsView->setScene(scene);
@@ -33,8 +38,9 @@ namespace ipn
         backgroundPixmap = new QPixmap(":/img/backgrounds/map.png");
         background = scene->addPixmap(*backgroundPixmap);
 
-        m_currentScaleFactor = 1.0;
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
+        connect(this, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
+
         update();
     }
 
@@ -46,6 +52,14 @@ namespace ipn
 
         background->scale(delta, delta);
 
+        update();
+    }
+
+    void MapApp::changePinchRotationAngle(qreal delta)
+    {
+        m_currentRotationAngle += delta;
+        graphicsView->rotate(delta);
+        //printf("%f\n", m_currentRotationAngle);
         update();
     }
 

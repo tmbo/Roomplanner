@@ -26,15 +26,15 @@ namespace ipn
 
         public slots:
             void changePinchScaleFactor(qreal delta);
+            void changePinchRotationAngle(qreal delta);
 
 
 		private:
             TitleBarWidget *m_titleBar;
             FlickArea *m_flickArea;
 
+            qreal m_currentScaleFactor, m_currentRotationAngle;
             ButtonWidget *m_addButton;
-
-            qreal m_currentScaleFactor;
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
 
