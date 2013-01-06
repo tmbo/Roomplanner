@@ -111,6 +111,7 @@ namespace ipn
     }
 
     void MapApp::openSofaGUI(){
+        m_picker->setActiveEntry(-1);
         m_frameWidget->pushApp(m_guiApp);
     }
 
