@@ -53,7 +53,9 @@ SOURCES += \
 	src/apps/InfoApp.cc \
 	src/widgets/RoomWidget.cc \
 	src/apps/SettingsApp.cpp \
-	src/widgets/NumberSpinnerWidget.cpp \
+	src/widgets/NumberSpinnerWidget.cpp
+	
+HEADERS += \
 	src/MainWindow.h \
 	src/IPodFrameWidget.h \
 	src/helpers.h \
@@ -98,5 +100,4 @@ qtcAddDeployment()
 RESOURCES += \
 	resources.qrc
 
-HEADERS += \
-    src/widgets/NumberSpinnerWidget.h
+
