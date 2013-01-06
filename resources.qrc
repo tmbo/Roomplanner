@@ -63,5 +63,6 @@
         <file>assets/images/karlstad.png</file>
         <file>assets/images/add.png</file>
         <file>assets/images/sofa2d.png</file>
+        <file>assets/images/spinner.png</file>
     </qresource>
 </RCC>
