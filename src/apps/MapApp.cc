@@ -64,7 +64,13 @@ namespace ipn
         m_picker->setActiveEntry(2);
         m_picker->move(0, 0);
         m_picker->hide();
+        connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
+
         m_guiApp=new GUIApp();
+        connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(placeFurniture(int)));
+
+
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
 
         connect(m_addButton, SIGNAL(clicked()), this, SLOT(showOverlay()));
@@ -106,14 +112,11 @@ namespace ipn
         m_back->show();
 
         m_picker->show();
-
-        connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
     }
 
     void MapApp::openSofaGUI(){
+        m_picker->setActiveEntry(-1);
         m_frameWidget->pushApp(m_guiApp);
-        connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(placeFurniture(int)));
     }
 
     void MapApp::placeFurniture(int idx)

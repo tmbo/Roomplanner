@@ -51,8 +51,9 @@ SOURCES += \
 	src/widgets/OverlayWidget.cc \
 	src/apps/MenuApp.cc \
 	src/apps/InfoApp.cc \
-    src/widgets/RoomWidget.cc
-HEADERS += \
+	src/widgets/RoomWidget.cc
+	src/apps/SettingsApp.cpp \
+	src/widgets/NumberSpinnerWidget.cpp \
 	src/MainWindow.h \
 	src/IPodFrameWidget.h \
 	src/helpers.h \
@@ -84,8 +85,9 @@ HEADERS += \
 	src/widgets/OverlayWidget.h \
 	src/apps/MenuApp.h \
 	src/apps/InfoApp.h \
-    src/widgets/RoomWidget.h
-FORMS +=
+	src/widgets/RoomWidget.h
+	src/apps/SettingsApp.h \
+	src/widgets/NumberSpinnerWidget.h
 
 INCLUDEPATH += src src/apps src/widgets
 

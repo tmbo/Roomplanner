@@ -6,6 +6,7 @@
 #include "apps/PaintApp.h"
 #include "apps/MusicApp.h"
 #include "apps/GUIApp.h"
+#include "apps/SettingsApp.h"
 #include "apps/MapApp.h"
 #include "apps/GestureApp.h"
 #include "apps/MarkingMenuApp.h"
@@ -73,7 +74,7 @@ namespace ipn
 		m_clockApp = new ClockApp();
 		m_paintApp = new PaintApp();
 		m_musicApp = new MusicApp();
-		m_guiApp = new GUIApp();
+        m_guiApp = new SettingsApp();
         m_mapApp = new MapApp(m_frameWidget);
 		m_peepholeApp = new PeepholeApp();
 		connect(m_frameWidget, SIGNAL(frameMoved(const QPoint)), m_peepholeApp, SLOT(moveContents(const QPoint)));

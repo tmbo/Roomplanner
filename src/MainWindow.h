@@ -28,7 +28,7 @@ namespace ipn
 	class ClockApp;
 	class PaintApp;
 	class MusicApp;
-	class GUIApp;
+    class SettingsApp;
 	class MapApp;
 	class GestureApp;
 	class MarkingMenuApp;
@@ -108,7 +108,7 @@ namespace ipn
 			ClockApp *m_clockApp;
 			PaintApp *m_paintApp;
 			MusicApp *m_musicApp;
-			GUIApp *m_guiApp;
+            SettingsApp *m_guiApp;
 			MapApp *m_mapApp;
 			PeepholeApp *m_peepholeApp;
 			GestureApp *m_gestureApp;
