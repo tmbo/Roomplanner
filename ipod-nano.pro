@@ -51,7 +51,7 @@ SOURCES += \
 	src/widgets/OverlayWidget.cc \
 	src/apps/MenuApp.cc \
 	src/apps/InfoApp.cc \
-	src/widgets/RoomWidget.cc
+	src/widgets/RoomWidget.cc \
 	src/apps/SettingsApp.cpp \
 	src/widgets/NumberSpinnerWidget.cpp \
 	src/MainWindow.h \
@@ -85,7 +85,7 @@ SOURCES += \
 	src/widgets/OverlayWidget.h \
 	src/apps/MenuApp.h \
 	src/apps/InfoApp.h \
-	src/widgets/RoomWidget.h
+	src/widgets/RoomWidget.h \
 	src/apps/SettingsApp.h \
 	src/widgets/NumberSpinnerWidget.h
 
@@ -97,3 +97,6 @@ qtcAddDeployment()
 
 RESOURCES += \
 	resources.qrc
+
+HEADERS += \
+    src/widgets/NumberSpinnerWidget.h
