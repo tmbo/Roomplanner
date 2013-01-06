@@ -16,6 +16,7 @@ namespace ipn
     class GUIApp;
     class IPodFrameWidget;
     class ClickableWidget;
+    class RoomWidget;
 
 	class MapApp : public App
 	{
@@ -31,10 +32,10 @@ namespace ipn
 
         public slots:
             void changePinchScaleFactor(qreal delta);
+            void changePinchRotationAngle(qreal delta);
             void showOverlay();
             void openSofaGUI();
             void placeFurniture(int);
-            void changePinchRotationAngle(qreal delta);
             void furniturePressed();
             void furnitureReleased();
 
@@ -43,6 +44,8 @@ namespace ipn
 
             TitleBarWidget *m_titleBar;
             FlickArea *m_flickArea;
+
+            RoomWidget *m_room;
 
             qreal m_currentScaleFactor, m_currentRotationAngle;
             ButtonWidget *m_addButton;
