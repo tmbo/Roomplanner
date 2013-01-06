@@ -74,7 +74,7 @@ namespace ipn
 		m_paintApp = new PaintApp();
 		m_musicApp = new MusicApp();
 		m_guiApp = new GUIApp();
-		m_mapApp = new MapApp();
+        m_mapApp = new MapApp(m_frameWidget);
 		m_peepholeApp = new PeepholeApp();
 		connect(m_frameWidget, SIGNAL(frameMoved(const QPoint)), m_peepholeApp, SLOT(moveContents(const QPoint)));
 		m_gestureApp = new GestureApp();

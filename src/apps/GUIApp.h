@@ -2,7 +2,7 @@
 #define IPN_GUIAPP_H
 
 #include "App.h"
-
+#include <QSignalMapper.h>
 namespace ipn
 {
 
@@ -29,6 +29,9 @@ namespace ipn
 
 		protected slots:
 			void updatePageIndicator();
+            void emitFurnitureSelected(int);
+
+        signals:
             void furnitureSelected(int);
 
 		private:
@@ -36,16 +39,15 @@ namespace ipn
 			TitleBarWidget *m_titleBar;
 			SwitchButtonWidget *m_switchButton;
 			SliderWidget *m_slider;
-            ImageWidget *m_image0;
-            ImageWidget *m_image1;
-            ImageWidget *m_image2;
-            ClickableWidget *m_clickable0;
-            ClickableWidget *m_clickable1;
-            ClickableWidget *m_clickable2;
+            ImageWidget *m_image[3];
+            ClickableWidget *m_clickable[3];
+            QSignalMapper *m_signalMapper;
 
             TextWidget *m_scrollText;
 			FlickArea *m_flickArea;
 			PageIndicatorWidget *m_pageIndicator;
+
+            void createFurnitureEntry(int, QString);
 	};
 
 } // namespace ipn
