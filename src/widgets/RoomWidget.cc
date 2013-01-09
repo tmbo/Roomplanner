@@ -129,7 +129,9 @@ namespace ipn
     {
         QString tempUrl = QString(":/assets/images/furniture2d_%1.png").arg(QString::number(idx));
         QGraphicsPixmapItem *item = m_scene->addPixmap(QPixmap(tempUrl));
+        item->translate(width() / 2, height() / 2);
         item->scale(m_sceneRoot->transform().m11(), m_sceneRoot->transform().m22());
+        item->translate(-item->pixmap().width() / 2, -item->pixmap().height() / 2);
         m_sceneRoot->addToGroup(item);
     }
 
