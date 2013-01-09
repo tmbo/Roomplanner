@@ -122,7 +122,7 @@ namespace ipn
 		{
 			qreal value = gesture->property("scaleFactor").toReal();
 
-			emit gestureTriggered(PinchScale, value);
+            emit gestureTriggered(PinchScale, value);
 		}
 
 		if (gesture->state() == Qt::GestureFinished)

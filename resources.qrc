@@ -62,6 +62,9 @@
         <file>assets/images/ektorp.png</file>
         <file>assets/images/karlstad.png</file>
         <file>assets/images/add.png</file>
-        <file>assets/images/sofa2d.png</file>
+        <file>assets/images/spinner.png</file>
+        <file>assets/images/furniture2d_2.png</file>
+        <file>assets/images/furniture2d_1.png</file>
+        <file>assets/images/furniture2d_0.png</file>
     </qresource>
 </RCC>
