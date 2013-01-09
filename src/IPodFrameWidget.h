@@ -36,6 +36,7 @@ namespace ipn
 			QSize frameSize();
 			QRect contentRect();
 			int paddingTop();
+            void popApp(int);
 
 		signals:
 			/** Signal emmited when the frame is moved, use this to emulate

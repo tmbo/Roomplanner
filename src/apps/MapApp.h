@@ -11,12 +11,10 @@ namespace ipn
 	class FlickArea;
 	class ImageWidget;
     class ButtonWidget;
-    class BackgroundWidget;
-    class PickerWidget;
-    class GUIApp;
     class IPodFrameWidget;
     class ClickableWidget;
     class RoomWidget;
+    class ListMenuApp;
 
 	class MapApp : public App
 	{
@@ -34,7 +32,6 @@ namespace ipn
             void changePinchScaleFactor(qreal delta);
             void changePinchRotationAngle(qreal delta);
             void showOverlay();
-            void openSofaGUI();
             void placeFurniture(int);
             void furniturePressed();
             void furnitureReleased();
@@ -49,12 +46,11 @@ namespace ipn
 
             qreal m_currentScaleFactor, m_currentRotationAngle;
             ButtonWidget *m_addButton;
-            GUIApp *m_guiApp;
 
             QSize m_imageOriginalSize;
             QPoint m_imageTranslation;
-            BackgroundWidget* m_back;
-            PickerWidget* m_picker;
+
+            ListMenuApp* m_menu;
 
             ClickableWidget *m_clickable0;
             ImageWidget *m_image0;

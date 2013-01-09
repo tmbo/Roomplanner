@@ -53,7 +53,9 @@ SOURCES += \
 	src/apps/InfoApp.cc \
 	src/widgets/RoomWidget.cc \
 	src/apps/SettingsApp.cpp \
-	src/widgets/NumberSpinnerWidget.cpp
+	src/widgets/NumberSpinnerWidget.cpp \
+    src/apps/FurniturePickerApp.cpp \
+    src/apps/ListMenuApp.cc
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -89,7 +91,9 @@ HEADERS += \
 	src/apps/InfoApp.h \
 	src/widgets/RoomWidget.h \
 	src/apps/SettingsApp.h \
-	src/widgets/NumberSpinnerWidget.h
+	src/widgets/NumberSpinnerWidget.h \
+    src/apps/FurniturePickerApp.h \
+    src/apps/ListMenuApp.h
 
 INCLUDEPATH += src src/apps src/widgets
 
