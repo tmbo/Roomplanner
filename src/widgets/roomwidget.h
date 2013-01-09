@@ -14,10 +14,12 @@ namespace ipn
 
         public:
             explicit RoomWidget(QWidget *parent = 0);
+            void addFurniture(int idx);
             virtual void resize(int width, int height);
             virtual void mousePressEvent(QMouseEvent *event);
             virtual void mouseMoveEvent(QMouseEvent *event);
             virtual void mouseReleaseEvent(QMouseEvent *event);
+
 
         protected:
 
@@ -33,6 +35,8 @@ namespace ipn
             bool m_isPressed;
 
             QGraphicsItem *m_selectedItem;
+            QPixmap *m_tempPixmap;
+            QString *m_tempUrl;
 
         signals:
 

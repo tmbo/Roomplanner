@@ -84,4 +84,12 @@ namespace ipn
         m_isPressed = false;
     }
 
+    void RoomWidget::addFurniture(int idx)
+    {
+        QString m_tempUrl = QString(":/assets/images/furniture2d_%1.png").arg(QString::number(idx));
+        m_tempPixmap = new QPixmap();
+        m_tempPixmap->load(m_tempUrl);
+        m_scene->addPixmap(*m_tempPixmap);
+    }
+
 }

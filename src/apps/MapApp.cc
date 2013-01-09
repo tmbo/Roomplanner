@@ -127,6 +127,7 @@ namespace ipn
 
         printf("idx: %d\n", idx);
         // do whatever needs to be done with the new furniture
+        m_room->addFurniture(idx);
     }
 
     void MapApp::changePinchRotationAngle(qreal delta)
