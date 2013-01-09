@@ -45,9 +45,7 @@ namespace ipn
             qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 10.0), .1);
             qreal scaleDelta = newScaleFactor / m_currentScaleFactor;
             m_currentScaleFactor = newScaleFactor;
-            foreach(QGraphicsItem *item, m_scene->items()) {
-                item->scale(scaleDelta, scaleDelta);
-            }
+            m_graphicsView->scale(scaleDelta, scaleDelta);
             update();
         }
     }
@@ -77,7 +75,8 @@ namespace ipn
             QPoint moveDifference = event->pos() - m_lastMousePos;
             m_lastMousePos = event->pos();
 
-            m_background->translate(moveDifference.x(), moveDifference.y());
+            QTransform transform = m_graphicsView->transform();
+            m_background->translate(moveDifference.x() / transform.m11(), moveDifference.y() / transform.m11());
         }
     }
 
