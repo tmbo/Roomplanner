@@ -93,3 +93,5 @@ qtcAddDeployment()
 
 RESOURCES += \
 	resources.qrc
+
+macx:LIBS += -framework CoreFoundation
