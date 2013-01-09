@@ -122,7 +122,20 @@ namespace ipn
         m_selectedItem = m_graphicsView->itemAt(event->pos() - this->pos());
 
         if (m_selectedItem == m_background)
+        {
             m_selectedItem = 0;
+        }
+        else
+        {
+            QPoint moveDifference = QPoint(width()/2, height() / 2) - event->pos();
+            m_scrollOffset += moveDifference;
+
+            QTransform transform = m_sceneRoot->transform();
+            foreach(QGraphicsItem *item, m_scene->items()) {
+                if (item == m_sceneRoot) continue;
+                item->translate(moveDifference.x() / transform.m11(), moveDifference.y() / transform.m11());
+            }
+        }
     }
 
     void RoomWidget::addFurniture(int idx)
