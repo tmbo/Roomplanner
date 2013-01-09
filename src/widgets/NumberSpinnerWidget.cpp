@@ -28,9 +28,9 @@ namespace ipn
         //tw->setColor(Qt::white);
 
         char buffer [33];
-        itoa (number,buffer,10);
+        //itoa (number,buffer,10);
 
-        tw->setText(buffer);
+        tw->setText("12");
         tw->move(0, 20 * idx);
         //printf("called!");
     }

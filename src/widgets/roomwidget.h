@@ -19,6 +19,7 @@ namespace ipn
             virtual void mousePressEvent(QMouseEvent *event);
             virtual void mouseMoveEvent(QMouseEvent *event);
             virtual void mouseReleaseEvent(QMouseEvent *event);
+            virtual void mouseTapEvent(QMouseEvent *event);
 
 
         protected:
@@ -27,6 +28,7 @@ namespace ipn
             ClickableWidget *m_overlay;
             QGraphicsView *m_graphicsView;
             QGraphicsScene *m_scene;
+            QGraphicsItemGroup *m_sceneRoot;
             QGraphicsPixmapItem *m_background;
 
             QPoint m_lastMousePos;
@@ -34,6 +36,7 @@ namespace ipn
             qreal m_currentScaleFactor;
             bool m_isPressed;
 
+            QTimer* m_tapTimer;
             QGraphicsItem *m_selectedItem;
             QPixmap *m_tempPixmap;
             QString *m_tempUrl;
