@@ -7,14 +7,17 @@
 namespace ipn
 {
     class ClickableWidget;
+    class ButtonWidget;
+    class MapApp;
 
     class RoomWidget : public QWidget
     {
         Q_OBJECT
 
         public:
-            explicit RoomWidget(QWidget *parent = 0);
+            explicit RoomWidget(MapApp *parent = 0);
             void addFurniture(int idx);
+            void deleteFurniture();
             virtual void resize(int width, int height);
             virtual void mousePressEvent(QMouseEvent *event);
             virtual void mouseMoveEvent(QMouseEvent *event);
@@ -25,6 +28,7 @@ namespace ipn
         protected:
 
         private:
+            MapApp *m_parent;
             ClickableWidget *m_overlay;
             QGraphicsView *m_graphicsView;
             QGraphicsScene *m_scene;
@@ -46,7 +50,6 @@ namespace ipn
         public slots:
             void changePinchScaleFactor(qreal delta);
             void changePinchRotationAngle(qreal delta);
-
 
     };
 }

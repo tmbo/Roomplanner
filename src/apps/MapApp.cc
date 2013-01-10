@@ -49,6 +49,13 @@ namespace ipn
         m_addButton->setInactiveImages(":/assets/images/add.png");
         m_addButton->move(203,5);
 
+        m_deleteButton = new ButtonWidget(this);
+        m_deleteButton->setInactiveImages(":/assets/images/button_delete.png");
+        m_deleteButton->move(10,5);
+        m_deleteButton->setHidden(true);
+        connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
+
+
         m_menu = new ListMenuApp(m_frameWidget);
 
         m_currentScaleFactor = 1.0;
@@ -107,6 +114,12 @@ namespace ipn
 //        background->rotate(delta);
 //        //printf("%f\n", m_currentRotationAngle);
 //        update();
+    }
+
+    void MapApp::deleteFurniture()
+    {
+        m_room->deleteFurniture();
+        m_deleteButton->setHidden(true);
     }
 
 	TitleBarWidget *MapApp::titleBar()

@@ -26,6 +26,7 @@ namespace ipn
             inline bool isOpaque() { return true; }
 
 			TitleBarWidget *titleBar();
+            ButtonWidget *m_deleteButton;
 
 
         public slots:
@@ -35,6 +36,7 @@ namespace ipn
             void placeFurniture(int);
             void furniturePressed();
             void furnitureReleased();
+            void deleteFurniture();
 
 		private:
             IPodFrameWidget *m_frameWidget;

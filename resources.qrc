@@ -66,5 +66,6 @@
         <file>assets/images/furniture2d_2.png</file>
         <file>assets/images/furniture2d_1.png</file>
         <file>assets/images/furniture2d_0.png</file>
+        <file>assets/images/button_delete.png</file>
     </qresource>
 </RCC>
