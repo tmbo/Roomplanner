@@ -66,5 +66,13 @@
         <file>assets/images/furniture2d_2.png</file>
         <file>assets/images/furniture2d_1.png</file>
         <file>assets/images/furniture2d_0.png</file>
+        <file>assets/images/backgrounds/comma.png</file>
+        <file>assets/images/backgrounds/leftshadow.png</file>
+        <file>assets/images/backgrounds/numberslider_area.png</file>
+        <file>assets/images/backgrounds/numberslider_bottomshadow.png</file>
+        <file>assets/images/backgrounds/numberslider_frame.png</file>
+        <file>assets/images/backgrounds/numberslider_selectorframe.png</file>
+        <file>assets/images/backgrounds/numberslider_topshadow.png</file>
+        <file>assets/images/backgrounds/rightshadow.png</file>
     </qresource>
 </RCC>

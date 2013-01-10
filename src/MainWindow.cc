@@ -13,6 +13,7 @@
 #include "apps/MultiTapApp.h"
 #include "apps/PickerApp.h"
 #include "apps/PeepholeApp.h"
+#include "apps/NumberPickerApp.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/ScalableButtonWidget.h"
 #include "widgets/ImageWidget.h"
@@ -68,6 +69,9 @@ namespace ipn
 		m_choiceMenuApp->addButton(MenuApp::TopRight, "Marking M.", ":/img/icons/icon.png");
 		m_choiceMenuApp->addButton(MenuApp::BottomLeft, "Picker", ":/img/icons/icon.png");
 		m_choiceMenuApp->titleBar()->setTitle("choice apps");
+
+        m_numberPickerApp = new NumberPickerApp();
+        m_numberPickerApp->inputNumber(999);
 
 		m_infoApp = new InfoApp();
 		m_infoApp->setMessage("This is an\nInfoApp which\ncan display some text.");
@@ -165,7 +169,7 @@ namespace ipn
 	}
 
 	// For each app, we need a slot which pushes it on the app stack:
-	void MainWindow::switchToDisplayMenuApp()		{m_frameWidget->pushApp(m_displayMenuApp);}
+    void MainWindow::switchToDisplayMenuApp()		{m_frameWidget->pushApp(m_numberPickerApp);}
 	void MainWindow::switchToInteractiveMenuApp()	{m_frameWidget->pushApp(m_interactiveMenuApp);}
 	void MainWindow::switchToInputMenuApp()			{m_frameWidget->pushApp(m_inputMenuApp);}
 	void MainWindow::switchToChoiceMenuApp()		{m_frameWidget->pushApp(m_choiceMenuApp);}
