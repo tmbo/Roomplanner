@@ -98,13 +98,12 @@ namespace ipn
 
     void MapApp::showOverlay()
     {
+        m_room->unselectFurniture();
         m_frameWidget->pushApp(m_menu);
     }
 
     void MapApp::placeFurniture(int idx)
     {
-        printf("idx: %d\n", idx);
-        // do whatever needs to be done with the new furniture
         m_room->addFurniture(idx);
     }
 

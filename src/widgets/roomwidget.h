@@ -18,6 +18,8 @@ namespace ipn
             explicit RoomWidget(MapApp *parent = 0);
             void addFurniture(int idx);
             void deleteFurniture();
+            void unselectFurniture();
+            void selectFurniture(QGraphicsItem *item);
             virtual void resize(int width, int height);
             virtual void mousePressEvent(QMouseEvent *event);
             virtual void mouseMoveEvent(QMouseEvent *event);
