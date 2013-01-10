@@ -26,7 +26,7 @@ SOURCES += \
 	src/apps/PeepholeApp.cc \
 	src/apps/PaintApp.cc \
 	src/apps/MusicApp.cc \
-	src/apps/ClockApp.cc \
+        src/apps/ClockApp.cc \
 	src/apps/GUIApp.cc \
 	src/apps/MapApp.cc \
 	src/apps/GestureApp.cc \
@@ -53,8 +53,10 @@ SOURCES += \
 	src/apps/InfoApp.cc \
 	src/widgets/RoomWidget.cc \
 	src/apps/SettingsApp.cpp \
-	src/widgets/NumberSpinnerWidget.cpp
-
+	src/widgets/NumberSpinnerWidget.cpp \
+    src/apps/FurniturePickerApp.cpp \
+    src/apps/ListMenuApp.cc
+	
 HEADERS += \
 	src/MainWindow.h \
 	src/IPodFrameWidget.h \
@@ -89,7 +91,9 @@ HEADERS += \
 	src/apps/InfoApp.h \
 	src/widgets/RoomWidget.h \
 	src/apps/SettingsApp.h \
-	src/widgets/NumberSpinnerWidget.h
+	src/widgets/NumberSpinnerWidget.h \
+    src/apps/FurniturePickerApp.h \
+    src/apps/ListMenuApp.h
 
 INCLUDEPATH += src src/apps src/widgets
 

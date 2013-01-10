@@ -4,12 +4,11 @@
 #include "widgets/FlickArea.h"
 #include <stdio.h>
 #include "widgets/ButtonWidget.h"
-#include "widgets/BackgroundWidget.h"
-#include "widgets/PickerWidget.h"
 #include "IPodFrameWidget.h"
-#include "apps/GUIApp.h"
 #include "widgets/ImageWidget.h"
 #include "widgets/RoomWidget.h"
+#include "apps/ListMenuApp.h"
+#include "apps/FurniturePickerApp.h"
 
 namespace ipn
 {
@@ -50,26 +49,9 @@ namespace ipn
         m_addButton->setInactiveImages(":/assets/images/add.png");
         m_addButton->move(203,5);
 
+        m_menu = new ListMenuApp(m_frameWidget);
+
         m_currentScaleFactor = 1.0;
-
-        m_back = new BackgroundWidget(this);
-        m_back->setColor(BackgroundWidget::BG_TRANSPARENT);
-        m_back->move(0, 0);
-        m_back->hide();
-
-        m_picker = new PickerWidget(this);
-        m_picker->addEntry("Betten");
-        m_picker->addEntry("Stühle");
-        m_picker->addEntry("Sofas");
-        m_picker->setActiveEntry(2);
-        m_picker->move(0, 0);
-        m_picker->hide();
-        connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
-
-        m_guiApp=new GUIApp();
-        connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(placeFurniture(int)));
-
 
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
 
@@ -77,7 +59,7 @@ namespace ipn
 
         connect(this, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
         connect(this, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
-
+        connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int)), this, SLOT(placeFurniture(int)));
 //        m_clickable0 = new ClickableWidget(m_flickArea);
 //        m_image0 = new ImageWidget(m_clickable0);
 //        m_image0->setImage(":/assets/images/sofa2d.png");
@@ -109,22 +91,11 @@ namespace ipn
 
     void MapApp::showOverlay()
     {
-        m_back->show();
-
-        m_picker->show();
-    }
-
-    void MapApp::openSofaGUI(){
-        m_picker->setActiveEntry(-1);
-        m_frameWidget->pushApp(m_guiApp);
+        m_frameWidget->pushApp(m_menu);
     }
 
     void MapApp::placeFurniture(int idx)
     {
-        m_back->hide();
-        m_picker->hide();
-        m_frameWidget->popApp();
-
         printf("idx: %d\n", idx);
         // do whatever needs to be done with the new furniture
         m_room->addFurniture(idx);

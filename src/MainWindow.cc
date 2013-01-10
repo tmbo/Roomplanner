@@ -29,16 +29,16 @@ namespace ipn
 	MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	{
 		m_frameWidget = new ipn::IPodFrameWidget(new QWidget);
-		setCentralWidget(m_frameWidget);
+        setCentralWidget(m_frameWidget);
 
-		// Create apps:
-		m_menuApp = new MenuApp();
-		m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
-		m_menuApp->addButton(MenuApp::TopLeft, "display", ":/img/icons/icon.png");
-		m_menuApp->addButton(MenuApp::TopRight, "input", ":/img/icons/icon.png");
-		m_menuApp->addButton(MenuApp::BottomLeft, "choice", ":/img/icons/icon.png");
-		m_menuApp->addButton(MenuApp::BottomRight, "interactive", ":/img/icons/icon.png");
-		m_menuApp->titleBar()->setTitle("choose\na category");
+        // Create apps:
+        m_menuApp = new MenuApp();
+        m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
+        m_menuApp->addButton(MenuApp::TopLeft, "display", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::TopRight, "input", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::BottomLeft, "choice", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::BottomRight, "interactive", ":/img/icons/icon.png");
+        m_menuApp->titleBar()->setTitle("choose\na category");
 
 		m_displayMenuApp = new MenuApp();
 		m_displayMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);

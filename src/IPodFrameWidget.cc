@@ -184,17 +184,23 @@ namespace ipn
 
 	void IPodFrameWidget::popApp()
 	{
-		if (m_appStack.isEmpty())
-			return;
-
-		if (m_animationType != ANIMATION_NONE)
-			return;
-
-		m_popAppCount = 1;
-		m_opaquePopAppCount = 1;
-
-		popMultipleApps();
+        popApp(1);
 	}
+
+    void IPodFrameWidget::popApp(int i)
+    {
+        if (m_appStack.isEmpty())
+            return;
+
+        if (m_animationType != ANIMATION_NONE)
+            return;
+
+        m_popAppCount = i;
+        m_opaquePopAppCount = i;
+
+        popMultipleApps();
+    }
+
 
 	void IPodFrameWidget::instantSwitchBackTo(App *app)
 	{
