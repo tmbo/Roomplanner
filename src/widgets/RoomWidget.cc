@@ -119,6 +119,10 @@ namespace ipn
 
     void RoomWidget::mouseTapEvent(QMouseEvent *event){
 
+        // remoce dropShadow
+        if (m_selectedItem!=m_background && m_selectedItem != 0)
+            m_selectedItem->setGraphicsEffect(0);
+
         m_selectedItem = m_graphicsView->itemAt(event->pos() - this->pos());
 
         if (m_selectedItem == m_background)
@@ -127,6 +131,12 @@ namespace ipn
         }
         else
         {
+            // set dropShadow
+            QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect;
+            effect->setBlurRadius(8);
+            m_selectedItem->setGraphicsEffect(effect);
+
+
             QPoint moveDifference = QPoint(width()/2, height() / 2) - event->pos();
             m_scrollOffset += moveDifference;
 
