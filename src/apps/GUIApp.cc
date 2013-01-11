@@ -29,9 +29,9 @@ namespace ipn
 
         m_signalMapper = new QSignalMapper();
 
-        createFurnitureEntry(0, ":/assets/images/karlstad.png");
-        createFurnitureEntry(1, ":/assets/images/sater.png");
-        createFurnitureEntry(2, ":/assets/images/ektorp.png");
+        createFurnitureEntry(0, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(1, ":/assets/images/furniture/sater.png");
+        createFurnitureEntry(2, ":/assets/images/furniture/ektorp.png");
 
 		m_pageIndicator = new PageIndicatorWidget(this);
         m_pageIndicator->setNumberOfSegments(3);
@@ -56,10 +56,10 @@ namespace ipn
         connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
     }
 
-	TitleBarWidget *GUIApp::titleBar()
-	{
-		return m_titleBar;
-	}
+    TitleBarWidget *GUIApp::titleBar()
+    {
+        return m_titleBar;
+    }
 
 	void GUIApp::updatePageIndicator()
 	{
