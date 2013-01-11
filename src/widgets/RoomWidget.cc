@@ -171,7 +171,7 @@ namespace ipn
 
     void RoomWidget::addFurniture(int idx)
     {
-        QString tempUrl = QString(":/assets/images/couch_%1.png").arg(QString::number(idx));
+        QString tempUrl = QString(":/assets/images/furniture/couch_%1.png").arg(QString::number(idx));
         QGraphicsPixmapItem *item = m_scene->addPixmap(QPixmap(tempUrl));
         item->setTransformationMode(Qt::SmoothTransformation);
         item->translate(width() / 2, height() / 2);

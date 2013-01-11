@@ -22,12 +22,12 @@ namespace ipn
         m_room->resize(240, 240);
 
         m_addButton = new ButtonWidget(this);
-        m_addButton->setInactiveImages(":/assets/images/button_menu.png");
+        m_addButton->setInactiveImages(":/assets/images/buttons/button_menu.png");
         m_addButton->move(198, 2);
         connect(m_addButton, SIGNAL(clicked()), this, SLOT(showOverlay()));
 
         m_deleteButton = new ButtonWidget(this);
-        m_deleteButton->setInactiveImages(":/assets/images/button_delete.png");
+        m_deleteButton->setInactiveImages(":/assets/images/buttons/button_delete.png");
         m_deleteButton->move(2, 198);
         m_deleteButton->setHidden(true);
         connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
