@@ -201,7 +201,9 @@ namespace ipn
         // set dropShadow
         m_selectedItem = item;
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect;
-        effect->setBlurRadius(8);
+        effect->setBlurRadius(20);
+        effect->setColor(QColor(Qt::blue));
+        effect->setOffset(0, 0);
         m_selectedItem->setGraphicsEffect(effect);
         m_parent->m_deleteButton->setHidden(false);
 
