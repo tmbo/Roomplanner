@@ -13,12 +13,12 @@ namespace ipn
         m_graphicsView = new QGraphicsView(this);
         m_scene = new QGraphicsScene(m_graphicsView);
 
+        m_graphicsView->setBackgroundBrush(QBrush(QColor(230, 230, 230)));
         m_graphicsView->setScene(m_scene);
         m_graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_graphicsView->setSceneRect(0, 0, 240, 240);
         m_graphicsView->move(0, 0);
-
 
         m_sceneRoot = m_scene->createItemGroup(QList<QGraphicsItem*>());
 
@@ -54,6 +54,8 @@ namespace ipn
     {
         if (m_selectedItem == 0) {
 
+            m_isPressed = false;
+
             qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 1.0), .3);
             qreal scaleDelta = newScaleFactor / m_currentScaleFactor;
             m_currentScaleFactor = newScaleFactor;
@@ -75,6 +77,8 @@ namespace ipn
     void RoomWidget::changePinchRotationAngle(qreal delta)
     {
         if (m_selectedItem) {
+
+            m_isPressed = false;
             QPointF halfSize = m_selectedItem->boundingRect().center();
             m_selectedItem->transform().m13();
 
@@ -145,7 +149,7 @@ namespace ipn
         QGraphicsItem *item = m_graphicsView->itemAt(event->pos() - this->pos());
 
 
-        if (item != m_background && item != m_sceneRoot)
+        if (item != m_background && item != m_sceneRoot && item != 0)
         {
             selectFurniture(item);
             QPointF moveDifference =
@@ -169,6 +173,7 @@ namespace ipn
     {
         QString tempUrl = QString(":/assets/images/furniture/couch_%1.png").arg(QString::number(idx));
         QGraphicsPixmapItem *item = m_scene->addPixmap(QPixmap(tempUrl));
+        item->setTransformationMode(Qt::SmoothTransformation);
         item->translate(width() / 2, height() / 2);
         item->scale(m_sceneRoot->transform().m11(), m_sceneRoot->transform().m22());
         item->translate(-item->pixmap().width() / 2, -item->pixmap().height() / 2);
