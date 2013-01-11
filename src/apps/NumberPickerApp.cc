@@ -18,7 +18,6 @@ namespace ipn
         m_back->setColor(BackgroundWidget::BG_GRAY);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->move(0, 0);
         m_titleBar->setTitle("Width");
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
         m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);

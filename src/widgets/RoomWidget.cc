@@ -22,7 +22,7 @@ namespace ipn
 
         m_sceneRoot = m_scene->createItemGroup(QList<QGraphicsItem*>());
 
-        m_background = m_scene->addPixmap(QPixmap(":/img/backgrounds/map.png"));
+        m_background = m_scene->addPixmap(QPixmap(":/assets/images/room.png"));
         m_background->setTransformationMode(Qt::SmoothTransformation);
         m_sceneRoot->addToGroup(m_background);
 

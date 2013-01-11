@@ -72,5 +72,9 @@
         <file>assets/images/button_delete.png</file>
         <file>assets/images/button_add.png</file>
         <file>assets/images/button_menu.png</file>
+        <file>assets/images/couch_0.png</file>
+        <file>assets/images/couch_1.png</file>
+        <file>assets/images/couch_2.png</file>
+        <file>assets/images/room.png</file>
     </qresource>
 </RCC>
