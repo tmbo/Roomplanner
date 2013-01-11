@@ -68,7 +68,7 @@ namespace ipn
 
 	void OverlayWidget::wheelEvent(QWheelEvent *event)
 	{
-		if (event->buttons() & Qt::MidButton)
+        if (event->buttons() & Qt::MidButton || event->modifiers() & Qt::ShiftModifier)
 			// Emulate multi-touch rotation
 			emit gestureTriggered(PinchRotation, event->delta() / 40.0);
 		else

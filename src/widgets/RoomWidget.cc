@@ -37,10 +37,10 @@ namespace ipn
         m_overlay->move(0,0);
         m_overlay->resize(width(), height());
 
-
         m_tapTimer = new QTimer(this);
         m_tapTimer->setSingleShot(true);
 
+        changePinchScaleFactor(.5);
     }
 
     void RoomWidget::resize(int width, int height)
@@ -54,7 +54,7 @@ namespace ipn
     {
         if (m_selectedItem == 0) {
 
-            qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 2.0), .6);
+            qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 1.0), .3);
             qreal scaleDelta = newScaleFactor / m_currentScaleFactor;
             m_currentScaleFactor = newScaleFactor;
 
