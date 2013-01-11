@@ -23,16 +23,8 @@ SOURCES += \
 	src/MainWindow.cc \
 	src/IPodFrameWidget.cc \
 	src/helpers.cc \
-	src/apps/PeepholeApp.cc \
-	src/apps/PaintApp.cc \
-	src/apps/MusicApp.cc \
-        src/apps/ClockApp.cc \
 	src/apps/GUIApp.cc \
 	src/apps/MapApp.cc \
-	src/apps/GestureApp.cc \
-	src/apps/MarkingMenuApp.cc \
-	src/apps/MultiTapApp.cc \
-	src/apps/PickerApp.cc \
 	src/apps/App.cc \
 	src/widgets/TitleBarWidget.cc \
 	src/widgets/TitleBarButtonWidget.cc \
@@ -50,7 +42,6 @@ SOURCES += \
 	src/widgets/PickerWidget.cc \
 	src/widgets/OverlayWidget.cc \
 	src/apps/MenuApp.cc \
-	src/apps/InfoApp.cc \
 	src/widgets/RoomWidget.cc \
 	src/apps/SettingsApp.cpp \
 	src/widgets/NumberSpinnerWidget.cpp \
@@ -63,16 +54,8 @@ HEADERS += \
 	src/MainWindow.h \
 	src/IPodFrameWidget.h \
 	src/helpers.h \
-	src/apps/PeepholeApp.h \
-	src/apps/PaintApp.h \
-	src/apps/MusicApp.h \
-	src/apps/ClockApp.h \
 	src/apps/GUIApp.h \
 	src/apps/MapApp.h \
-	src/apps/GestureApp.h \
-	src/apps/MarkingMenuApp.h \
-	src/apps/MultiTapApp.h \
-	src/apps/PickerApp.h \
 	src/apps/App.h \
 	src/widgets/TitleBarWidget.h \
 	src/widgets/TitleBarButtonWidget.h \
@@ -90,7 +73,6 @@ HEADERS += \
 	src/widgets/PickerWidget.h \
 	src/widgets/OverlayWidget.h \
 	src/apps/MenuApp.h \
-	src/apps/InfoApp.h \
 	src/widgets/RoomWidget.h \
 	src/apps/SettingsApp.h \
 	src/widgets/NumberSpinnerWidget.h \

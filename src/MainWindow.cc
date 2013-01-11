@@ -1,18 +1,9 @@
 #include "MainWindow.h"
 #include "IPodFrameWidget.h"
 #include "apps/MenuApp.h"
-#include "apps/InfoApp.h"
-#include "apps/ClockApp.h"
-#include "apps/PaintApp.h"
-#include "apps/MusicApp.h"
 #include "apps/GUIApp.h"
 #include "apps/SettingsApp.h"
 #include "apps/MapApp.h"
-#include "apps/GestureApp.h"
-#include "apps/MarkingMenuApp.h"
-#include "apps/MultiTapApp.h"
-#include "apps/PickerApp.h"
-#include "apps/PeepholeApp.h"
 #include "apps/NumberPickerApp.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/ScalableButtonWidget.h"
@@ -35,57 +26,15 @@ namespace ipn
         // Create apps:
         m_menuApp = new MenuApp();
         m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
-        m_menuApp->addButton(MenuApp::TopLeft, "display", ":/img/icons/icon.png");
-        m_menuApp->addButton(MenuApp::TopRight, "input", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::TopLeft, "NumberPicker", ":/img/icons/icon.png");
         m_menuApp->addButton(MenuApp::BottomLeft, "CouchPuzzle", ":/img/icons/icon.png");
-        m_menuApp->addButton(MenuApp::BottomRight, "interactive", ":/img/icons/icon.png");
         m_menuApp->titleBar()->setTitle("choose\na category");
 
-		m_displayMenuApp = new MenuApp();
-		m_displayMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);
-		m_displayMenuApp->addButton(MenuApp::TopLeft, "Infos", ":/img/icons/icon.png");
-		m_displayMenuApp->addButton(MenuApp::TopRight, "Clock", ":/img/icons/icon.png");
-		m_displayMenuApp->addButton(MenuApp::BottomLeft, "Music", ":/img/icons/icon.png");
-		m_displayMenuApp->titleBar()->setTitle("display apps");
-
-		m_interactiveMenuApp = new MenuApp();
-		m_interactiveMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);
-		m_interactiveMenuApp->addButton(MenuApp::TopLeft, "Paint", ":/img/icons/icon.png");
-		m_interactiveMenuApp->addButton(MenuApp::TopRight, "Map", ":/img/icons/icon.png");
-		m_interactiveMenuApp->addButton(MenuApp::BottomLeft, "Peephole", ":/img/icons/icon.png");
-		m_interactiveMenuApp->titleBar()->setTitle("interactive apps");
-
-		m_inputMenuApp = new MenuApp();
-		m_inputMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);
-		m_inputMenuApp->addButton(MenuApp::TopLeft, "disabled", ":/img/icons/icon.png");
-		m_inputMenuApp->button(MenuApp::TopLeft)->setEnabled(false);
-		m_inputMenuApp->addButton(MenuApp::TopRight, "Gestures", ":/img/icons/icon.png");
-		m_inputMenuApp->addButton(MenuApp::BottomLeft, "MultiTap", ":/img/icons/icon.png");
-		m_inputMenuApp->titleBar()->setTitle("input apps");
-
-		m_choiceMenuApp = new MenuApp();
-		m_choiceMenuApp->titleBar()->addButton(TitleBarWidget::BUTTON_BACK);
-		m_choiceMenuApp->addButton(MenuApp::TopLeft, "Simple GUI", ":/img/icons/icon.png");
-		m_choiceMenuApp->addButton(MenuApp::TopRight, "Marking M.", ":/img/icons/icon.png");
-		m_choiceMenuApp->addButton(MenuApp::BottomLeft, "Picker", ":/img/icons/icon.png");
-		m_choiceMenuApp->titleBar()->setTitle("choice apps");
 
         m_numberPickerApp = new NumberPickerApp(m_frameWidget, this);
         m_numberPickerApp->setValue(2,40);
 
-		m_infoApp = new InfoApp();
-		m_infoApp->setMessage("This is an\nInfoApp which\ncan display some text.");
-		m_clockApp = new ClockApp();
-		m_paintApp = new PaintApp();
-		m_musicApp = new MusicApp();
-        m_guiApp = new SettingsApp();
         m_mapApp = new MapApp(m_frameWidget);
-		m_peepholeApp = new PeepholeApp();
-		connect(m_frameWidget, SIGNAL(frameMoved(const QPoint)), m_peepholeApp, SLOT(moveContents(const QPoint)));
-		m_gestureApp = new GestureApp();
-		m_markingMenuApp = new MarkingMenuApp();
-		m_multiTapApp = new MultiTapApp();
-		m_pickerApp = new PickerApp();
 
 		// Set MenuApp as first app:
 		m_frameWidget->instantReplaceAllAppsBy(m_menuApp);
@@ -104,45 +53,44 @@ namespace ipn
 
 		// Wire up menus <-> menus:
 		connect(m_menuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToDisplayMenuApp()));
-		connect(m_menuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToInputMenuApp()));
         connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMapApp()));
-		connect(m_menuApp, SIGNAL(bottomRightButtonClicked()), this, SLOT(switchToInteractiveMenuApp()));
+
 		connect(m_menuApp->titleBar(), SIGNAL(rightButtonClicked()), this, SLOT(close()));
-		connect(m_displayMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_inputMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_choiceMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_interactiveMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_displayMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_inputMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_choiceMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_interactiveMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_displayMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_inputMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_choiceMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_interactiveMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_displayMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_inputMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_choiceMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_interactiveMenuApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
 
 		// Wire up menus -> apps:
-		connect(m_displayMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToInfoApp()));
-		connect(m_displayMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToClockApp()));
-		connect(m_displayMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMusicApp()));
-		connect(m_inputMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToGestureApp()));
-		connect(m_inputMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMultiTapApp()));
-		connect(m_interactiveMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToPaintApp()));
-		connect(m_interactiveMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMapApp()));
-		connect(m_interactiveMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToPeepholeApp()));
-		connect(m_choiceMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToGUIApp()));
-		connect(m_choiceMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMarkingMenuApp()));
-		connect(m_choiceMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToPickerApp()));
+//		connect(m_displayMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToInfoApp()));
+//		connect(m_displayMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToClockApp()));
+//		connect(m_displayMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMusicApp()));
+//		connect(m_inputMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToGestureApp()));
+//		connect(m_inputMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMultiTapApp()));
+//		connect(m_interactiveMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToPaintApp()));
+//		connect(m_interactiveMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMapApp()));
+//		connect(m_interactiveMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToPeepholeApp()));
+//		connect(m_choiceMenuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToGUIApp()));
+//		connect(m_choiceMenuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToMarkingMenuApp()));
+//		connect(m_choiceMenuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToPickerApp()));
 
 		// Wire up menus <- apps:
-		connect(m_infoApp, SIGNAL(okButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_infoApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_clockApp, SIGNAL(okButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_markingMenuApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
-        //connect(m_mapApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_peepholeApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_gestureApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_paintApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_musicApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
-		connect(m_pickerApp->titleBar(), SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
-		connect(m_multiTapApp, SIGNAL(accepted()), m_frameWidget, SLOT(popApp()));
+//		connect(m_infoApp, SIGNAL(okButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_infoApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_clockApp, SIGNAL(okButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_markingMenuApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
+//        //connect(m_mapApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_peepholeApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_gestureApp, SIGNAL(quitButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_paintApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_musicApp, SIGNAL(swipeRightTriggered()), m_frameWidget, SLOT(popApp()));
+//		connect(m_pickerApp->titleBar(), SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
+//		connect(m_multiTapApp, SIGNAL(accepted()), m_frameWidget, SLOT(popApp()));
 
 		// Forward event notifications from the frame widget:
 		connect(m_frameWidget, SIGNAL(frameMoved()), this, SLOT(moveOverlay()));
@@ -170,20 +118,20 @@ namespace ipn
 
 	// For each app, we need a slot which pushes it on the app stack:
     void MainWindow::switchToDisplayMenuApp()		{m_frameWidget->pushApp(m_numberPickerApp);}
-	void MainWindow::switchToInteractiveMenuApp()	{m_frameWidget->pushApp(m_interactiveMenuApp);}
-	void MainWindow::switchToInputMenuApp()			{m_frameWidget->pushApp(m_inputMenuApp);}
-	void MainWindow::switchToChoiceMenuApp()		{m_frameWidget->pushApp(m_choiceMenuApp);}
-	void MainWindow::switchToInfoApp()				{m_frameWidget->pushApp(m_infoApp);}
-	void MainWindow::switchToClockApp()				{m_frameWidget->pushApp(m_clockApp);}
-	void MainWindow::switchToPaintApp()				{m_frameWidget->pushApp(m_paintApp);}
-	void MainWindow::switchToMusicApp()				{m_frameWidget->pushApp(m_musicApp);}
-	void MainWindow::switchToGUIApp()				{m_frameWidget->pushApp(m_guiApp);}
+//	void MainWindow::switchToInteractiveMenuApp()	{m_frameWidget->pushApp(m_interactiveMenuApp);}
+//	void MainWindow::switchToInputMenuApp()			{m_frameWidget->pushApp(m_inputMenuApp);}
+//	void MainWindow::switchToChoiceMenuApp()		{m_frameWidget->pushApp(m_choiceMenuApp);}
+//	void MainWindow::switchToInfoApp()				{m_frameWidget->pushApp(m_infoApp);}
+//	void MainWindow::switchToClockApp()				{m_frameWidget->pushApp(m_clockApp);}
+//	void MainWindow::switchToPaintApp()				{m_frameWidget->pushApp(m_paintApp);}
+//	void MainWindow::switchToMusicApp()				{m_frameWidget->pushApp(m_musicApp);}
+//	void MainWindow::switchToGUIApp()				{m_frameWidget->pushApp(m_guiApp);}
 	void MainWindow::switchToMapApp()				{m_frameWidget->pushApp(m_mapApp);}
-	void MainWindow::switchToPeepholeApp()			{m_frameWidget->pushApp(m_peepholeApp);}
-	void MainWindow::switchToGestureApp()			{m_frameWidget->pushApp(m_gestureApp);}
-	void MainWindow::switchToMarkingMenuApp()		{m_frameWidget->pushApp(m_markingMenuApp);}
-	void MainWindow::switchToMultiTapApp()			{m_frameWidget->pushApp(m_multiTapApp);}
-	void MainWindow::switchToPickerApp()			{m_frameWidget->pushApp(m_pickerApp);}
+//	void MainWindow::switchToPeepholeApp()			{m_frameWidget->pushApp(m_peepholeApp);}
+//	void MainWindow::switchToGestureApp()			{m_frameWidget->pushApp(m_gestureApp);}
+//	void MainWindow::switchToMarkingMenuApp()		{m_frameWidget->pushApp(m_markingMenuApp);}
+//	void MainWindow::switchToMultiTapApp()			{m_frameWidget->pushApp(m_multiTapApp);}
+//	void MainWindow::switchToPickerApp()			{m_frameWidget->pushApp(m_pickerApp);}
 
 	void MainWindow::handleMousePress(QMouseEvent *event)
 	{
