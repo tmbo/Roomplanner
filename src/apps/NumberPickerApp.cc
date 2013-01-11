@@ -11,7 +11,7 @@
 
 namespace ipn
 {
-	NumberPickerApp::NumberPickerApp(QWidget *parent) 
+    NumberPickerApp::NumberPickerApp(IPodFrameWidget* frameWidget, QWidget *parent)
         : App(parent)
 	{
         m_back = new BackgroundWidget(this);
@@ -22,6 +22,8 @@ namespace ipn
         m_titleBar->setTitle("Width");
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
         m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);
+
+        m_frameWidget = frameWidget;
 
 		m_areas.push_back(new ImageWidget(this));
         m_areas.back()->setImage(":/assets/images/backgrounds/numberslider_area");
@@ -77,13 +79,12 @@ namespace ipn
         m_label = new TextWidget(this);
         m_label->move(200,160);
         m_label->setFontSize(BIG_FONT_SIZE);
-        //m_label->resize(40,((int)(1.5*BIG_FONT_SIZE)*30));
         m_label->setText("m");
 
+        //connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        //connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
 
 
-//		connect(m_titleBar, SIGNAL(cancelButtonClicked()), this, SLOT(hideAway()));
-//		connect(m_titleBar, SIGNAL(checkButtonClicked()), this, SLOT(accepted()));
 	}
 
 //    void NumberPickerApp::setUnitTo(QString unit)

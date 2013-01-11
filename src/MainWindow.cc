@@ -70,8 +70,8 @@ namespace ipn
 		m_choiceMenuApp->addButton(MenuApp::BottomLeft, "Picker", ":/img/icons/icon.png");
 		m_choiceMenuApp->titleBar()->setTitle("choice apps");
 
-        m_numberPickerApp = new NumberPickerApp();
-        m_numberPickerApp->inputNumber(999);
+        m_numberPickerApp = new NumberPickerApp(m_frameWidget,this);
+        //m_numberPickerApp->inputNumber(999);
 
 		m_infoApp = new InfoApp();
 		m_infoApp->setMessage("This is an\nInfoApp which\ncan display some text.");

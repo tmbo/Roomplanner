@@ -46,8 +46,15 @@ namespace ipn
 //        background->setTransformationMode(Qt::SmoothTransformation);
 
         m_addButton = new ButtonWidget(this);
-        m_addButton->setInactiveImages(":/assets/images/add.png");
+        m_addButton->setInactiveImages(":/assets/images/button_menu.png");
         m_addButton->move(203,5);
+
+        m_deleteButton = new ButtonWidget(this);
+        m_deleteButton->setInactiveImages(":/assets/images/button_delete.png");
+        m_deleteButton->move(10,5);
+        m_deleteButton->setHidden(true);
+        connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
+
 
         m_menu = new ListMenuApp(m_frameWidget);
 
@@ -91,13 +98,12 @@ namespace ipn
 
     void MapApp::showOverlay()
     {
+        m_room->unselectFurniture();
         m_frameWidget->pushApp(m_menu);
     }
 
     void MapApp::placeFurniture(int idx)
     {
-        printf("idx: %d\n", idx);
-        // do whatever needs to be done with the new furniture
         m_room->addFurniture(idx);
     }
 
@@ -107,6 +113,12 @@ namespace ipn
 //        background->rotate(delta);
 //        //printf("%f\n", m_currentRotationAngle);
 //        update();
+    }
+
+    void MapApp::deleteFurniture()
+    {
+        m_room->deleteFurniture();
+        m_deleteButton->setHidden(true);
     }
 
 	TitleBarWidget *MapApp::titleBar()

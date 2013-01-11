@@ -12,6 +12,7 @@
 //#include "BaseScreen.h"
 #include "App.h"
 
+
 class QString;
 
 namespace ipn
@@ -23,13 +24,14 @@ namespace ipn
 	class TextWidget;
     class TitleBarWidget;
     class BackgroundWidget;
+    class IPodFrameWidget;
 
     class NumberPickerApp : public App
 	{
         Q_OBJECT
 
 		public:
-			NumberPickerApp(QWidget *parent = 0);
+            NumberPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
 
 		signals:
             void inputFinished(int millimeters, QString unit);
@@ -77,6 +79,7 @@ namespace ipn
 			FlickArea *m_flickareas[5];
 			TextWidget *m_flicktexts[5];
             TextWidget *m_label;
+            IPodFrameWidget *m_frameWidget;
 
 
 	};

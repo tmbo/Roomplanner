@@ -29,8 +29,8 @@ namespace ipn
 
         m_signalMapper = new QSignalMapper();
 
-        createFurnitureEntry(0, ":/assets/images/sater.png");
-        createFurnitureEntry(1, ":/assets/images/karlstad.png");
+        createFurnitureEntry(0, ":/assets/images/karlstad.png");
+        createFurnitureEntry(1, ":/assets/images/sater.png");
         createFurnitureEntry(2, ":/assets/images/ektorp.png");
 
 		m_pageIndicator = new PageIndicatorWidget(this);
