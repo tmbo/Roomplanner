@@ -23,7 +23,7 @@ namespace ipn
         m_furniturePicker = new FurniturePickerApp(frameWidget);
 
         m_picker = new PickerWidget(this);
-        m_picker->addEntry("Neues Möbelstück");
+        m_picker->addEntry("New piece of furniture");
         m_picker->addEntry("FUUU");
         m_picker->addEntry("BAR");
         m_picker->move(0, 48);

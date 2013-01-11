@@ -19,7 +19,7 @@ namespace ipn
         m_back->move(0, 0);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Select a sofa");
+        m_titleBar->setTitle("Select a couch");
         m_titleBar->move(0, 0);
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
 

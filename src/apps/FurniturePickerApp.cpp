@@ -15,16 +15,16 @@ namespace ipn
         m_back->move(0, 0);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Furniture types");
+        m_titleBar->setTitle("Select a category");
         m_titleBar->move(0, 0);
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
 
         m_frameWidget = frameWidget;
 
         m_picker = new PickerWidget(this);
-        m_picker->addEntry("Betten");
-        m_picker->addEntry("Stühle");
-        m_picker->addEntry("Sofas");
+        m_picker->addEntry("Couches");
+        m_picker->addEntry("Chairs");
+        m_picker->addEntry("Beds");
         m_picker->move(0, 48);
 
         m_guiApp = new GUIApp();
@@ -36,8 +36,15 @@ namespace ipn
     }
 
     void FurniturePickerApp::openSofaGUI(){
+
+        if (m_picker->activeEntry() == 0)
+        {
+            m_frameWidget->pushApp(m_guiApp);
+        } else {
+
+        }
         m_picker->setActiveEntry(-1);
-        m_frameWidget->pushApp(m_guiApp);
+
     }
 
     void FurniturePickerApp::hideAndPropagate(int i){
