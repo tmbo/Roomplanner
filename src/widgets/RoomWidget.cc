@@ -1,12 +1,15 @@
 #include "RoomWidget.h"
 #include "helpers.h"
 #include "widgets/ClickableWidget.h"
+#include "widgets/ButtonWidget.h"
+#include "apps/MapApp.h"
 
 namespace ipn
 {
 
-    RoomWidget::RoomWidget(QWidget *parent) : QWidget(parent)
+    RoomWidget::RoomWidget(MapApp *parent) : QWidget(parent)
     {
+        m_parent = parent;
         m_graphicsView = new QGraphicsView(this);
         m_scene = new QGraphicsScene(m_graphicsView);
 
@@ -15,6 +18,7 @@ namespace ipn
         m_graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_graphicsView->setSceneRect(0, 0, 240, 240);
         m_graphicsView->move(0, 0);
+
 
         m_sceneRoot = m_scene->createItemGroup(QList<QGraphicsItem*>());
 
@@ -32,6 +36,7 @@ namespace ipn
         m_overlay = new ClickableWidget(this);
         m_overlay->move(0,0);
         m_overlay->resize(width(), height());
+
 
         m_tapTimer = new QTimer(this);
         m_tapTimer->setSingleShot(true);
@@ -54,8 +59,6 @@ namespace ipn
             m_currentScaleFactor = newScaleFactor;
 
             QPointF translation = m_sceneRoot->mapFromScene(QPoint(width() / 2, height() / 2));
-
-            QTransform transform = ;
 
             m_sceneRoot->setTransform(
                 QTransform()
@@ -134,14 +137,17 @@ namespace ipn
 
     void RoomWidget::mouseTapEvent(QMouseEvent *event){
 
-        m_selectedItem = m_graphicsView->itemAt(event->pos() - this->pos());
-
-        if (m_selectedItem == m_background || m_selectedItem == m_sceneRoot)
+        if (m_selectedItem != m_background && m_selectedItem != 0)
         {
-            m_selectedItem = 0;
+            unselectFurniture();
         }
-        else
+
+        QGraphicsItem *item = m_graphicsView->itemAt(event->pos() - this->pos());
+
+
+        if (item != m_background && item != m_sceneRoot)
         {
+            selectFurniture(item);
             QPointF moveDifference =
                 m_graphicsView->mapToScene(size().width() / 2, size().height() / 2) -
                 m_selectedItem->mapToScene(m_selectedItem->boundingRect().center());
@@ -161,12 +167,45 @@ namespace ipn
 
     void RoomWidget::addFurniture(int idx)
     {
-        QString tempUrl = QString(":/assets/images/furniture2d_%1.png").arg(QString::number(idx));
+        QString tempUrl = QString(":/assets/images/couch_%1.png").arg(QString::number(idx));
         QGraphicsPixmapItem *item = m_scene->addPixmap(QPixmap(tempUrl));
         item->translate(width() / 2, height() / 2);
         item->scale(m_sceneRoot->transform().m11(), m_sceneRoot->transform().m22());
         item->translate(-item->pixmap().width() / 2, -item->pixmap().height() / 2);
         m_sceneRoot->addToGroup(item);
+        selectFurniture(item);
     }
+
+    void RoomWidget::deleteFurniture()
+    {
+        if (m_selectedItem != m_background && m_selectedItem != 0)
+        {
+            m_sceneRoot->removeFromGroup(m_selectedItem);
+            m_scene->removeItem(m_selectedItem);
+            m_selectedItem = 0;
+        }
+    }
+
+    void RoomWidget::unselectFurniture()
+    {
+        if (m_selectedItem == 0)
+            return;
+
+        m_selectedItem->setGraphicsEffect(0);
+        m_selectedItem = 0;
+        m_parent->m_deleteButton->setHidden(true);
+    }
+
+    void RoomWidget::selectFurniture(QGraphicsItem *item)
+    {
+        // set dropShadow
+        m_selectedItem = item;
+        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect;
+        effect->setBlurRadius(8);
+        m_selectedItem->setGraphicsEffect(effect);
+        m_parent->m_deleteButton->setHidden(false);
+
+    }
+
 
 }

@@ -26,7 +26,7 @@ SOURCES += \
 	src/apps/PeepholeApp.cc \
 	src/apps/PaintApp.cc \
 	src/apps/MusicApp.cc \
-	src/apps/ClockApp.cc \
+        src/apps/ClockApp.cc \
 	src/apps/GUIApp.cc \
 	src/apps/MapApp.cc \
 	src/apps/GestureApp.cc \
@@ -55,7 +55,9 @@ SOURCES += \
 	src/apps/SettingsApp.cpp \
 	src/widgets/NumberSpinnerWidget.cpp \
     src/apps/FurniturePickerApp.cpp \
-    src/apps/ListMenuApp.cc
+    src/apps/ListMenuApp.cc \
+    src/apps/NumberPickerApp.cc \
+    src/widgets/PrettyClickableWidget.cc
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -93,7 +95,9 @@ HEADERS += \
 	src/apps/SettingsApp.h \
 	src/widgets/NumberSpinnerWidget.h \
     src/apps/FurniturePickerApp.h \
-    src/apps/ListMenuApp.h
+    src/apps/ListMenuApp.h \
+    src/apps/NumberPickerApp.h \
+    src/widgets/PrettyClickableWidget.h
 
 INCLUDEPATH += src src/apps src/widgets
 
@@ -104,4 +108,5 @@ qtcAddDeployment()
 RESOURCES += \
 	resources.qrc
 
+macx:LIBS += -framework CoreFoundation
 

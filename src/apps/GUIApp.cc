@@ -29,8 +29,8 @@ namespace ipn
 
         m_signalMapper = new QSignalMapper();
 
-        createFurnitureEntry(0, ":/assets/images/sater.png");
-        createFurnitureEntry(1, ":/assets/images/karlstad.png");
+        createFurnitureEntry(0, ":/assets/images/karlstad.png");
+        createFurnitureEntry(1, ":/assets/images/sater.png");
         createFurnitureEntry(2, ":/assets/images/ektorp.png");
 
 		m_pageIndicator = new PageIndicatorWidget(this);
@@ -46,7 +46,7 @@ namespace ipn
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
         m_clickable[idx]->resize(240, 200);
-        m_clickable[idx]->move(240 * idx,0);
+        m_clickable[idx]->move(280 * idx,0);
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);

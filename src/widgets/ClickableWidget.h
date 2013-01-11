@@ -17,6 +17,7 @@ namespace ipn
 			bool isEnabled();
 			bool isMouseDown();
 			bool isMouseOver();
+            bool m_mouseDown;
 			QPoint distanceSinceMouseDown();
 
 		signals:
@@ -33,7 +34,7 @@ namespace ipn
 			virtual void mousePressEvent(QMouseEvent *event);
 
 		private:
-			bool m_mouseDown;
+
 			QPoint m_mouseDownPosition;
 			bool m_enabled;
 	};
