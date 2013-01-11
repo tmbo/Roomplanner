@@ -31,7 +31,7 @@ namespace ipn
 
 
         m_numberPickerApp = new NumberPickerApp(m_frameWidget, this);
-        m_numberPickerApp->setValue(2,40);
+        m_numberPickerApp->setValue(2);
 
         m_mapApp = new MapApp(m_frameWidget);
 

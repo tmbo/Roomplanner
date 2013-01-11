@@ -9,6 +9,12 @@
 #define CORRECTVALUE -1
 #endif
 
+// Ok, this is legacy shit. You need to specify the number of items you intend to use.
+#define REAL_ITEM_COUNT 3
+// Then you need to supply a fake ITEM_COUNT which is big enough to cover the widget.
+// This needs to be a multiple of REAL_ITEM_COUNT
+#define ITEM_COUNT 9 // should be >= 9
+
 //#include "BaseScreen.h"
 #include "App.h"
 
@@ -32,12 +38,11 @@ namespace ipn
 
 		public:
             NumberPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
+            int value();
+            void setValue(int value);
 
 		signals:
             void inputFinished(int millimeters, QString unit);
-
-		public slots:
-            void setValue(int meters, int centimeters);
 
 		private:
             //ArchiPod::PickerRole m_role;
@@ -49,29 +54,24 @@ namespace ipn
 			ImageWidget *m_topshadow;
 			ImageWidget *m_bottomshadow;
 			ImageWidget *m_comma;
-			QVector<ImageWidget*> m_areas;
-			int m_number[5];
+            ImageWidget *m_area;
+            int m_selectedIndex;
 
 			QString textForNumber(int number);
-            QString sliderText(int multiplicator);
-			void snapWheel(int position);
-			int getNumber();
-			int getNumberFor(int position);
-			void setWheelToValue(int position, int value);
+            QString sliderText();
+            void snapWheel();
 
 
-			void setWheelActive(int position);
-			void setWheelInactive(int position);
-
-
+            void setWheelActive();
+            void setWheelInactive();
 		
         protected slots:
 			void updateSnapper();
 
 		protected:
 			ButtonWidget *m_buttons[3];
-			FlickArea *m_flickareas[5];
-			TextWidget *m_flicktexts[5];
+            FlickArea *m_flickarea;
+            TextWidget *m_flicktext;
             TextWidget *m_label;
             IPodFrameWidget *m_frameWidget;
 
