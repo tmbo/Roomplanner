@@ -30,8 +30,6 @@ namespace ipn
 
 
         public slots:
-            void changePinchScaleFactor(qreal delta);
-            void changePinchRotationAngle(qreal delta);
             void showOverlay();
             void placeFurniture(int);
             void furniturePressed();
@@ -41,27 +39,10 @@ namespace ipn
 		private:
             IPodFrameWidget *m_frameWidget;
 
-            TitleBarWidget *m_titleBar;
-            FlickArea *m_flickArea;
-
             RoomWidget *m_room;
 
-            qreal m_currentScaleFactor, m_currentRotationAngle;
             ButtonWidget *m_addButton;
-
-            QSize m_imageOriginalSize;
-            QPoint m_imageTranslation;
-
             ListMenuApp* m_menu;
-
-            ClickableWidget *m_clickable0;
-            ImageWidget *m_image0;
-            QGraphicsView *graphicsView;
-            QGraphicsScene *scene;
-            QGraphicsPixmapItem *background;
-
-            QPixmap *backgroundPixmap;
-            QPixmap *m_furniture;
 	};
 
 } // namespace ipn

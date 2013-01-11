@@ -1,4 +1,5 @@
 #include "NumberPickerApp.h"
+#include "IPodFrameWidget.h"
 #include "widgets/ButtonWidget.h"
 #include "widgets/ImageWidget.h"
 #include "widgets/BackgroundWidget.h"
@@ -80,9 +81,9 @@ namespace ipn
         m_label->setFontSize(BIG_FONT_SIZE);
         m_label->setText("m");
 
-        //connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        //connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
-
+        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
+        hide();
 
 	}
 

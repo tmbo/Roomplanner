@@ -54,28 +54,20 @@ namespace ipn
     {
         if (m_selectedItem == 0) {
 
-            qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 10.0), .1);
+            qreal newScaleFactor = helpers::maxf(helpers::minf(m_currentScaleFactor * delta, 2.0), .6);
             qreal scaleDelta = newScaleFactor / m_currentScaleFactor;
             m_currentScaleFactor = newScaleFactor;
 
-            QPoint mid = QPoint(width() / 2, height() / 2);
-            QPointF translation = m_sceneRoot->mapFromScene(m_graphicsView->mapToScene(mid));
+            QPointF translation = m_sceneRoot->mapFromScene(QPoint(width() / 2, height() / 2));
 
-            QTransform transform = m_sceneRoot->transform();
-            transform.translate(-translation.x(), -translation.y());
-            transform.scale(scaleDelta, scaleDelta);
-            transform.translate(translation.x(), translation.y());
+            m_sceneRoot->setTransform(
+                QTransform()
+                    .translate(translation.x(), translation.y())
+                    .scale(scaleDelta, scaleDelta)
+                    .translate(-translation.x(), -translation.y()),
+                true
+            );
 
-            m_sceneRoot->setTransform(transform);
-
-            QTransform m = m_sceneRoot->transform();
-            printf("%f, %f, %f; %f, %f, %f\n",
-                   m.m11(),m.m12(),m.m31(),
-                   m.m21(),m.m22(),m.m32());
-            m = m_background->transform();
-            printf("%f, %f, %f; %f, %f, %f\n",
-                   m.m11(),m.m12(),m.m31(),
-                   m.m21(),m.m22(),m.m32());
             update();
         }
     }
@@ -83,7 +75,21 @@ namespace ipn
     void RoomWidget::changePinchRotationAngle(qreal delta)
     {
         if (m_selectedItem) {
-            m_selectedItem->rotate(delta);
+            QPointF halfSize = m_selectedItem->boundingRect().center();
+            m_selectedItem->transform().m13();
+
+            QPointF ee = m_selectedItem->mapToScene(
+                halfSize
+            );
+            m_selectedItem->setTransform(
+                QTransform()
+                    .translate(halfSize.x(), halfSize.y())
+                    .rotate(delta)
+                    .translate(-halfSize.x(), -halfSize.y()),
+                true
+            );
+
+            update();
         }
     }
 
@@ -107,17 +113,24 @@ namespace ipn
             QTransform transform = m_sceneRoot->transform();
             foreach(QGraphicsItem *item, m_scene->items()) {
                 if (item == m_selectedItem || item == m_sceneRoot) continue;
-                item->translate(moveDifference.x() / transform.m11(), moveDifference.y() / transform.m11());
+                item->setTransform(
+                    item->transform() *
+                    QTransform().translate(
+                        moveDifference.x() / transform.m11(),
+                        moveDifference.y() / transform.m22())
+                );
+
             }
         }
     }
 
     void RoomWidget::mouseReleaseEvent(QMouseEvent *event){
+
         m_isPressed = false;
 
         if (m_tapTimer->isActive() && abs(m_scrollOffset.x()) < 3 && abs(m_scrollOffset.y()) < 3) {
-            QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress, m_lastMousePos, Qt::LeftButton, Qt::LeftButton, 0);
-            mouseTapEvent(event);
+            QMouseEvent *e = new QMouseEvent(QEvent::MouseButtonPress, m_lastMousePos, Qt::LeftButton, Qt::LeftButton, 0);
+            mouseTapEvent(e);
             m_tapTimer->stop();
         }
     }
@@ -135,13 +148,19 @@ namespace ipn
         if (item != m_background && item != m_sceneRoot)
         {
             selectFurniture(item);
-            QPoint moveDifference = QPoint(width()/2, height() / 2) - event->pos();
-            m_scrollOffset += moveDifference;
+            QPointF moveDifference =
+                m_graphicsView->mapToScene(size().width() / 2, size().height() / 2) -
+                m_selectedItem->mapToScene(m_selectedItem->boundingRect().center());
 
             QTransform transform = m_sceneRoot->transform();
             foreach(QGraphicsItem *item, m_scene->items()) {
                 if (item == m_sceneRoot) continue;
-                item->translate(moveDifference.x() / transform.m11(), moveDifference.y() / transform.m11());
+                item->setTransform(
+                    item->transform() *
+                    QTransform().translate(
+                        moveDifference.x() / transform.m11(),
+                        moveDifference.y() / transform.m22())
+                );
             }
         }
     }
@@ -182,7 +201,9 @@ namespace ipn
         // set dropShadow
         m_selectedItem = item;
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect;
-        effect->setBlurRadius(8);
+        effect->setBlurRadius(20);
+        effect->setColor(QColor(Qt::blue));
+        effect->setOffset(0, 0);
         m_selectedItem->setGraphicsEffect(effect);
         m_parent->m_deleteButton->setHidden(false);
 

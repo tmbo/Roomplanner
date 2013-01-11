@@ -27,7 +27,7 @@ namespace ipn
         m_picker->addEntry("Sofas");
         m_picker->move(0, 48);
 
-        m_guiApp=new GUIApp();
+        m_guiApp = new GUIApp();
 
         connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(hideAndPropagate(int)));
         connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));

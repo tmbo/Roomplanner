@@ -98,6 +98,8 @@ namespace ipn
 
             QMouseEvent childEvent(type, pos, event->button(), event->buttons(), event->modifiers());
 
+            m_currentChild->setAttribute(Qt::WA_NoMousePropagation);
+
             QApplication::sendEvent(m_currentChild, &childEvent);
         }
     }
