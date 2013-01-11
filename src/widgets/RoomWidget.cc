@@ -131,7 +131,8 @@ namespace ipn
 
         QGraphicsItem *item = m_graphicsView->itemAt(event->pos() - this->pos());
 
-        if (item != m_background)
+
+        if (item != m_background && item != m_sceneRoot)
         {
             selectFurniture(item);
             QPoint moveDifference = QPoint(width()/2, height() / 2) - event->pos();
