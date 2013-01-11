@@ -38,8 +38,9 @@ namespace ipn
 
 		public:
             NumberPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
-            int value();
-            void setValue(int value);
+            QString value();
+            int index();
+            void setIndex(int value);
 
 		signals:
             void inputFinished(int millimeters, QString unit);
@@ -59,6 +60,7 @@ namespace ipn
 
 			QString textForNumber(int number);
             QString sliderText();
+            QString textValue(int i);
             void snapWheel();
 
 
