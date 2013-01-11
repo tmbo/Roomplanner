@@ -29,7 +29,7 @@ namespace ipn
         m_picker->move(0, 48);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Main menu");
+        m_titleBar->setTitle("CouchPuzzle");
         m_titleBar->move(0, 0);
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
 
