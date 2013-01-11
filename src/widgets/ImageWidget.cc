@@ -82,7 +82,7 @@ namespace ipn
 			return;
 
 		QPainter painter(this);
-		painter.setRenderHint(QPainter::Antialiasing, true);
+        painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform, true);
 		painter.setOpacity(m_opacity);
 
 		painter.drawPixmap(0, 0, width(), height(), *m_image);

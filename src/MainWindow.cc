@@ -37,7 +37,7 @@ namespace ipn
         m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
         m_menuApp->addButton(MenuApp::TopLeft, "display", ":/img/icons/icon.png");
         m_menuApp->addButton(MenuApp::TopRight, "input", ":/img/icons/icon.png");
-        m_menuApp->addButton(MenuApp::BottomLeft, "choice", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::BottomLeft, "CouchPuzzle", ":/img/icons/icon.png");
         m_menuApp->addButton(MenuApp::BottomRight, "interactive", ":/img/icons/icon.png");
         m_menuApp->titleBar()->setTitle("choose\na category");
 
@@ -105,7 +105,7 @@ namespace ipn
 		// Wire up menus <-> menus:
 		connect(m_menuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToDisplayMenuApp()));
 		connect(m_menuApp, SIGNAL(topRightButtonClicked()), this, SLOT(switchToInputMenuApp()));
-		connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToChoiceMenuApp()));
+        connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMapApp()));
 		connect(m_menuApp, SIGNAL(bottomRightButtonClicked()), this, SLOT(switchToInteractiveMenuApp()));
 		connect(m_menuApp->titleBar(), SIGNAL(rightButtonClicked()), this, SLOT(close()));
 		connect(m_displayMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
