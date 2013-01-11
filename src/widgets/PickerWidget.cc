@@ -3,6 +3,7 @@
 #include "ImageWidget.h"
 #include <QPainter>
 #include <QMouseEvent>
+#include <QWidget>
 
 #define NO_ENTRY -1
 
@@ -24,7 +25,7 @@ namespace ipn
 		m_checkmarkImage->hide();
 	}
 
-	void PickerWidget::addEntry(QString text)
+    void PickerWidget::addEntry(QString text)
 	{
 		int numberOfEntries = m_entries.size();
 
@@ -32,14 +33,54 @@ namespace ipn
 		newEntry->setColor(Qt::white);
 		newEntry->setText(text);
 		newEntry->setAlignment(Qt::AlignLeft);
-		newEntry->resize(184, newEntry->textHeight());
+        newEntry->resize(184, newEntry->textHeight());
 		newEntry->move(16, 12 + 48 * numberOfEntries);
+
+        ImageWidget *arrow = new ImageWidget(this);
+        arrow->setImage(":/assets/images/buttons/arrow.png");
+        arrow->resize(32,32);
+        arrow->move(200, 12 + 48 * numberOfEntries);
+
 		m_entries.append(newEntry);
 
 		resize(240, (numberOfEntries + 1) * 48);
-
 		update();
 	}
+
+    void PickerWidget::addEntry(QString text, QString value)
+    {
+        TextWidget *valueEntry = new TextWidget(this);
+        valueEntry->setColor(Qt::white);
+        valueEntry->setText(value);
+        valueEntry->setAlignment(Qt::AlignLeft);
+
+        addEntry(text, valueEntry);
+    }
+
+    void PickerWidget::addEntry(QString text, QWidget* value)
+    {
+        int numberOfEntries = m_entries.size();
+
+        TextWidget *newEntry = new TextWidget(this);
+        newEntry->setColor(Qt::white);
+        newEntry->setText(text);
+        newEntry->setAlignment(Qt::AlignLeft);
+        newEntry->resize(184, newEntry->textHeight());
+        newEntry->move(16, 12 + 48 * numberOfEntries);
+
+        value->resize(100, value->height());
+        value->move(100, 12 + 48 * numberOfEntries);
+
+        ImageWidget *arrow = new ImageWidget(this);
+        arrow->setImage(":/assets/images/buttons/arrow.png");
+        arrow->resize(32,32);
+        arrow->move(200, 12 + 48 * numberOfEntries);
+
+        m_entries.append(newEntry);
+
+        resize(240, (numberOfEntries + 1) * 48);
+        update();
+    }
 
 	void PickerWidget::paintEvent(QPaintEvent*)
 	{

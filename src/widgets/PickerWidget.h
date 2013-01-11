@@ -17,7 +17,8 @@ namespace ipn
 			PickerWidget(QWidget *parent = 0);
 
 			void addEntry(QString text);
-
+            void addEntry(QString text, QString value);
+            void addEntry(QString text, QWidget* value);
 			int activeEntry();
 			QString activeEntryText();
 			void setActiveEntry(int activeEntry);

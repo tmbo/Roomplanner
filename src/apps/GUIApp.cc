@@ -8,11 +8,13 @@
 #include "widgets/ImageWidget.h"
 #include "widgets/PageIndicatorWidget.h"
 #include "widgets/ClickableWidget.h"
+#include "apps/SettingsApp.h"
+#include "IPodFrameWidget.h"
 #include <stdio.h>
 
 namespace ipn
 {
-	GUIApp::GUIApp(QWidget *parent) : App(parent)
+    GUIApp::GUIApp(IPodFrameWidget* frameWidget, QWidget *parent) : App(parent)
 	{
         m_back = new BackgroundWidget(this);
         m_back->setColor(BackgroundWidget::BG_GRAY);
@@ -29,6 +31,10 @@ namespace ipn
 
         m_signalMapper = new QSignalMapper();
 
+        m_settingsApp = new SettingsApp(frameWidget);
+
+        m_frameWidget = frameWidget;
+
         createFurnitureEntry(0, ":/assets/images/furniture/karlstad.png");
         createFurnitureEntry(1, ":/assets/images/furniture/sater.png");
         createFurnitureEntry(2, ":/assets/images/furniture/ektorp.png");
@@ -39,7 +45,8 @@ namespace ipn
 
         connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
 
-        connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(emitFurnitureSelected(int)));
+        connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(openSettings(int)));
+        connect(m_settingsApp, SIGNAL(settingsDone()), this, SLOT(emitFurnitureSelected()));
 	}
 
     void GUIApp::createFurnitureEntry(int idx, QString imagePath){
@@ -66,9 +73,15 @@ namespace ipn
 		m_pageIndicator->setPosition(m_flickArea->relativeScrollPosition().x());
 	}
 
-    void GUIApp::emitFurnitureSelected(int idx)
+    void GUIApp::openSettings(int idx)
     {
-        emit furnitureSelected(idx);
+        m_couch = idx;
+        m_frameWidget->pushApp(m_settingsApp);
+    }
+
+    void GUIApp::emitFurnitureSelected()
+    {
+        emit furnitureSelected(m_couch);
     }
 
 } // namespace ipn

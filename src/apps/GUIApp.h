@@ -15,13 +15,15 @@ namespace ipn
 	class FlickArea;
     class ImageWidget;
     class ClickableWidget;
+    class SettingsApp;
+    class IPodFrameWidget;
 
 	class GUIApp : public App
 	{
 		Q_OBJECT
 
 		public:
-			GUIApp(QWidget *parent = 0);
+            GUIApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
 
 			inline bool isOpaque() {return true;}
 
@@ -29,7 +31,8 @@ namespace ipn
 
 		protected slots:
 			void updatePageIndicator();
-            void emitFurnitureSelected(int);
+            void openSettings(int);
+            void emitFurnitureSelected();
 
         signals:
             void furnitureSelected(int);
@@ -42,6 +45,9 @@ namespace ipn
             ImageWidget *m_image[3];
             ClickableWidget *m_clickable[3];
             QSignalMapper *m_signalMapper;
+            SettingsApp* m_settingsApp;
+            IPodFrameWidget* m_frameWidget;
+            int m_couch;
 
             TextWidget *m_scrollText;
 			FlickArea *m_flickArea;

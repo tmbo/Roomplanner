@@ -28,7 +28,7 @@ namespace ipn
         m_picker->addEntry("Beds");
         m_picker->move(0, 48);
 
-        m_guiApp = new GUIApp();
+        m_guiApp = new GUIApp(m_frameWidget);
         m_dummyApp = new DummyApp();
         m_dummyApp->setText("Unfortunately all\n items in this category\n have been sold out.\n We are very sorry.");
 
@@ -54,7 +54,7 @@ namespace ipn
     }
 
     void FurniturePickerApp::hideAndPropagate(int i){
-        m_frameWidget->popApp(3);
+        m_frameWidget->popApp(4);
         emit furnitureSelected(i);
     }
 }
