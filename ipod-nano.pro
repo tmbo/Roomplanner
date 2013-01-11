@@ -43,12 +43,12 @@ SOURCES += \
 	src/widgets/OverlayWidget.cc \
 	src/apps/MenuApp.cc \
 	src/widgets/RoomWidget.cc \
-	src/apps/SettingsApp.cpp \
 	src/widgets/NumberSpinnerWidget.cpp \
     src/apps/FurniturePickerApp.cpp \
     src/apps/ListMenuApp.cc \
     src/apps/NumberPickerApp.cc \
-    src/widgets/PrettyClickableWidget.cc
+    src/widgets/PrettyClickableWidget.cc \
+    src/apps/DummyApp.cpp
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -74,12 +74,12 @@ HEADERS += \
 	src/widgets/OverlayWidget.h \
 	src/apps/MenuApp.h \
 	src/widgets/RoomWidget.h \
-	src/apps/SettingsApp.h \
 	src/widgets/NumberSpinnerWidget.h \
     src/apps/FurniturePickerApp.h \
     src/apps/ListMenuApp.h \
     src/apps/NumberPickerApp.h \
-    src/widgets/PrettyClickableWidget.h
+    src/widgets/PrettyClickableWidget.h \
+    src/apps/DummyApp.h
 
 INCLUDEPATH += src src/apps src/widgets
 
@@ -91,4 +91,6 @@ RESOURCES += \
 	resources.qrc
 
 macx:LIBS += -framework CoreFoundation
+
+OTHER_FILES +=
 

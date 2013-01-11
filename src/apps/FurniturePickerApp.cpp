@@ -3,6 +3,7 @@
 #include "widgets/PickerWidget.h"
 #include "IPodFrameWidget.h"
 #include "apps/GUIApp.h"
+#include "apps/DummyApp.h"
 #include "widgets/TitleBarWidget.h"
 
 namespace ipn
@@ -28,11 +29,16 @@ namespace ipn
         m_picker->move(0, 48);
 
         m_guiApp = new GUIApp();
+        m_dummyApp = new DummyApp();
+        m_dummyApp->setText("Unfortunately all\n items in this category\n have been sold out.\n We are very sorry.");
+
+        connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
+        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 
         connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(hideAndPropagate(int)));
-        connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
         connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        connect(m_dummyApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+
     }
 
     void FurniturePickerApp::openSofaGUI(){
@@ -41,7 +47,7 @@ namespace ipn
         {
             m_frameWidget->pushApp(m_guiApp);
         } else {
-
+            m_frameWidget->pushApp(m_dummyApp);
         }
         m_picker->setActiveEntry(-1);
 

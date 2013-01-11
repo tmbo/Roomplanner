@@ -2,7 +2,6 @@
 #include "IPodFrameWidget.h"
 #include "apps/MenuApp.h"
 #include "apps/GUIApp.h"
-#include "apps/SettingsApp.h"
 #include "apps/MapApp.h"
 #include "apps/NumberPickerApp.h"
 #include "widgets/TitleBarWidget.h"

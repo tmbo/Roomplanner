@@ -12,6 +12,7 @@ namespace ipn
     class PickerWidget;
     class IPodFrameWidget;
     class FurniturePickerApp;
+    class DummyApp;
 
     class ListMenuApp : public App
     {
@@ -29,6 +30,7 @@ namespace ipn
             PickerWidget* m_picker;
             TitleBarWidget* m_titleBar;
             IPodFrameWidget* m_frameWidget;
+            DummyApp *m_dummyApp;
     };
 
 } // namespace ipn
