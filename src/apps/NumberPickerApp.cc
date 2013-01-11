@@ -32,18 +32,18 @@ namespace ipn
 
         m_area = new ImageWidget(this);
         m_area->setImage(":/assets/images/backgrounds/numberslider_area");
-        m_area->move(70,72);
-        m_area->resize(100, 140);
+        m_area->move(20,72);
+        m_area->resize(200, 140);
 
         m_flickarea = new FlickArea(this);
-        m_flickarea->resize(94, 140);
-        m_flickarea->move(73, 72);
+        m_flickarea->resize(194, 140);
+        m_flickarea->move(23, 72);
         m_flickarea->setMoveAfterRelease(true);
 
         m_flicktext = new TextWidget(m_flickarea);
         m_flicktext->setFontSize(BIG_FONT_SIZE);
         m_flicktext->setLineHeight(LINE_HEIGHT_MULTIPLIER);
-        m_flicktext->resize(94, LINE_HEIGHT * ITEM_COUNT * 3);
+        m_flicktext->resize(194, LINE_HEIGHT * ITEM_COUNT * 3);
 
         m_flicktext->setText(sliderText());
 
@@ -51,23 +51,23 @@ namespace ipn
 
 		m_frame = new ImageWidget(this);
         m_frame->setImage(":/assets/images/backgrounds/numberslider_frame");
-        m_frame->move(70, 73);
-        m_frame->resize(100, 144);
+        m_frame->move(20, 73);
+        m_frame->resize(200, 144);
 
 		m_selectorframe = new ImageWidget(this);
         m_selectorframe->setImage(":/assets/images/backgrounds/numberslider_selectorframe");
-        m_selectorframe->move(70, 125);
-        m_selectorframe->resize(100, 36);
+        m_selectorframe->move(20, 125);
+        m_selectorframe->resize(200, 36);
 
 		m_topshadow = new ImageWidget(this);
         m_topshadow->setImage(":/assets/images/backgrounds/numberslider_topshadow");
-        m_topshadow->move(70, 72);
-        m_topshadow->resize(100, 48);
+        m_topshadow->move(20, 72);
+        m_topshadow->resize(200, 48);
 
 		m_bottomshadow = new ImageWidget(this);
         m_bottomshadow->setImage(":/assets/images/backgrounds/numberslider_bottomshadow");
-        m_bottomshadow->move(70, 166);
-        m_bottomshadow->resize(100, 48);
+        m_bottomshadow->move(20, 166);
+        m_bottomshadow->resize(200, 48);
 
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
@@ -75,9 +75,24 @@ namespace ipn
 
 	}
 
+    QString NumberPickerApp::textValue(int i) {
+
+        switch(i) {
+            case 0:
+                return "100 x 240 cm";
+            case 1:
+                return "200 x 480 cm";
+            default:
+                return "300 x 720 cm";
+        }
+    }
+
     QString NumberPickerApp::sliderText()
 	{
-        QString s = "100x240\n200x480\n300x720\n";
+        QString s = "";
+        for(int i = 0; i < REAL_ITEM_COUNT; i++)
+            s.append(QString("%1\n").arg(textValue(i)));
+
         return s.repeated(
             // we draw everything thrice: top, middle, bottom
             3 *
@@ -86,12 +101,15 @@ namespace ipn
         );
 	}
 
-    int NumberPickerApp::value()
+    QString NumberPickerApp::value()
     {
+        return textValue(m_selectedIndex);
+    }
+    int NumberPickerApp::index() {
         return m_selectedIndex;
     }
 
-    void NumberPickerApp::setValue(int value)
+    void NumberPickerApp::setIndex(int value)
 	{
         int offsetToCenter = ((int)(m_flickarea->height() / 2)) / LINE_HEIGHT;
         int offset = (value - offsetToCenter) * (LINE_HEIGHT) + (LINE_HEIGHT * ITEM_COUNT);
