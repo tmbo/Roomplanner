@@ -37,8 +37,7 @@ namespace ipn
             void inputFinished(int millimeters, QString unit);
 
 		public slots:
-            void inputNumber(int milimeters = 0, QString unit = "m");
-            //void setUnitTo(QString u);
+            void setValue(int meters, int centimeters);
 
 		private:
             //ArchiPod::PickerRole m_role;
@@ -52,27 +51,22 @@ namespace ipn
 			ImageWidget *m_comma;
 			QVector<ImageWidget*> m_areas;
 			int m_number[5];
-            QString m_unit;
-            QString currentUnit();
 
 			QString textForNumber(int number);
-			QString sliderText();
+            QString sliderText(int multiplicator);
 			void snapWheel(int position);
 			int getNumber();
 			int getNumberFor(int position);
-			void setValue(int value);
 			void setWheelToValue(int position, int value);
-			int millimeters();
+
 
 			void setWheelActive(int position);
 			void setWheelInactive(int position);
 
-            void setUnit(QString unit);
+
 		
-		protected slots:
-            //void updateUnit();
+        protected slots:
 			void updateSnapper();
-			void accepted();
 
 		protected:
 			ButtonWidget *m_buttons[3];

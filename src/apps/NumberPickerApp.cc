@@ -8,7 +8,7 @@
 #include "widgets/TitleBarWidget.h"
 #include <math.h>
 
-#define BIG_FONT_SIZE 18
+#define BIG_FONT_SIZE 17
 
 namespace ipn
 {
@@ -33,11 +33,11 @@ namespace ipn
         m_areas.back()->setImage(":/assets/images/backgrounds/numberslider_area");
         m_areas.back()->move(100,69);
 
-		m_areas.push_back(new ImageWidget(this));
-        m_areas.back()->setImage(":/assets/images/backgrounds/numberslider_area");
-        m_areas.back()->move(147,69);
+//		m_areas.push_back(new ImageWidget(this));
+//        m_areas.back()->setImage(":/assets/images/backgrounds/numberslider_area");
+//        m_areas.back()->move(147,69);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
 		{
 			m_flickareas[i] = new FlickArea(this);
 			m_flickareas[i]->resize(40, 140);
@@ -47,7 +47,10 @@ namespace ipn
 			m_flicktexts[i] = new TextWidget(m_flickareas[i]);
             m_flicktexts[i]->setFontSize(BIG_FONT_SIZE);
 			m_flicktexts[i]->resize(40,((int)(1.5*BIG_FONT_SIZE)*30));
-			m_flicktexts[i]->setText(sliderText());
+
+            int multiplicator;
+            (i==0)? multiplicator = 1 : multiplicator = 10;
+            m_flicktexts[i]->setText(sliderText(multiplicator));
 
 			connect(m_flickareas[i],SIGNAL(ready()), this, SLOT(updateSnapper()));
 		}
@@ -59,22 +62,22 @@ namespace ipn
 		m_frame = new ImageWidget(this);
         m_frame->setImage(":/assets/images/backgrounds/numberslider_frame");
         m_frame->move(47,68);
-        m_frame->resize(147,144);
+        m_frame->resize(100,144);
 
 		m_selectorframe = new ImageWidget(this);
         m_selectorframe->setImage(":/assets/images/backgrounds/numberslider_selectorframe");
         m_selectorframe->move(47,122);
-        m_selectorframe->resize(147,36);
+        m_selectorframe->resize(100,36);
 
 		m_topshadow = new ImageWidget(this);
         m_topshadow->setImage(":/assets/images/backgrounds/numberslider_topshadow");
         m_topshadow->move(47,69);
-        m_topshadow->resize(147,48);
+        m_topshadow->resize(100,48);
 
 		m_bottomshadow = new ImageWidget(this);
         m_bottomshadow->setImage(":/assets/images/backgrounds/numberslider_bottomshadow");
         m_bottomshadow->move(47,163);
-        m_bottomshadow->resize(147,48);
+        m_bottomshadow->resize(100,48);
 
         m_label = new TextWidget(this);
         m_label->move(200,160);
@@ -87,127 +90,46 @@ namespace ipn
 
 	}
 
-//    void NumberPickerApp::setUnitTo(QString unit)
-//    {
-//        int old = millimeters();
-//        setUnit(unit);
-//        setValue(old);
-//    }
-
-    void NumberPickerApp::setUnit(QString unit)
-    {
-//        for (int i = 0; i < 3; i++)
-//        {
-//            m_buttons[i]->setActive(false);
-//        }
-		
-//        if (unit == "m")
-//        {
-//            setWheelActive(3);
-//            setWheelActive(4);
-//            m_buttons[0]->setActive(true);
-//        } else if (unit == "cm") {
-//            setWheelActive(3);
-//            setWheelInactive(4);
-//            m_buttons[1]->setActive(true);
-//        } else if (unit == "mm") {
-//            setWheelInactive(4);
-//            setWheelInactive(3);
-//            m_buttons[2]->setActive(true);
-//        };
-        m_unit = unit;
-    }
-
-//    void NumberPickerApp::updateUnit()
-//    {
-//        for (int i = 0; i < 3; i++)
-//        {
-//            if (sender() == m_buttons[i])
-//                setUnitTo("m");
-//        }
-//    }
-
-	QString NumberPickerApp::sliderText()
+    QString NumberPickerApp::sliderText(int multiplicator)
 	{
 		QString s = "";
 		for (int i = -2; i < 28; i++)
 		{
-			s.append(QString("%1").arg((i + 10) % 10));
+            s.append(QString("%1").arg((i + 10) % 10 * multiplicator));
 			s.append("\n");
 		}
 		return s;
 	}
 
-    QString NumberPickerApp::currentUnit()
-    {
-        return m_unit;
-    }
 
 	int NumberPickerApp::getNumberFor(int position)
 	{
-		return m_number[position];
+        //return m_number[position];
 	}
 
-	int NumberPickerApp::getNumber()
+    int NumberPickerApp::getNumber()
 	{
-		int result = 0;
-		for (int i = 0; i < 5; i++)
-		{
-			result += getNumberFor(i) * pow(10.0, (4.0 - i));
-		}
-		return result;
-	}
-
-    int NumberPickerApp::millimeters()
-    {
-        float factor = 1/100.0;
-        if (currentUnit() == "m")
-        {
-            factor = 10.0;
-        }
-        else if (currentUnit() == "cm")
-        {
-            factor = 1/10.0;
-        }
-        float result = getNumber() * factor;
-
-        return (int) result;
-    }
-
-	void NumberPickerApp::accepted()
-	{
-        emit inputFinished(millimeters(), m_unit);
-        //hideAway();
+//		int result = 0;
+//        for (int i = 0; i < 2; i++)
+//		{
+//			result += getNumberFor(i) * pow(10.0, (4.0 - i));
+//		}
+//		return result;
 	}
 
 	void NumberPickerApp::setWheelToValue(int position, int value)
 	{
 		int lineHeight = (int)(1.5*BIG_FONT_SIZE);
-		int offset = value * (lineHeight) + OFFSET + (lineHeight*10) + (lineHeight * CORRECTVALUE);
+        int offset = (value - 1) * (lineHeight) + OFFSET + (lineHeight*10) + (lineHeight * CORRECTVALUE);
 		m_flicktexts[position]->move(0,-offset);
 		snapWheel(position);
 	}
 
-	void NumberPickerApp::setValue(int value)
-	{
-		float value_in_unit = (float) value;
-        if (currentUnit() == "m")
-		{
-			value_in_unit /= 1000.0;
-		}
-        else if (currentUnit() == "cm")
-		{
-			value_in_unit /= 10.0;	
-		}
-
-		int plainvalue = (int) (value_in_unit * 100);
-
-        for (int i = 0; i < 3; i++)
-		{
-			int current = plainvalue % 10;
-			plainvalue = plainvalue / 10;
-            setWheelToValue(2-i,current);
-		}
+    void NumberPickerApp::setValue(int meters, int centimeters)
+    {
+        //display is in meters
+        setWheelToValue(1,centimeters / 10); //numberpicker thinks it only uses numbers 0-9
+        setWheelToValue(0,meters);
 	}
 
 	void NumberPickerApp::snapWheel(int position)
@@ -234,7 +156,7 @@ namespace ipn
 	void NumberPickerApp::updateSnapper()
 	{
 		int i = 0;
-		for (; i < 5; i++)
+        for (; i < 2; i++)
 		{
 			if (sender() == m_flickareas[i]) break;
 		}
@@ -242,13 +164,6 @@ namespace ipn
 		snapWheel(i);
 	}
 
-    void NumberPickerApp::inputNumber(int millimeters, QString unit)
-    {
-        setUnit(unit);
-        setValue(millimeters);
-        //m_role = role;
-        //comeToFront();
-    }
 
 
 } // namespace ipn

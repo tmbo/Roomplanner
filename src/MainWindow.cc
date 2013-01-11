@@ -71,7 +71,7 @@ namespace ipn
 		m_choiceMenuApp->titleBar()->setTitle("choice apps");
 
         m_numberPickerApp = new NumberPickerApp(m_frameWidget, this);
-        //m_numberPickerApp->inputNumber(999);
+        m_numberPickerApp->setValue(2,40);
 
 		m_infoApp = new InfoApp();
 		m_infoApp->setMessage("This is an\nInfoApp which\ncan display some text.");
