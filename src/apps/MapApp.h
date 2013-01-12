@@ -31,7 +31,7 @@ namespace ipn
 
         public slots:
             void showOverlay();
-            void placeFurniture(int);
+            void placeFurniture(int, int, int);
             void furniturePressed();
             void furnitureReleased();
             void deleteFurniture();

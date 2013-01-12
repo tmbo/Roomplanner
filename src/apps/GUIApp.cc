@@ -46,7 +46,7 @@ namespace ipn
         connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
 
         connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(openSettings(int)));
-        connect(m_settingsApp, SIGNAL(settingsDone()), this, SLOT(emitFurnitureSelected()));
+        connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(emitFurnitureSelected(int, int)));
 	}
 
     void GUIApp::createFurnitureEntry(int idx, QString imagePath){
@@ -79,9 +79,9 @@ namespace ipn
         m_frameWidget->pushApp(m_settingsApp);
     }
 
-    void GUIApp::emitFurnitureSelected()
+    void GUIApp::emitFurnitureSelected(int size, int color)
     {
-        emit furnitureSelected(m_couch);
+        emit furnitureSelected(m_couch, size, color);
     }
 
 } // namespace ipn

@@ -41,15 +41,33 @@ namespace ipn
 
         //connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openFurnitureApp()));
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_titleBar, SIGNAL(rightButtonClicked()),this,SIGNAL(settingsDone()));
+        connect(m_titleBar, SIGNAL(rightButtonClicked()),this,SLOT(emitSettingsDone()));
         connect(m_picker, SIGNAL(entryChanged()),this,SLOT(showValueChanger()));
+        connect(m_numberPicker, SIGNAL(inputFinished(int,QString)), SLOT(sizeSettingChanged(int, QString)));
+    }
+
+    void SettingsApp::emitSettingsDone(){
+        emit settingsDone(m_size, m_color);
     }
 
     void SettingsApp::showValueChanger(){
-        if(m_picker->activeEntry() == 0)
+        if(m_picker->activeEntry() == 0){
+            m_numberPicker->setIndex(0);
             m_frameWidget->pushApp(m_numberPicker);
+        }
         else
             m_frameWidget->pushApp(m_colorPicker);
+         m_picker->setActiveEntry(-1);
+    }
+
+    void SettingsApp::sizeSettingChanged(int value, QString userValue){
+        m_size = value;
+        m_picker->setValue(0, userValue);
+    }
+
+    void SettingsApp::colorSettingChanged(int value, QString userValue){
+        m_color = value;
+        m_picker->setValue(1, userValue);
     }
 
 } // namespace ipn

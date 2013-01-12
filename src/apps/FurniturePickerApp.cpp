@@ -35,7 +35,7 @@ namespace ipn
         connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openSofaGUI()));
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 
-        connect(m_guiApp, SIGNAL(furnitureSelected(int)), this, SLOT(hideAndPropagate(int)));
+        connect(m_guiApp, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));
         connect(m_guiApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_dummyApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 
@@ -53,8 +53,8 @@ namespace ipn
 
     }
 
-    void FurniturePickerApp::hideAndPropagate(int i){
+    void FurniturePickerApp::hideAndPropagate(int i, int size, int color){
         m_frameWidget->popApp(4);
-        emit furnitureSelected(i);
+        emit furnitureSelected(i, size, color);
     }
 }

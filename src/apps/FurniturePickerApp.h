@@ -21,10 +21,10 @@ namespace ipn
 
         public slots:
             void openSofaGUI();
-            void hideAndPropagate(int);
+            void hideAndPropagate(int, int, int);
 
         signals:
-            void furnitureSelected(int);
+            void furnitureSelected(int, int, int);
 
         private:
             BackgroundWidget* m_back;

@@ -19,6 +19,8 @@ namespace ipn
 			void addEntry(QString text);
             void addEntry(QString text, QString value);
             void addEntry(QString text, QWidget* value);
+            void setValue(int idx, QString value);
+            void setValue(int idx, QWidget* value);
 			int activeEntry();
 			QString activeEntryText();
 			void setActiveEntry(int activeEntry);
@@ -33,6 +35,7 @@ namespace ipn
 
 		private:
 			QVector<TextWidget*> m_entries;
+            QVector<QWidget*> m_values;
 			ImageWidget *m_entryDownImage, *m_checkmarkImage;
 			int m_activeEntry;
 			int m_highlightedEntry;

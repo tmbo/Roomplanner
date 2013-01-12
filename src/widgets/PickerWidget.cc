@@ -58,6 +58,27 @@ namespace ipn
         addEntry(text, valueEntry);
     }
 
+    void PickerWidget::setValue(int idx, QString value)
+    {
+        TextWidget *valueEntry = new TextWidget(this);
+        valueEntry->setColor(Qt::white);
+        valueEntry->setText(value);
+        valueEntry->setAlignment(Qt::AlignLeft);
+
+        setValue(idx, valueEntry);
+    }
+
+    void PickerWidget::setValue(int idx, QWidget* value)
+    {
+        value->resize(100, value->height());
+        value->move(100, 12 + 48 * idx);
+
+        m_values.at(idx)->hide();
+        m_values.replace(idx, value);
+
+        update();
+    }
+
     void PickerWidget::addEntry(QString text, QWidget* value)
     {
         int numberOfEntries = m_entries.size();
@@ -78,6 +99,7 @@ namespace ipn
         arrowHint->move(210, 15 + 48 * numberOfEntries);
 
         m_entries.append(newEntry);
+        m_values.append(value);
 
         resize(240, (numberOfEntries + 1) * 48);
         update();

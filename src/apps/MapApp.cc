@@ -33,7 +33,7 @@ namespace ipn
         connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
 
         m_menu = new ListMenuApp(m_frameWidget);
-        connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int)), this, SLOT(placeFurniture(int)));
+        connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(placeFurniture(int, int, int)));
     }
 
     void MapApp::furniturePressed()
@@ -53,9 +53,9 @@ namespace ipn
         m_frameWidget->pushApp(m_menu);
     }
 
-    void MapApp::placeFurniture(int idx)
+    void MapApp::placeFurniture(int idx, int size, int color)
     {
-        m_room->addFurniture(idx);
+        m_room->addFurniture(idx, size, color);
     }
 
     void MapApp::deleteFurniture()

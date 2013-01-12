@@ -32,7 +32,7 @@ namespace ipn
 		protected slots:
 			void updatePageIndicator();
             void openSettings(int);
-            void emitFurnitureSelected();
+            void emitFurnitureSelected(int, int);
 
         signals:
             void furnitureSelected(int);

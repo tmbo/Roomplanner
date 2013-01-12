@@ -25,8 +25,12 @@ namespace ipn
 
         public slots:
             void showValueChanger();
+            void sizeSettingChanged(int, QString);
+            void colorSettingChanged(int, QString);
+            void emitSettingsDone();
+
         signals:
-            void settingsDone();
+            void settingsDone(int size, int color);
 
         protected:
             BackgroundWidget* m_back;
@@ -36,6 +40,8 @@ namespace ipn
             NumberPickerApp* m_numberPicker;
             ColorPickerApp* m_colorPicker;
 
+            int m_size;
+            int m_color;
     };
 
 } // namespace ipn
