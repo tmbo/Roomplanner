@@ -27,8 +27,8 @@ namespace ipn
 
         m_picker = new PickerWidget(this);
         m_picker->addEntry("Insert furniture");
-        m_picker->addEntry("FUUU");
-        m_picker->addEntry("BAR");
+        m_picker->addEntry("Edit room");
+        m_picker->addEntry("Select room");
         m_picker->move(0, 48);
 
         m_titleBar = new TitleBarWidget(this);
