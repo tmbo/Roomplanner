@@ -26,7 +26,7 @@ namespace ipn
         m_dummyApp->setText("This feature\n has not yet\n been implemented!");
 
         m_picker = new PickerWidget(this);
-        m_picker->addEntry("New piece of furniture");
+        m_picker->addEntry("Insert furniture");
         m_picker->addEntry("FUUU");
         m_picker->addEntry("BAR");
         m_picker->move(0, 48);

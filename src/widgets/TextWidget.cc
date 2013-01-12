@@ -2,6 +2,8 @@
 #include "helpers.h"
 #include <QPainter>
 
+#define POINTS_TO_PIXELS 1.3
+
 namespace ipn
 {
 
@@ -29,7 +31,9 @@ namespace ipn
 			if (m_fontStyle == STYLE_BOLD)
 				weight = 75;
 
-			painter.setFont(QFont("Ubuntu", m_fontSize * ipn::helpers::fontSizeFactor, weight));
+            QFont font = QFont("Ubuntu", 12, weight);
+            font.setPixelSize(m_fontSize * POINTS_TO_PIXELS);
+            painter.setFont(font);
 
 			painter.setOpacity(1.0);
 			painter.setPen(m_color);
@@ -54,7 +58,7 @@ namespace ipn
 	int TextWidget::lineHeightInPixels()
 	{
 		// Convert point size to pixels
-		float inPixels = m_fontSize * 1.5;
+        float inPixels = m_fontSize * POINTS_TO_PIXELS;
 
 		return inPixels * m_lineHeight;
 	}
