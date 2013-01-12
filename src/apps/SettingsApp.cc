@@ -56,6 +56,7 @@ namespace ipn
             m_frameWidget->pushApp(m_numberPicker);
         }
         else
+            m_colorPicker->setColors(0);
             m_frameWidget->pushApp(m_colorPicker);
          m_picker->setActiveEntry(-1);
     }

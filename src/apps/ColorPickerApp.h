@@ -17,6 +17,7 @@ namespace ipn
 
         public:
             explicit ColorPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
+            void setColors(int furnitureIndex);
 
         signals:
             void inputFinished(int color);
@@ -26,6 +27,9 @@ namespace ipn
             TitleBarWidget *m_titleBar;
             QGraphicsView *m_graphicsView;
             QGraphicsScene *m_scene;
+            QGraphicsEllipseItem *m_color0;
+            QGraphicsEllipseItem *m_color1;
+            QGraphicsEllipseItem *m_color2;
 
         public slots:
 

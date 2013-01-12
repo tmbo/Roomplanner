@@ -71,7 +71,7 @@ namespace ipn
 
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(triggerFinish()));
+        connect(m_titleBar, SIGNAL(rightButtonClicked()), this, SLOT(triggerFinish()));
         hide();
 
 	}
