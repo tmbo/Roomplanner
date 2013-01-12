@@ -27,10 +27,15 @@ namespace ipn
 
         m_frameWidget = frameWidget;
 
+
         m_picker = new PickerWidget(this);
-        m_picker->addEntry("Size", "");
-        m_picker->addEntry("Color", new CircleWidget(m_picker));
         m_picker->move(0, 48);
+
+        m_picker->addEntry("Size", "");
+
+        CircleWidget *circleWidget = new CircleWidget(m_picker);
+        circleWidget->setDiameter(90);
+        m_picker->addEntry("Color", circleWidget);
 
         resetSettings();
 

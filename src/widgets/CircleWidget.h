@@ -50,23 +50,15 @@
  public:
      CircleWidget(QWidget *parent = 0);
 
-     void setFloatBased(bool floatBased);
-     void setAntialiased(bool antialiased);
+     void setDiameter(int );
      void setColor(QColor);
 
-     QSize minimumSizeHint() const;
-     QSize sizeHint() const;
-
- public slots:
-     void nextAnimationFrame();
 
  protected:
      void paintEvent(QPaintEvent *event);
 
  private:
-     bool floatBased;
-     bool antialiased;
-     int frameNo;
+     int diameter;
      QColor color;
  };
 
