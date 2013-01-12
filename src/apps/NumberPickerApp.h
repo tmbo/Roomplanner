@@ -40,10 +40,11 @@ namespace ipn
             NumberPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
             QString value();
             int index();
+            QString textValue(int i);
             void setIndex(int value);
 
 		signals:
-            void inputFinished(int millimeters, QString unit);
+            void inputFinished(int index, QString text);
 
 		private:
             //ArchiPod::PickerRole m_role;
@@ -58,9 +59,10 @@ namespace ipn
             ImageWidget *m_area;
             int m_selectedIndex;
 
+
+            void triggerFinish();
 			QString textForNumber(int number);
             QString sliderText();
-            QString textValue(int i);
             void snapWheel();
 
 
