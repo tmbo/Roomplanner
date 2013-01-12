@@ -25,8 +25,8 @@ namespace ipn
         // Create apps:
         m_menuApp = new MenuApp();
         m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
-        m_menuApp->addButton(MenuApp::TopLeft, "NumberPicker", ":/img/icons/icon.png");
-        m_menuApp->addButton(MenuApp::BottomLeft, "CouchPuzzle", ":/img/icons/icon.png");
+        //m_menuApp->addButton(MenuApp::TopLeft, "NumberPicker", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::TopLeft, "CouchPuzzle", ":/img/icons/icon.png");
         m_menuApp->titleBar()->setTitle("choose\na category");
 
 
@@ -51,8 +51,8 @@ namespace ipn
 		connect(m_overlayWidget, SIGNAL(gestureTriggered(GestureType,qreal)), this, SLOT(handleGesture(GestureType,qreal)));
 
 		// Wire up menus <-> menus:
-		connect(m_menuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToDisplayMenuApp()));
-        connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMapApp()));
+        connect(m_menuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToMapApp()));
+        //connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMapApp()));
 
 		connect(m_menuApp->titleBar(), SIGNAL(rightButtonClicked()), this, SLOT(close()));
 //		connect(m_displayMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
