@@ -71,6 +71,7 @@ namespace ipn
 
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
+        connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(triggerFinish()));
         hide();
 
 	}
@@ -148,6 +149,10 @@ namespace ipn
 	{
         snapWheel();
 	}
+
+    void NumberPickerApp::triggerFinish() {
+        emit inputFinished(m_selectedIndex, value());
+    }
 
 
 

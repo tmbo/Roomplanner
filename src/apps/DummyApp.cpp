@@ -23,8 +23,8 @@ namespace ipn
         m_textArea = new TextWidget(this);
         m_textArea->move(10, 40);
         m_textArea->setColor(QColor(Qt::white));
-        m_textArea->resize(240, 180);
-        m_textArea->setFontSize(20);
+        m_textArea->resize(220, 180);
+        m_textArea->setFontSize(16);
         m_textArea->setText("DummyApp");
 
         hide();
