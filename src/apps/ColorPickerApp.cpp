@@ -34,21 +34,31 @@ namespace ipn
     }
 
     void ColorPickerApp::setColors(int furnitureIndex) {
+        m_color0->setBrush(colorValue(furnitureIndex, 0));
+        m_color1->setBrush(colorValue(furnitureIndex, 1));
+        m_color2->setBrush(colorValue(furnitureIndex, 2));
+    }
+
+    QColor ColorPickerApp::colorValue(int furnitureIndex, int colorIndex) {
         switch(furnitureIndex) {
             case 0:
-                m_color0->setBrush(QColor(100, 0, 0));
-                m_color1->setBrush(QColor(100, 0, 0));
-                m_color2->setBrush(QColor(100, 0, 0));
-                break;
+                switch(colorIndex) {
+                    case 0: return QColor();
+                    case 1: return QColor();
+                    default : return QColor();
+                }
             case 1:
-                m_color0->setBrush(QColor(100, 100, 0));
-                m_color1->setBrush(QColor(100, 100, 0));
-                m_color2->setBrush(QColor(100, 100, 0));
-                break;
+                switch(colorIndex) {
+                    case 0: return QColor();
+                    case 1: return QColor();
+                    default : return QColor();
+                }
             default:
-                m_color0->setBrush(QColor(100, 0, 100));
-                m_color1->setBrush(QColor(100, 0, 100));
-                m_color2->setBrush(QColor(100, 0, 100));
+                switch(colorIndex) {
+                    case 0: return QColor();
+                    case 1: return QColor();
+                    default : return QColor();
+                }
         }
     }
 }

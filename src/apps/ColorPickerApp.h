@@ -18,6 +18,7 @@ namespace ipn
         public:
             explicit ColorPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
             void setColors(int furnitureIndex);
+            QColor colorValue(int, int);
 
         signals:
             void inputFinished(int color);
