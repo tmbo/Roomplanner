@@ -49,6 +49,7 @@ namespace ipn
         if(m_picker->activeEntry() == 0)
             m_frameWidget->pushApp(m_numberPicker);
         else
+            m_colorPicker->setColors(0);
             m_frameWidget->pushApp(m_colorPicker);
     }
 
