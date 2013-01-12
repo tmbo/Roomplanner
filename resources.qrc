@@ -77,5 +77,32 @@
         <file>assets/images/buttons/button_delete.png</file>
         <file>assets/images/buttons/button_menu.png</file>
         <file>assets/images/backgrounds/arrow.png</file>
+        <file>assets/images/furniture/couch_0_0_0.png</file>
+        <file>assets/images/furniture/couch_0_1_0.png</file>
+        <file>assets/images/furniture/couch_0_2_0.png</file>
+        <file>assets/images/furniture/couch_1_0_0.png</file>
+        <file>assets/images/furniture/couch_1_1_0.png</file>
+        <file>assets/images/furniture/couch_1_2_0.png</file>
+        <file>assets/images/furniture/couch_2_0_0.png</file>
+        <file>assets/images/furniture/couch_2_1_0.png</file>
+        <file>assets/images/furniture/couch_2_2_0.png</file>
+        <file>assets/images/furniture/couch_2_2_2.png</file>
+        <file>assets/images/furniture/couch_0_0_1.png</file>
+        <file>assets/images/furniture/couch_0_0_2.png</file>
+        <file>assets/images/furniture/couch_0_1_1.png</file>
+        <file>assets/images/furniture/couch_0_1_2.png</file>
+        <file>assets/images/furniture/couch_0_2_1.png</file>
+        <file>assets/images/furniture/couch_0_2_2.png</file>
+        <file>assets/images/furniture/couch_1_0_1.png</file>
+        <file>assets/images/furniture/couch_1_0_2.png</file>
+        <file>assets/images/furniture/couch_1_1_1.png</file>
+        <file>assets/images/furniture/couch_1_1_2.png</file>
+        <file>assets/images/furniture/couch_1_2_1.png</file>
+        <file>assets/images/furniture/couch_1_2_2.png</file>
+        <file>assets/images/furniture/couch_2_0_1.png</file>
+        <file>assets/images/furniture/couch_2_0_2.png</file>
+        <file>assets/images/furniture/couch_2_1_1.png</file>
+        <file>assets/images/furniture/couch_2_1_2.png</file>
+        <file>assets/images/furniture/couch_2_2_1.png</file>
     </qresource>
 </RCC>

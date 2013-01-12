@@ -16,7 +16,7 @@ namespace ipn
 
         public:
             explicit RoomWidget(MapApp *parent = 0);
-            void addFurniture(int idx);
+            void addFurniture(int idx, int size = 0, int color = 0);
             void deleteFurniture();
             void unselectFurniture();
             void selectFurniture(QGraphicsItem *item);
