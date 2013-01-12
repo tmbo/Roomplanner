@@ -50,7 +50,8 @@ SOURCES += \
     src/widgets/PrettyClickableWidget.cc \
     src/apps/DummyApp.cpp \
     src/apps/SettingsApp.cc \
-    src/apps/ColorPickerApp.cpp
+    src/apps/ColorPickerApp.cpp \
+    src/widgets/CircleWidget.cpp
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -83,7 +84,8 @@ HEADERS += \
     src/widgets/PrettyClickableWidget.h \
     src/apps/DummyApp.h \
     src/apps/SettingsApp.h \
-    src/apps/ColorPickerApp.h
+    src/apps/ColorPickerApp.h \
+    src/widgets/CircleWidget.h
 
 INCLUDEPATH += src src/apps src/widgets
 
