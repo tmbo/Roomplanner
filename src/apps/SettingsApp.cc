@@ -48,6 +48,7 @@ namespace ipn
         connect(m_titleBar, SIGNAL(rightButtonClicked()),this,SLOT(emitSettingsDone()));
         connect(m_picker, SIGNAL(entryChanged()),this,SLOT(showValueChanger()));
         connect(m_numberPicker, SIGNAL(inputFinished(int,QString)), SLOT(sizeSettingChanged(int, QString)));
+        connect(m_colorPicker, SIGNAL(inputFinished(int,QColor)), SLOT(colorSettingChanged(int,QColor)));
     }
 
     void SettingsApp::resetSettings(){
@@ -78,7 +79,7 @@ namespace ipn
         m_picker->setValue(0, userValue);
     }
 
-    void SettingsApp::colorSettingChanged(int value, QString userValue){
+    void SettingsApp::colorSettingChanged(int value, QColor userValue){
         m_color = value;
         m_picker->setValue(1, userValue);
     }

@@ -28,7 +28,7 @@ namespace ipn
         public slots:
             void showValueChanger();
             void sizeSettingChanged(int, QString);
-            void colorSettingChanged(int, QString);
+            void colorSettingChanged(int, QColor);
             void emitSettingsDone();
 
         signals:
