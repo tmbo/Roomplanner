@@ -20,7 +20,7 @@ namespace ipn
             void addEntry(QString text, QString value);
             void addEntry(QString text, QWidget* value);
             void setValue(int idx, QString value);
-            void setValue(int idx, QWidget* value);
+            void setValue(int idx, QColor value);
 			int activeEntry();
 			QString activeEntryText();
 			void setActiveEntry(int activeEntry);

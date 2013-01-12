@@ -1,9 +1,11 @@
 #include "PickerWidget.h"
 #include "TextWidget.h"
 #include "ImageWidget.h"
+#include "widgets/CircleWidget.h"
 #include <QPainter>
 #include <QMouseEvent>
 #include <QWidget>
+#include <QtGui>
 
 #define NO_ENTRY -1
 
@@ -66,14 +68,12 @@ namespace ipn
         update();
     }
 
-    void PickerWidget::setValue(int idx, QWidget* value)
+    void PickerWidget::setValue(int idx, QColor value)
     {
-        value->resize(120, value->height());
-        value->move(100, 12 + 48 * idx);
+        CircleWidget* t = (CircleWidget*)m_values.at(idx);
 
-        m_values.at(idx);
-        m_values.replace(idx, value);
-
+        t->setColor(value);
+        t->update();
         update();
     }
 

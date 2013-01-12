@@ -2,6 +2,7 @@
 #include "widgets/BackgroundWidget.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/ScalableButtonWidget.h"
+#include "widgets/CircleWidget.h"
 #include "apps/FurniturePickerApp.h"
 #include "widgets/BackgroundWidget.h"
 #include "widgets/PickerWidget.h"
@@ -11,6 +12,7 @@
 #include "widgets/TitleBarWidget.h"
 #include "apps/NumberPickerApp.h"
 #include "apps/ColorPickerApp.h"
+#include <QtGui>
 
 #include <stdio.h>
 
@@ -27,7 +29,7 @@ namespace ipn
 
         m_picker = new PickerWidget(this);
         m_picker->addEntry("Size", "");
-        m_picker->addEntry("Color", "");
+        m_picker->addEntry("Color", new CircleWidget(this));
         m_picker->move(0, 48);
 
         resetSettings();
@@ -49,8 +51,8 @@ namespace ipn
     }
 
     void SettingsApp::resetSettings(){
-        m_picker->setValue(0, "90 x 90 cm");
-        m_picker->setValue(1, "RED");
+        m_picker->setValue(0, QString("90 x 90 cm"));
+        m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, 0));
         m_size = 0;
         m_color = 0;
     }
@@ -65,7 +67,7 @@ namespace ipn
             m_frameWidget->pushApp(m_numberPicker);
         }
         else{
-            m_colorPicker->setColors(0);
+            m_colorPicker->setColors(m_furniture);
             m_frameWidget->pushApp(m_colorPicker);
         }
          m_picker->setActiveEntry(-1);
@@ -80,5 +82,10 @@ namespace ipn
         m_color = value;
         m_picker->setValue(1, userValue);
     }
+    void SettingsApp::setFurnitureIndex(int value){
+        m_furniture = value;
+    }
+
+
 
 } // namespace ipn

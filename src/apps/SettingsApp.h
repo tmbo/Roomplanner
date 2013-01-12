@@ -23,6 +23,7 @@ namespace ipn
         public:
             SettingsApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
             void resetSettings();
+            void setFurnitureIndex(int);
 
         public slots:
             void showValueChanger();
@@ -43,6 +44,7 @@ namespace ipn
 
             int m_size;
             int m_color;
+            int m_furniture;
     };
 
 } // namespace ipn

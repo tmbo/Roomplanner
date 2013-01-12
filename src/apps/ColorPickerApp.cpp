@@ -43,21 +43,21 @@ namespace ipn
         switch(furnitureIndex) {
             case 0:
                 switch(colorIndex) {
-                    case 0: return QColor();
-                    case 1: return QColor();
-                    default : return QColor();
+                    case 0: return QColor(170, 0, 0);
+                    case 1: return QColor(255, 238, 170);
+                    default : return QColor(51, 51, 51);
                 }
             case 1:
                 switch(colorIndex) {
-                    case 0: return QColor();
-                    case 1: return QColor();
-                    default : return QColor();
+                    case 0: return QColor(78, 62, 43);
+                    case 1: return QColor(26, 26, 26);
+                    default : return QColor(170, 0, 0);
                 }
             default:
                 switch(colorIndex) {
-                    case 0: return QColor();
-                    case 1: return QColor();
-                    default : return QColor();
+                    case 0: return QColor(179, 179, 179);
+                    case 1: return QColor(51, 51, 51);
+                    default : return QColor(128, 0, 0);
                 }
         }
     }
