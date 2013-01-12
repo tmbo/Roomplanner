@@ -29,7 +29,7 @@ namespace ipn
 
         m_picker = new PickerWidget(this);
         m_picker->addEntry("Size", "");
-        m_picker->addEntry("Color", new CircleWidget(this));
+        m_picker->addEntry("Color", new CircleWidget(m_picker));
         m_picker->move(0, 48);
 
         resetSettings();
