@@ -60,8 +60,7 @@ namespace ipn
             int m_selectedIndex;
 
 
-            void triggerFinish();
-			QString textForNumber(int number);
+            QString textForNumber(int number);
             QString sliderText();
             void snapWheel();
 
@@ -71,6 +70,7 @@ namespace ipn
 		
         protected slots:
 			void updateSnapper();
+            void triggerFinish();
 
 		protected:
 			ButtonWidget *m_buttons[3];
