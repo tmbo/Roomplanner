@@ -79,11 +79,11 @@ namespace ipn
 
         switch(i) {
             case 0:
-                return "100 x 240 cm";
+                return "90 x 90 cm";
             case 1:
-                return "200 x 480 cm";
+                return "180 x 90 cm";
             default:
-                return "300 x 720 cm";
+                return "230 x 90 cm";
         }
     }
 

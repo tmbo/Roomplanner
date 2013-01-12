@@ -169,9 +169,13 @@ namespace ipn
         }
     }
 
-    void RoomWidget::addFurniture(int idx)
+    void RoomWidget::addFurniture(int idx, int size, int color)
     {
-        QString tempUrl = QString(":/assets/images/furniture/couch_%1.png").arg(QString::number(idx));
+        QString tempUrl = QString(":/assets/images/furniture/couch_%1_%2_%3.png").arg(
+            QString::number(idx),
+            QString::number(size),
+            QString::number(color)
+        );
         QGraphicsPixmapItem *item = m_scene->addPixmap(QPixmap(tempUrl));
         item->setTransformationMode(Qt::SmoothTransformation);
         item->translate(width() / 2, height() / 2);
