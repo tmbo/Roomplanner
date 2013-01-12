@@ -276,9 +276,9 @@ namespace ipn
 	void IPodFrameWidget::drawAnimation()
 	{
 		if (m_animationType == ANIMATION_LEFT)
-			m_animationOffset *= 0.6;
+            m_animationOffset *= 0.6;
 		else if (m_animationType == ANIMATION_RIGHT)
-			m_animationOffset *= 1.0 - 0.4 * pow(0.5, (float)m_opaquePopAppCount - 1.0);
+            m_animationOffset *= 1.0 - 0.6 * pow(0.6, (float)m_opaquePopAppCount - 1.0);
 
 		if (m_animationOffset > -1.0 && m_animationOffset < 1.0)
 		{

@@ -64,5 +64,4 @@ namespace ipn
         m_deleteButton->setHidden(true);
     }
 
-
 } // namespace ipn

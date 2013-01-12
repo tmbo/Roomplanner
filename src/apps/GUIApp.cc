@@ -76,6 +76,7 @@ namespace ipn
     void GUIApp::openSettings(int idx)
     {
         m_couch = idx;
+        m_settingsApp->resetSettings();
         m_frameWidget->pushApp(m_settingsApp);
     }
 

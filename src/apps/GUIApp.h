@@ -35,7 +35,7 @@ namespace ipn
             void emitFurnitureSelected(int, int);
 
         signals:
-            void furnitureSelected(int);
+            void furnitureSelected(int, int, int);
 
 		private:
 			BackgroundWidget *m_back;

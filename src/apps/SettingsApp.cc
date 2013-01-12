@@ -26,9 +26,11 @@ namespace ipn
         m_frameWidget = frameWidget;
 
         m_picker = new PickerWidget(this);
-        m_picker->addEntry("Size","2,1 x 1,5 m");
-        m_picker->addEntry("Color", "RED");
+        m_picker->addEntry("Size", "");
+        m_picker->addEntry("Color", "");
         m_picker->move(0, 48);
+
+        resetSettings();
 
         m_numberPicker = new NumberPickerApp(frameWidget);
         m_colorPicker = new ColorPickerApp(frameWidget);
@@ -46,6 +48,13 @@ namespace ipn
         connect(m_numberPicker, SIGNAL(inputFinished(int,QString)), SLOT(sizeSettingChanged(int, QString)));
     }
 
+    void SettingsApp::resetSettings(){
+        m_picker->setValue(0, "90 x 90 cm");
+        m_picker->setValue(1, "RED");
+        m_size = 0;
+        m_color = 0;
+    }
+
     void SettingsApp::emitSettingsDone(){
         emit settingsDone(m_size, m_color);
     }
@@ -55,9 +64,10 @@ namespace ipn
             m_numberPicker->setIndex(0);
             m_frameWidget->pushApp(m_numberPicker);
         }
-        else
+        else{
             m_colorPicker->setColors(0);
             m_frameWidget->pushApp(m_colorPicker);
+        }
          m_picker->setActiveEntry(-1);
     }
 

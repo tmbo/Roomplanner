@@ -22,6 +22,7 @@ namespace ipn
 
         public:
             SettingsApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
+            void resetSettings();
 
         public slots:
             void showValueChanger();
