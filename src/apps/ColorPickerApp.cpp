@@ -24,22 +24,24 @@ namespace ipn
         m_color1 = m_scene->addEllipse( 90, 100, 50, 50, pen, QBrush(QColor(0, 255, 0) ));
         m_color2 = m_scene->addEllipse( 160, 100, 50, 50, pen, QBrush(QColor(0, 0, 255) ));
 
+
         m_titleBar = new TitleBarWidget(this);
         m_titleBar->setTitle("Color");
         m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);
         connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
+
 
     }
 
     void ColorPickerApp::setColors(int furnitureIndex) {
+        m_furnitureIndex = furnitureIndex;
         m_color0->setBrush(colorValue(furnitureIndex, 0));
         m_color1->setBrush(colorValue(furnitureIndex, 1));
         m_color2->setBrush(colorValue(furnitureIndex, 2));
     }
 
     QColor ColorPickerApp::colorValue(int furnitureIndex, int colorIndex) {
+
         switch(furnitureIndex) {
             case 0:
                 switch(colorIndex) {
@@ -59,6 +61,27 @@ namespace ipn
                     case 1: return QColor();
                     default : return QColor();
                 }
+        }
+    }
+
+    void ColorPickerApp::mousePressEvent(QMouseEvent *event){
+
+        QGraphicsItem *item = m_graphicsView->itemAt(event->pos() - this->pos());
+
+        if (item == m_color0)
+        {
+            m_frameWidget->popApp();
+            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 0));
+        }
+        if (item == m_color1)
+        {
+            m_frameWidget->popApp();
+            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 1));
+        }
+        if (item == m_color2)
+        {
+            m_frameWidget->popApp();
+            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 2));
         }
     }
 }
