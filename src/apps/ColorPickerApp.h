@@ -19,9 +19,10 @@ namespace ipn
             explicit ColorPickerApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
             void setColors(int furnitureIndex);
             QColor colorValue(int, int);
+            virtual void mousePressEvent(QMouseEvent *event);
 
         signals:
-            void inputFinished(int color);
+            void inputFinished(int colorIndex, QColor color);
 
         private:
             BackgroundWidget *m_back;
@@ -31,12 +32,16 @@ namespace ipn
             QGraphicsEllipseItem *m_color0;
             QGraphicsEllipseItem *m_color1;
             QGraphicsEllipseItem *m_color2;
+            int m_furnitureIndex;
 
         public slots:
 
 
         protected:
             IPodFrameWidget *m_frameWidget;
+
+
+        protected slots:
 
     };
 }
