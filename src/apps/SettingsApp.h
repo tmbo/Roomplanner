@@ -14,6 +14,7 @@ namespace ipn
     class FurniturePickerApp;
     class DummyApp;
     class NumberPickerApp;
+    class ColorPickerApp;
 
     class SettingsApp : public App
     {
@@ -33,6 +34,7 @@ namespace ipn
             TitleBarWidget* m_titleBar;
             IPodFrameWidget* m_frameWidget;
             NumberPickerApp* m_numberPicker;
+            ColorPickerApp* m_colorPicker;
 
     };
 

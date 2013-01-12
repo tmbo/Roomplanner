@@ -10,6 +10,7 @@
 #include "apps/DummyApp.h"
 #include "widgets/TitleBarWidget.h"
 #include "apps/NumberPickerApp.h"
+#include "apps/ColorPickerApp.h"
 
 #include <stdio.h>
 
@@ -30,7 +31,7 @@ namespace ipn
         m_picker->move(0, 48);
 
         m_numberPicker = new NumberPickerApp(frameWidget);
-        //m_colorPicker = 0;
+        m_colorPicker = new ColorPickerApp(frameWidget);
 
         m_titleBar = new TitleBarWidget(this);
         m_titleBar->setTitle("Settings");
@@ -47,8 +48,8 @@ namespace ipn
     void SettingsApp::showValueChanger(){
         if(m_picker->activeEntry() == 0)
             m_frameWidget->pushApp(m_numberPicker);
-        /*else
-            m_frameWidget->pushApp(m_colorPicker);*/
+        else
+            m_frameWidget->pushApp(m_colorPicker);
     }
 
 } // namespace ipn
