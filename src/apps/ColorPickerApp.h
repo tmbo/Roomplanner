@@ -22,7 +22,7 @@ namespace ipn
             virtual void mousePressEvent(QMouseEvent *event);
 
         signals:
-            void inputFinished(int furnitureIndex, QColor color);
+            void inputFinished(int colorIndex, QColor color);
 
         private:
             BackgroundWidget *m_back;

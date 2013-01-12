@@ -71,17 +71,17 @@ namespace ipn
         if (item == m_color0)
         {
             m_frameWidget->popApp();
-            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 0));
+            emit inputFinished(0, colorValue(m_furnitureIndex, 0));
         }
         if (item == m_color1)
         {
             m_frameWidget->popApp();
-            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 1));
+            emit inputFinished(1, colorValue(m_furnitureIndex, 1));
         }
         if (item == m_color2)
         {
             m_frameWidget->popApp();
-            emit inputFinished(m_furnitureIndex, colorValue(m_furnitureIndex, 2));
+            emit inputFinished(2, colorValue(m_furnitureIndex, 2));
         }
     }
 }
