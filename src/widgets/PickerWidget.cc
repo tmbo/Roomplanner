@@ -36,6 +36,12 @@ namespace ipn
 		newEntry->move(16, 12 + 48 * numberOfEntries);
 		m_entries.append(newEntry);
 
+        ImageWidget *arrowHint;
+        arrowHint = new ImageWidget(this);
+        arrowHint->setImage(":/assets/images/backgrounds/arrow.png");
+        arrowHint->move(210, 15 + 48 * numberOfEntries);
+
+
 		resize(240, (numberOfEntries + 1) * 48);
 
 		update();
