@@ -49,7 +49,8 @@ SOURCES += \
     src/apps/NumberPickerApp.cc \
     src/widgets/PrettyClickableWidget.cc \
     src/apps/DummyApp.cpp \
-    src/apps/SettingsApp.cc
+    src/apps/SettingsApp.cc \
+    src/apps/ColorPickerApp.cpp
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -81,7 +82,8 @@ HEADERS += \
     src/apps/NumberPickerApp.h \
     src/widgets/PrettyClickableWidget.h \
     src/apps/DummyApp.h \
-    src/apps/SettingsApp.h
+    src/apps/SettingsApp.h \
+    src/apps/ColorPickerApp.h
 
 INCLUDEPATH += src src/apps src/widgets
 
