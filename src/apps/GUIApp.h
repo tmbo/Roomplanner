@@ -29,7 +29,7 @@ namespace ipn
 
 
 		protected slots:
-			void updatePageIndicator();
+            void updatePageIndicator(int);
             void openSettings(int);
             void emitFurnitureSelected(int, int);
 

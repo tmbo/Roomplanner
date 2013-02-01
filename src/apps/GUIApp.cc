@@ -40,7 +40,7 @@ namespace ipn
         m_pageIndicator->setNumberOfSegments(3);
 		m_pageIndicator->move(120 - m_pageIndicator->width() / 2, 224);
 
-        connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
+        connect(m_flickArea, SIGNAL(moved(int)), this, SLOT(updatePageIndicator(int)));
 
         connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(openSettings(int)));
         connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(emitFurnitureSelected(int, int)));
@@ -50,7 +50,7 @@ namespace ipn
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
         m_clickable[idx]->resize(240, 200);
-        m_clickable[idx]->move(280 * idx,0);
+        m_clickable[idx]->move(280 * idx, 0);
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);
@@ -60,9 +60,9 @@ namespace ipn
         connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
     }
 
-	void GUIApp::updatePageIndicator()
+    void GUIApp::updatePageIndicator(int index)
 	{
-		m_pageIndicator->setPosition(m_flickArea->relativeScrollPosition().x());
+        m_pageIndicator->setActiveSegment(index);
 	}
 
     void GUIApp::openSettings(int idx)
