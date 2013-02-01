@@ -24,6 +24,7 @@ namespace ipn
         m_flickArea->resize(240, 200);
         m_flickArea->setMoveAfterRelease(true);
         m_flickArea->setSnapEnabled(true);
+        m_flickArea->setMovementLockEnabled(true);
 
         m_signalMapper = new QSignalMapper();
 
@@ -32,16 +33,8 @@ namespace ipn
         m_frameWidget = frameWidget;
 
         createFurnitureEntry(0, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(1, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(2, ":/assets/images/furniture/karlstad.png");
-
-        createFurnitureEntry(3, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(4, ":/assets/images/furniture/sater.png");
-        createFurnitureEntry(5, ":/assets/images/furniture/ektorp.png");
-
-        createFurnitureEntry(6, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(7, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(8, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(1, ":/assets/images/furniture/sater.png");
+        createFurnitureEntry(2, ":/assets/images/furniture/ektorp.png");
 
         connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(openSettings(int)));
         connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(emitFurnitureSelected(int, int)));
@@ -51,7 +44,7 @@ namespace ipn
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
         m_clickable[idx]->resize(240, 200);
-        m_clickable[idx]->move(280 * (idx%3),-200 + 200 * (idx / 3));
+        m_clickable[idx]->move(280 * (idx%3), 0);
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);
