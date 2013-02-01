@@ -32,7 +32,7 @@ namespace ipn
 		if (m_color == BG_TRANSPARENT)
 			backgroundColor = QColor(0, 0, 0, 192);
 		else if (m_color == BG_GRAY)
-			backgroundColor = QColor(64, 64, 64, 255);
+            backgroundColor = QColor(160, 160, 160, 255);
 		else if (m_color == BG_WHITE)
 			backgroundColor = QColor(255, 255, 255, 255);
 

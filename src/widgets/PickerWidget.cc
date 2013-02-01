@@ -32,7 +32,7 @@ namespace ipn
 		int numberOfEntries = m_entries.size();
 
 		TextWidget *newEntry = new TextWidget(this);
-		newEntry->setColor(Qt::white);
+        newEntry->setColor(Qt::white);
 		newEntry->setText(text);
 		newEntry->setAlignment(Qt::AlignLeft);
         newEntry->resize(184, newEntry->textHeight());
@@ -108,7 +108,7 @@ namespace ipn
 		QPainter painter(this);
 		painter.setRenderHint(QPainter::Antialiasing, true);
 
-		QPen pen(QColor(179, 179, 179));
+        QPen pen(QColor(60, 60, 60));
 		pen.setWidth(2);
 		painter.setPen(pen);
 

@@ -39,7 +39,7 @@ namespace ipn
             void forwardMouseEvent(QMouseEvent *event, bool simulateMouseRelease = false);
 
         signals:
-            void moved();
+            void moved(int);
             void released();
             void ready();
 
@@ -56,6 +56,7 @@ namespace ipn
             QPoint m_lastMousePos;
             QPoint m_mouseDownPos;
             QPoint m_scrollOffset;
+            QPoint m_movementLock;
             bool m_mouseMovedSinceMousePress;
             bool m_shadowsEnabled;
             float m_shadowFadeInDistance;
@@ -65,6 +66,7 @@ namespace ipn
             bool m_mouseDown;
             bool m_animating;
             bool m_active;
+            bool m_snapping;
 
             float calculateFlickDistance(float realDistance);
             void flick(QPoint offset);

@@ -24,15 +24,14 @@ namespace ipn
         m_room->resize(240, 240);
 
         m_addButton = new ButtonWidget(this);
-        m_addButton->setInactiveImages(":/assets/images/buttons/button_menu.png");
+        m_addButton->setInactiveImages(":/assets/images/buttons/button_add.png");
         m_addButton->move(198, 2);
-        connect(m_addButton, SIGNAL(clicked()), this, SLOT(showOverlay()));
 
         m_deleteButton = new ButtonWidget(this);
         m_deleteButton->setInactiveImages(":/assets/images/buttons/button_delete.png");
         m_deleteButton->move(2, 198);
         m_deleteButton->setHidden(true);
-        connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
+
 
         m_editButton = new ButtonWidget(this);
         m_editButton->setInactiveImages(":/assets/images/buttons/button_edit.png");
@@ -46,6 +45,12 @@ namespace ipn
         m_furnitureViewer = new FurnitureViewer(m_frameWidget);
         connect(m_furnitureViewer, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));
         connect(m_furnitureViewer->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+
+        m_furniturePickerApp = new FurniturePickerApp(m_frameWidget);
+
+        connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
+        connect(m_addButton, SIGNAL(clicked()), this, SLOT(showOverlay()));
+        connect(m_furniturePickerApp, SIGNAL(furnitureSelected(int,int,int)), this, SLOT(placeFurniture(int,int,int)));
 
     }
 
@@ -63,7 +68,7 @@ namespace ipn
     void MapApp::showOverlay()
     {
         m_room->unselectFurniture();
-        m_frameWidget->pushApp(m_menu);
+        m_frameWidget->pushApp(m_furniturePickerApp);
     }
 
     void MapApp::placeFurniture(int idx, int size, int color)

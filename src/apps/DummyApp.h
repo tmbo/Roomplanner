@@ -24,7 +24,6 @@ namespace ipn
 
         private:
             BackgroundWidget *m_back;
-            TitleBarWidget *m_titleBar;
             TextWidget *m_textArea;
     };
 

@@ -14,6 +14,7 @@ namespace ipn
     class IPodFrameWidget;
     class ClickableWidget;
     class RoomWidget;
+    class FurniturePickerApp;
     class ListMenuApp;
     class FurnitureViewer;
     class SettingsApp;
@@ -27,7 +28,6 @@ namespace ipn
 
             inline bool isOpaque() { return true; }
 
-			TitleBarWidget *titleBar();
             ButtonWidget *m_deleteButton;
             ButtonWidget *m_editButton;
 
@@ -47,7 +47,8 @@ namespace ipn
             RoomWidget *m_room;
 
             ButtonWidget *m_addButton;
-            ListMenuApp* m_menu;
+
+            FurniturePickerApp *m_furniturePickerApp;
 	};
 
 } // namespace ipn

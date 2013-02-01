@@ -42,6 +42,7 @@ namespace ipn
             int index();
             QString textValue(int i);
             void setIndex(int value);
+            virtual void mousePressEvent(QMouseEvent *event);
 
 		signals:
             void inputFinished(int index, QString text);

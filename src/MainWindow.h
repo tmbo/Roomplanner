@@ -26,6 +26,7 @@ namespace ipn
     class MenuApp;
 	class MapApp;
     class NumberPickerApp;
+    class ListMenuApp;
 
 	class OverlayWidget;
 	class TitleBarWidget;
@@ -83,6 +84,7 @@ namespace ipn
 
 			// Apps
             MenuApp *m_menuApp;
+            ListMenuApp *m_listMenuApp;
 			MapApp *m_mapApp;
             NumberPickerApp *m_numberPickerApp;
 
