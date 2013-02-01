@@ -13,7 +13,7 @@ namespace ipn
 
         m_graphicsView = new QGraphicsView(this);
         m_graphicsView->setSceneRect(0, 0, 240, 240);
-        m_graphicsView->setBackgroundBrush(QBrush(QColor(59, 59, 59)));
+        m_graphicsView->setBackgroundBrush(QBrush(QColor(160, 160, 160)));
         m_scene = new QGraphicsScene(m_graphicsView);
 
         m_graphicsView->setScene(m_scene);
@@ -49,7 +49,7 @@ namespace ipn
                 }
             default:
                 switch(colorIndex) {
-                    case 0: return QColor(179, 179, 179);
+                    case 0: return QColor(200, 174, 139);
                     case 1: return QColor(51, 51, 51);
                     default : return QColor(128, 0, 0);
                 }

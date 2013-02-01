@@ -17,7 +17,7 @@ namespace ipn
     ListMenuApp::ListMenuApp(IPodFrameWidget* frameWidget, QWidget *parent) : App(parent)
     {
         m_back = new BackgroundWidget(this);
-        m_back->setColor(BackgroundWidget::BG_TRANSPARENT);
+        m_back->setColor(BackgroundWidget::BG_GRAY);
         m_back->move(0, 0);
 
         m_frameWidget = frameWidget;
