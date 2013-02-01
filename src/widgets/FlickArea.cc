@@ -6,6 +6,14 @@
 #include <qmath.h>
 #include <QtAlgorithms>
 
+QPoint multiplyPoint(QPoint p1, QPoint p2) {
+    p1.setX(p1.x() * p2.x());
+    p1.setY(p1.y() * p2.y());
+    return p1;
+}
+#define MOVEMENT_LOCK_THRESHOLD 2
+#define SNAPPING_DIRECTION_ASSIST 0.3
+
 namespace ipn
 {
 
@@ -126,6 +134,7 @@ namespace ipn
             m_lastMousePos = event->pos();
             m_mouseDownPos = event->pos();
             m_scrollOffset = QPoint(0, 0);
+            m_movementLock = QPoint(1, 1);
 
             m_mouseDown = true;
         }
@@ -143,6 +152,42 @@ namespace ipn
 
             QPoint moveDifference = event->pos() - m_lastMousePos;
             m_lastMousePos = event->pos();
+
+            if (m_movementLock.x() == 1 && m_movementLock.y() == 1) {
+                QPoint movement = m_lastMousePos - m_mouseDownPos;
+                if (abs(movement.x()) > MOVEMENT_LOCK_THRESHOLD || abs(movement.y()) > MOVEMENT_LOCK_THRESHOLD) {
+
+                    if (abs(movement.x()) > abs(movement.y()))
+                        m_movementLock = QPoint(1, 0);
+                    else
+                        m_movementLock = QPoint(0, 1);
+
+                    qDebug("%i %i\n", m_movementLock.x() ? 0 : movement.x(), m_movementLock.y() ? 0 : movement.y());
+
+//                    foreach (QObject *childObject, children())
+//                    {
+//                        // Don't move our event-catching overlay
+//                        if (childObject == m_overlay)
+//                            continue;
+
+//                        QWidget *childWidget = qobject_cast<QWidget*>(childObject);
+
+//                        if (childWidget)
+//                            childWidget->move(
+//                                childWidget->pos() +
+//                                QPoint(
+//                                    m_movementLock.x() ? 0 : movement.x(),
+//                                    m_movementLock.y() ? 0 : movement.y()));
+//                    }
+
+                    m_scrollOffset = multiplyPoint(m_scrollOffset, m_movementLock);
+                    moveDifference = multiplyPoint(moveDifference, m_movementLock);
+
+                }
+            } else {
+                moveDifference = multiplyPoint(moveDifference, m_movementLock);
+            }
+
             flick(moveDifference);
         }
     }
@@ -192,17 +237,17 @@ namespace ipn
 
     void FlickArea::proceedAnimation()
     {
-    if(m_moveAfterRelease || m_mouseDown)
-        {
+        if(m_moveAfterRelease || m_mouseDown) {
             // Move each child widget by m_scrollOffset
 
             m_animating = true;
 
-            if (m_snapping && !m_mouseDown && (abs(m_scrollOffset.x()) < 5) && (qAbs(m_scrollOffset.x() * 0.2) > 0)) {
+            if (m_snapping && !m_mouseDown &&
+                (((abs(m_scrollOffset.x()) < 5) && (qAbs(m_scrollOffset.x() * 0.2) > 0)) || ((abs(m_scrollOffset.y()) < 5) && (qAbs(m_scrollOffset.y() * 0.2) > 0)))) {
                 QRect cRect = QRect();
-                int cCount = 0;
-                QList<int> childPositions = QList<int>();
-                int cActualWidth = 0;
+                QPoint cCount = QPoint(3,3);
+                QList<QPoint> childPositions = QList<QPoint>();
+                QPoint cActualSize = QPoint(0,0);
 
                 foreach (QObject *childObject, children())
                 {
@@ -213,25 +258,27 @@ namespace ipn
                     QWidget *childWidget = qobject_cast<QWidget*>(childObject);
 
                     if (childWidget) {
-                        cCount++;
                         QRect childRect = childWidget->rect();
                         childRect.moveTo(childWidget->pos());
                         cRect = cRect.united(childRect);
-                        cActualWidth += childRect.width();
-                        childPositions.push_back(childRect.x());
+                        cActualSize.setX(cActualSize.x() + childRect.size().width());
+                        cActualSize.setY(cActualSize.y() + childRect.size().height());
+                        childPositions.push_back(childRect.topLeft());
                     }
                 }
                 for(int i = 0; i < childPositions.length(); i++) {
-                    childPositions.replace(i, childPositions.at(i) - cRect.left());
+                    childPositions.replace(i, childPositions.at(i) - cRect.topLeft());
                 }
 
-                qSort(childPositions);
+                QPoint direction = multiplyPoint(QPoint(
+                    m_scrollOffset.x() < 0 ? -1 : 1,
+                    m_scrollOffset.y() < 0 ? -1 : 1), m_movementLock);
+                QPoint snapIndex = QPoint(
+                    - round((float)cCount.x() * cRect.left() / cRect.width()),
+                    - round((float)cCount.y() * cRect.top() / cRect.height())
+                    ) + direction * SNAPPING_DIRECTION_ASSIST;
 
-                int margin = (cRect.width() - cActualWidth) / (cCount - 1);
-                int direction = m_scrollOffset.x() < 0 ? -1 : 1;
-                int snapIndex = -round(((float)cCount * cRect.left() / cRect.width()) + direction * 0.3);
-
-                int deltaX = - cRect.left() - childPositions.at(snapIndex);
+                QPoint delta = - cRect.topLeft() - childPositions.at(snapIndex.x() * cCount.y() + snapIndex.y());
 
                 foreach (QObject *childObject, children())
                 {
@@ -242,11 +289,12 @@ namespace ipn
                     QWidget *childWidget = qobject_cast<QWidget*>(childObject);
 
                     if (childWidget)
-                        childWidget->move(childWidget->pos() + QPoint(deltaX, 0));
+                        childWidget->move(childWidget->pos() + delta);
                 }
 
                 // stop animation
                 m_scrollOffset = QPoint(0,0);
+                moved(snapIndex.x());
             }
 
             foreach (QObject *childObject, children())
@@ -262,9 +310,7 @@ namespace ipn
             }
 
             // If the widgets were moved by at least one pixel, announce the changement
-            if (((int)qAbs(m_scrollOffset.x() * 0.2)) > 0 || ((int)qAbs(m_scrollOffset.y() * 0.2)) > 0)
-                emit moved();
-            else
+            if (!(((int)qAbs(m_scrollOffset.x() * 0.2)) > 0 || ((int)qAbs(m_scrollOffset.y() * 0.2)) > 0))
                 m_scrollOffset = QPoint(0, 0);
 
             m_scrollOffset *= (1 - 0.2);
@@ -291,8 +337,8 @@ namespace ipn
     void FlickArea::flick(QPoint offset)
     {
         // Add the current offset to the sum of offsets:
-        m_scrollOffset += QPoint(calculateFlickDistance(offset.x()),
-            calculateFlickDistance(offset.y()));
+        m_scrollOffset += multiplyPoint(QPoint(calculateFlickDistance(offset.x()),
+            calculateFlickDistance(offset.y())), m_movementLock);
 
         // Calculate how much place the children take:
         QRect cRect = childrenRect();
