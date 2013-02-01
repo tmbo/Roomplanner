@@ -3,6 +3,7 @@
 #include "apps/MenuApp.h"
 #include "apps/GUIApp.h"
 #include "apps/MapApp.h"
+#include "apps/ListMenuApp.h"
 #include "apps/NumberPickerApp.h"
 #include "widgets/TitleBarWidget.h"
 #include "widgets/ScalableButtonWidget.h"
@@ -34,6 +35,8 @@ namespace ipn
         m_numberPickerApp->setIndex(2);
 
         m_mapApp = new MapApp(m_frameWidget);
+
+        m_listMenuApp = new ListMenuApp(m_frameWidget);
 
 		// Set MenuApp as first app:
 		m_frameWidget->instantReplaceAllAppsBy(m_menuApp);
@@ -125,7 +128,10 @@ namespace ipn
 //	void MainWindow::switchToPaintApp()				{m_frameWidget->pushApp(m_paintApp);}
 //	void MainWindow::switchToMusicApp()				{m_frameWidget->pushApp(m_musicApp);}
 //	void MainWindow::switchToGUIApp()				{m_frameWidget->pushApp(m_guiApp);}
-	void MainWindow::switchToMapApp()				{m_frameWidget->pushApp(m_mapApp);}
+    void MainWindow::switchToMapApp()				{
+        m_frameWidget->pushApp(m_listMenuApp);
+        m_frameWidget->pushApp(m_mapApp);
+    }
 //	void MainWindow::switchToPeepholeApp()			{m_frameWidget->pushApp(m_peepholeApp);}
 //	void MainWindow::switchToGestureApp()			{m_frameWidget->pushApp(m_gestureApp);}
 //	void MainWindow::switchToMarkingMenuApp()		{m_frameWidget->pushApp(m_markingMenuApp);}

@@ -14,6 +14,7 @@ namespace ipn
     class IPodFrameWidget;
     class ClickableWidget;
     class RoomWidget;
+    class FurniturePickerApp;
     class ListMenuApp;
 
 	class MapApp : public App
@@ -41,7 +42,8 @@ namespace ipn
             RoomWidget *m_room;
 
             ButtonWidget *m_addButton;
-            ListMenuApp* m_menu;
+
+            FurniturePickerApp *m_furniturePickerApp;
 	};
 
 } // namespace ipn

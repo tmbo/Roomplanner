@@ -45,7 +45,7 @@ namespace ipn
     }
 
     void FurniturePickerApp::hideAndPropagate(int i, int size, int color){
-        m_frameWidget->popApp(4);
+        m_frameWidget->popApp(3);
         emit furnitureSelected(i, size, color);
     }
 }

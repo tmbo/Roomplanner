@@ -13,6 +13,7 @@ namespace ipn
     class IPodFrameWidget;
     class FurniturePickerApp;
     class DummyApp;
+    class MapApp;
 
     class ListMenuApp : public App
     {
@@ -20,14 +21,14 @@ namespace ipn
 
         public:
             ListMenuApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
-            FurniturePickerApp* m_furniturePicker;
 
         public slots:
-            void openFurnitureApp();
+            void openMapApp();
 
         protected:
             BackgroundWidget* m_back;
             PickerWidget* m_picker;
+            MapApp* m_mapApp;
             IPodFrameWidget* m_frameWidget;
             DummyApp *m_dummyApp;
     };
