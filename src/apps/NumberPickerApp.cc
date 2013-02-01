@@ -24,8 +24,7 @@ namespace ipn
         m_back->setColor(BackgroundWidget::BG_GRAY);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Size");
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
+        m_titleBar->setTitle("Furniture size");
         m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);
 
         m_frameWidget = frameWidget;
@@ -69,7 +68,6 @@ namespace ipn
         m_bottomshadow->move(20, 166);
         m_bottomshadow->resize(200, 48);
 
-        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), this, SLOT(triggerFinish()));
         hide();

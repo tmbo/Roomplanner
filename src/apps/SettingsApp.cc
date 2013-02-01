@@ -43,13 +43,11 @@ namespace ipn
         m_colorPicker = new ColorPickerApp(frameWidget);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Settings");
+        m_titleBar->setTitle("Furniture settings");
         m_titleBar->move(0, 0);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
         m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);
 
         //connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openFurnitureApp()));
-        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()),this,SLOT(emitSettingsDone()));
         connect(m_picker, SIGNAL(entryChanged()),this,SLOT(showValueChanger()));
         connect(m_numberPicker, SIGNAL(inputFinished(int,QString)), SLOT(sizeSettingChanged(int, QString)));

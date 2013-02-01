@@ -26,7 +26,6 @@ namespace ipn
 
         private:
             BackgroundWidget *m_back;
-            TitleBarWidget *m_titleBar;
             QGraphicsView *m_graphicsView;
             QGraphicsScene *m_scene;
             QGraphicsEllipseItem *m_color0;

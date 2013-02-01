@@ -23,14 +23,6 @@ namespace ipn
         m_color0 = m_scene->addEllipse( 20, 100, 50, 50, pen, QBrush(QColor(255, 0, 0) ));
         m_color1 = m_scene->addEllipse( 90, 100, 50, 50, pen, QBrush(QColor(0, 255, 0) ));
         m_color2 = m_scene->addEllipse( 160, 100, 50, 50, pen, QBrush(QColor(0, 0, 255) ));
-
-
-        m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Color");
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
-        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-
-
     }
 
     void ColorPickerApp::setColors(int furnitureIndex) {

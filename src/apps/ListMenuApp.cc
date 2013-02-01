@@ -29,16 +29,9 @@ namespace ipn
         m_picker->addEntry("Insert furniture");
         m_picker->addEntry("Edit room");
         m_picker->addEntry("Select room");
-        m_picker->move(0, 48);
-
-        m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("CouchPuzzle");
-        m_titleBar->move(0, 0);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
+        m_picker->move(0, 0);
 
         connect(m_picker, SIGNAL(entryChanged()), this, SLOT(openFurnitureApp()));
-        connect(m_titleBar, SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
-        connect(m_dummyApp->titleBar(), SIGNAL(leftButtonClicked()),m_frameWidget,SLOT(popApp()));
     }
 
     void ListMenuApp::openFurnitureApp(){

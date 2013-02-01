@@ -20,13 +20,8 @@ namespace ipn
         m_back->setColor(BackgroundWidget::BG_GRAY);
         m_back->move(0, 0);
 
-        m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Select a couch");
-        m_titleBar->move(0, 0);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
-
 		m_flickArea = new FlickArea(this);
-        m_flickArea->move(0, 50);
+        m_flickArea->move(0, 0);
         m_flickArea->resize(240, 200);
 
         m_signalMapper = new QSignalMapper();
@@ -61,11 +56,6 @@ namespace ipn
 
         m_signalMapper->setMapping(m_clickable[idx], idx);
         connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
-    }
-
-    TitleBarWidget *GUIApp::titleBar()
-    {
-        return m_titleBar;
     }
 
 	void GUIApp::updatePageIndicator()

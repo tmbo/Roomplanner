@@ -29,7 +29,6 @@ namespace ipn
         private:
             BackgroundWidget* m_back;
             PickerWidget* m_picker;
-            TitleBarWidget* m_titleBar;
             GUIApp *m_guiApp;
             IPodFrameWidget* m_frameWidget;
             DummyApp *m_dummyApp;

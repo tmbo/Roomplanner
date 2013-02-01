@@ -25,7 +25,6 @@ namespace ipn
 
             inline bool isOpaque() { return true; }
 
-			TitleBarWidget *titleBar();
             ButtonWidget *m_deleteButton;
 
 
