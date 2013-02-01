@@ -24,6 +24,7 @@ namespace ipn
         m_flickArea->move(0, 0);
         m_flickArea->resize(240, 200);
         m_flickArea->setMoveAfterRelease(true);
+        m_flickArea->setSnapEnabled(true);
 
         m_signalMapper = new QSignalMapper();
 

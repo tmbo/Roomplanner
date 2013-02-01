@@ -25,7 +25,6 @@ namespace ipn
             void setShadowsEnabled(bool value);
 
             void setMoveAfterRelease(bool value);
-            void setSnapping(bool value);
 
             inline float shadowFadeInDistance() { return m_shadowFadeInDistance; };
             inline void setShadowFadeInDistance(float value) { m_shadowFadeInDistance = value; };

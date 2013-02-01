@@ -65,7 +65,7 @@ namespace ipn
         m_moveAfterRelease = value;
     }
 
-    void FlickArea::setSnapping(bool value)
+    void FlickArea::setSnapEnabled(bool value)
     {
         m_snapping = value;
     }
@@ -220,7 +220,7 @@ namespace ipn
                 }
                 int margin = (cRect.width() - cActualWidth) / (cCount - 1);
                 int direction = m_scrollOffset.x() < 0 ? -1 : 1;
-                int snapIndex = -round(((float)cCount * cRect.left() / cRect.width()) + direction * 0.2);
+                int snapIndex = -round(((float)cCount * cRect.left() / cRect.width()) + direction * 0.3);
 
                 int deltaX = - cRect.left() - (cActualWidth / (float)cCount + margin) * snapIndex;
 
