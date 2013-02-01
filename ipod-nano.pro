@@ -51,7 +51,8 @@ SOURCES += \
     src/apps/DummyApp.cpp \
     src/apps/SettingsApp.cc \
     src/apps/ColorPickerApp.cpp \
-    src/widgets/CircleWidget.cpp
+    src/widgets/CircleWidget.cpp \
+    src/apps/FurnitureViewer.cpp
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -85,7 +86,8 @@ HEADERS += \
     src/apps/DummyApp.h \
     src/apps/SettingsApp.h \
     src/apps/ColorPickerApp.h \
-    src/widgets/CircleWidget.h
+    src/widgets/CircleWidget.h \
+    src/apps/FurnitureViewer.h
 
 INCLUDEPATH += src src/apps src/widgets
 
