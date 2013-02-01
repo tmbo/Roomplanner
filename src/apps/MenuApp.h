@@ -22,8 +22,8 @@ namespace ipn
 			ScalableButtonWidget *button(ButtonPosition position);
 			void addButton(ButtonPosition position, QString title, QString iconImage);
 
-			inline bool isOpaque() {return true;}
-			TitleBarWidget *titleBar();
+            inline bool isOpaque() {return true;}
+            TitleBarWidget *titleBar();
 
 		signals:
 			void backButtonClicked();

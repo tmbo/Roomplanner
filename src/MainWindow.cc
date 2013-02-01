@@ -54,7 +54,7 @@ namespace ipn
         connect(m_menuApp, SIGNAL(topLeftButtonClicked()), this, SLOT(switchToMapApp()));
         //connect(m_menuApp, SIGNAL(bottomLeftButtonClicked()), this, SLOT(switchToMapApp()));
 
-		connect(m_menuApp->titleBar(), SIGNAL(rightButtonClicked()), this, SLOT(close()));
+        connect(m_menuApp->titleBar(), SIGNAL(rightButtonClicked()), this, SLOT(close()));
 //		connect(m_displayMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 //		connect(m_inputMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 //		connect(m_choiceMenuApp->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));

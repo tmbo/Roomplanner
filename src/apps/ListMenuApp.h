@@ -28,7 +28,6 @@ namespace ipn
         protected:
             BackgroundWidget* m_back;
             PickerWidget* m_picker;
-            TitleBarWidget* m_titleBar;
             IPodFrameWidget* m_frameWidget;
             DummyApp *m_dummyApp;
     };

@@ -15,11 +15,6 @@ namespace ipn
         m_back->setColor(BackgroundWidget::BG_GRAY);
         m_back->move(0, 0);
 
-        m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Sorry");
-        m_titleBar->move(0, 0);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
-
         m_textArea = new TextWidget(this);
         m_textArea->move(10, 40);
         m_textArea->setColor(QColor(Qt::white));
@@ -28,11 +23,6 @@ namespace ipn
         m_textArea->setText("DummyApp");
 
         hide();
-    }
-
-    TitleBarWidget *DummyApp::titleBar()
-    {
-        return m_titleBar;
     }
 
     void DummyApp::setText(QString text)
