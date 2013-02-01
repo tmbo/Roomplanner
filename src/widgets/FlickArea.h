@@ -25,6 +25,7 @@ namespace ipn
             void setShadowsEnabled(bool value);
 
             void setMoveAfterRelease(bool value);
+            void setSnapping(bool value);
 
             inline float shadowFadeInDistance() { return m_shadowFadeInDistance; };
             inline void setShadowFadeInDistance(float value) { m_shadowFadeInDistance = value; };
@@ -65,6 +66,7 @@ namespace ipn
             bool m_mouseDown;
             bool m_animating;
             bool m_active;
+            bool m_snapping;
 
             float calculateFlickDistance(float realDistance);
             void flick(QPoint offset);
