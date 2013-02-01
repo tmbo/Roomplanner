@@ -65,6 +65,11 @@ namespace ipn
         m_moveAfterRelease = value;
     }
 
+    void FlickArea::setSnapEnabled(bool value)
+    {
+        m_snapping = value;
+    }
+
     void FlickArea::setInactive()
     {
         m_active = false;
@@ -191,6 +196,50 @@ namespace ipn
             // Move each child widget by m_scrollOffset
 
             m_animating = true;
+
+            if (m_snapping && !m_mouseDown && (abs(m_scrollOffset.x()) < 5) && (qAbs(m_scrollOffset.x() * 0.2) > 0)) {
+                QRect cRect = QRect();
+                int cCount = 0;
+                int cActualWidth = 0;
+
+                foreach (QObject *childObject, children())
+                {
+                    // Don't move our event-catching overlay
+                    if (childObject == m_overlay)
+                        continue;
+
+                    QWidget *childWidget = qobject_cast<QWidget*>(childObject);
+
+                    if (childWidget) {
+                        cCount++;
+                        QRect childRect = childWidget->rect();
+                        childRect.moveTo(childWidget->pos());
+                        cRect = cRect.united(childRect);
+                        cActualWidth += childRect.width();
+                    }
+                }
+                int margin = (cRect.width() - cActualWidth) / (cCount - 1);
+                int direction = m_scrollOffset.x() < 0 ? -1 : 1;
+                int snapIndex = -round(((float)cCount * cRect.left() / cRect.width()) + direction * 0.3);
+
+                int deltaX = - cRect.left() - (cActualWidth / (float)cCount + margin) * snapIndex;
+
+                foreach (QObject *childObject, children())
+                {
+                    // Don't move our event-catching overlay
+                    if (childObject == m_overlay)
+                        continue;
+
+                    QWidget *childWidget = qobject_cast<QWidget*>(childObject);
+
+                    if (childWidget)
+                        childWidget->move(childWidget->pos() + QPoint(deltaX, 0));
+                }
+
+                // stop animation
+                m_scrollOffset = QPoint(0,0);
+            }
+
             foreach (QObject *childObject, children())
             {
                 // Don't move our event-catching overlay
@@ -204,8 +253,10 @@ namespace ipn
             }
 
             // If the widgets were moved by at least one pixel, announce the changement
-            if (qAbs(m_scrollOffset.x() * 0.2) > 0 || qAbs(m_scrollOffset.y() * 0.2) > 0)
+            if (((int)qAbs(m_scrollOffset.x() * 0.2)) > 0 || ((int)qAbs(m_scrollOffset.y() * 0.2)) > 0)
                 emit moved();
+            else
+                m_scrollOffset = QPoint(0, 0);
 
             m_scrollOffset *= (1 - 0.2);
         }
