@@ -3,6 +3,7 @@
 #include "widgets/ClickableWidget.h"
 #include "widgets/ButtonWidget.h"
 #include "apps/MapApp.h"
+#include "FurnitureQGraphicsPixmapItem.h"
 
 namespace ipn
 {
@@ -203,6 +204,7 @@ namespace ipn
         m_selectedItem->setGraphicsEffect(0);
         m_selectedItem = 0;
         m_parent->m_deleteButton->setHidden(true);
+        m_parent->m_editButton->setHidden(true);
     }
 
     void RoomWidget::selectFurniture(QGraphicsItem *item)
@@ -215,6 +217,7 @@ namespace ipn
         effect->setOffset(0, 0);
         m_selectedItem->setGraphicsEffect(effect);
         m_parent->m_deleteButton->setHidden(false);
+        m_parent->m_editButton->setHidden(false);
 
     }
 

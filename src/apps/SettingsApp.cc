@@ -92,6 +92,13 @@ namespace ipn
         m_furniture = value;
     }
 
+    void SettingsApp::setSettings(int size, int color){
+        m_size = size;
+        m_color = color;
+        m_picker->setValue(0, QString("90 x 90 cm"));
+        m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, 0));
+    }
+
 
 
 } // namespace ipn

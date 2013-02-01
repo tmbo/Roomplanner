@@ -24,6 +24,7 @@ namespace ipn
             SettingsApp(IPodFrameWidget* frameWidget, QWidget *parent = 0);
             void resetSettings();
             void setFurnitureIndex(int);
+            void setSettings(int, int);
 
         public slots:
             void showValueChanger();

@@ -9,6 +9,8 @@
 #include "widgets/RoomWidget.h"
 #include "apps/ListMenuApp.h"
 #include "apps/FurniturePickerApp.h"
+#include "apps/FurnitureViewer.h"
+
 
 namespace ipn
 {
@@ -32,8 +34,19 @@ namespace ipn
         m_deleteButton->setHidden(true);
         connect(m_deleteButton, SIGNAL(clicked()), this, SLOT(deleteFurniture()));
 
+        m_editButton = new ButtonWidget(this);
+        m_editButton->setInactiveImages(":/assets/images/buttons/button_edit.png");
+        m_editButton->move(198, 198);
+        m_editButton->setHidden(true);
+        connect(m_editButton, SIGNAL(clicked()), this, SLOT(editFurniture()));
+
         m_menu = new ListMenuApp(m_frameWidget);
         connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(placeFurniture(int, int, int)));
+
+        m_furnitureViewer = new FurnitureViewer(m_frameWidget);
+        connect(m_furnitureViewer, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));
+        connect(m_furnitureViewer->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+
     }
 
     void MapApp::furniturePressed()
@@ -58,10 +71,23 @@ namespace ipn
         m_room->addFurniture(idx, size, color);
     }
 
+
     void MapApp::deleteFurniture()
     {
         m_room->deleteFurniture();
         m_deleteButton->setHidden(true);
+    }
+
+    void MapApp::editFurniture()
+    {
+        m_frameWidget->pushApp(m_furnitureViewer);
+    }
+
+
+    void MapApp::hideAndPropagate(int i, int size, int color){
+        m_room->deleteFurniture();
+        m_frameWidget->popApp(2);
+        m_room->addFurniture(i, size, color);
     }
 
 } // namespace ipn
