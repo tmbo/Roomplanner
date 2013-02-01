@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include <qmath.h>
+#include <QtAlgorithms>
 
 namespace ipn
 {
@@ -200,6 +201,7 @@ namespace ipn
             if (m_snapping && !m_mouseDown && (abs(m_scrollOffset.x()) < 5) && (qAbs(m_scrollOffset.x() * 0.2) > 0)) {
                 QRect cRect = QRect();
                 int cCount = 0;
+                QList<int> childPositions = QList<int>();
                 int cActualWidth = 0;
 
                 foreach (QObject *childObject, children())
@@ -216,13 +218,20 @@ namespace ipn
                         childRect.moveTo(childWidget->pos());
                         cRect = cRect.united(childRect);
                         cActualWidth += childRect.width();
+                        childPositions.push_back(childRect.x());
                     }
                 }
+                for(int i = 0; i < childPositions.length(); i++) {
+                    childPositions.replace(i, childPositions.at(i) - cRect.left());
+                }
+
+                qSort(childPositions);
+
                 int margin = (cRect.width() - cActualWidth) / (cCount - 1);
                 int direction = m_scrollOffset.x() < 0 ? -1 : 1;
                 int snapIndex = -round(((float)cCount * cRect.left() / cRect.width()) + direction * 0.3);
 
-                int deltaX = - cRect.left() - (cActualWidth / (float)cCount + margin) * snapIndex;
+                int deltaX = - cRect.left() - childPositions.at(snapIndex);
 
                 foreach (QObject *childObject, children())
                 {
