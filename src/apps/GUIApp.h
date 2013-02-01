@@ -10,8 +10,7 @@ namespace ipn
 	class TitleBarWidget;
 	class SwitchButtonWidget;
 	class SliderWidget;
-	class TextWidget;
-	class PageIndicatorWidget;
+    class TextWidget;
 	class FlickArea;
     class ImageWidget;
     class ClickableWidget;
@@ -29,7 +28,6 @@ namespace ipn
 
 
 		protected slots:
-			void updatePageIndicator();
             void openSettings(int);
             void emitFurnitureSelected(int, int);
 
@@ -40,16 +38,15 @@ namespace ipn
             BackgroundWidget *m_back;
 			SwitchButtonWidget *m_switchButton;
 			SliderWidget *m_slider;
-            ImageWidget *m_image[3];
-            ClickableWidget *m_clickable[3];
+            ImageWidget *m_image[9];
+            ClickableWidget *m_clickable[9];
             QSignalMapper *m_signalMapper;
             SettingsApp* m_settingsApp;
             IPodFrameWidget* m_frameWidget;
             int m_couch;
 
             TextWidget *m_scrollText;
-			FlickArea *m_flickArea;
-			PageIndicatorWidget *m_pageIndicator;
+            FlickArea *m_flickArea;
 
             void createFurnitureEntry(int, QString);
 	};

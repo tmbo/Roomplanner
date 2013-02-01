@@ -6,7 +6,6 @@
 #include "widgets/TextWidget.h"
 #include "widgets/FlickArea.h"
 #include "widgets/ImageWidget.h"
-#include "widgets/PageIndicatorWidget.h"
 #include "widgets/ClickableWidget.h"
 #include "apps/SettingsApp.h"
 #include "IPodFrameWidget.h"
@@ -33,14 +32,16 @@ namespace ipn
         m_frameWidget = frameWidget;
 
         createFurnitureEntry(0, ":/assets/images/furniture/karlstad.png");
-        createFurnitureEntry(1, ":/assets/images/furniture/sater.png");
-        createFurnitureEntry(2, ":/assets/images/furniture/ektorp.png");
+        createFurnitureEntry(1, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(2, ":/assets/images/furniture/karlstad.png");
 
-		m_pageIndicator = new PageIndicatorWidget(this);
-        m_pageIndicator->setNumberOfSegments(3);
-		m_pageIndicator->move(120 - m_pageIndicator->width() / 2, 224);
+        createFurnitureEntry(3, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(4, ":/assets/images/furniture/sater.png");
+        createFurnitureEntry(5, ":/assets/images/furniture/ektorp.png");
 
-        connect(m_flickArea, SIGNAL(moved()), this, SLOT(updatePageIndicator()));
+        /*createFurnitureEntry(6, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(7, ":/assets/images/furniture/karlstad.png");
+        createFurnitureEntry(8, ":/assets/images/furniture/karlstad.png");*/
 
         connect(m_signalMapper, SIGNAL(mapped(int)), this, SLOT(openSettings(int)));
         connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(emitFurnitureSelected(int, int)));
@@ -50,20 +51,17 @@ namespace ipn
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
         m_clickable[idx]->resize(240, 200);
-        m_clickable[idx]->move(280 * idx,0);
+        m_clickable[idx]->move(280 * (idx%3),0 * (idx / 3));
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);
         m_image[idx]->resize(240, 200);
 
-        m_signalMapper->setMapping(m_clickable[idx], idx);
-        connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
+        if(idx < 6 && 2 < idx){
+            m_signalMapper->setMapping(m_clickable[idx], idx-3);
+            connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
+        }
     }
-
-	void GUIApp::updatePageIndicator()
-	{
-		m_pageIndicator->setPosition(m_flickArea->relativeScrollPosition().x());
-	}
 
     void GUIApp::openSettings(int idx)
     {

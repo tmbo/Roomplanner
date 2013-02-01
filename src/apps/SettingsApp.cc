@@ -43,7 +43,7 @@ namespace ipn
         m_colorPicker = new ColorPickerApp(frameWidget);
 
         m_titleBar = new TitleBarWidget(this);
-        m_titleBar->setTitle("Furniture settings");
+        m_titleBar->setTitle("Settings");
         m_titleBar->move(0, 0);
         m_titleBar->addButton(TitleBarWidget::BUTTON_DONE);
 
