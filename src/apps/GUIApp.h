@@ -37,8 +37,7 @@ namespace ipn
             void furnitureSelected(int, int, int);
 
 		private:
-			BackgroundWidget *m_back;
-			TitleBarWidget *m_titleBar;
+            BackgroundWidget *m_back;
 			SwitchButtonWidget *m_switchButton;
 			SliderWidget *m_slider;
             ImageWidget *m_image[3];

@@ -20,7 +20,7 @@ namespace ipn
         m_back->setColor(BackgroundWidget::BG_GRAY);
         m_back->move(0, 0);
 
-		m_flickArea = new FlickArea(this);
+        m_flickArea = new FlickArea(this);
         m_flickArea->move(0, 0);
         m_flickArea->resize(240, 200);
 
