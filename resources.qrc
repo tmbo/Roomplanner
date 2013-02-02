@@ -108,5 +108,14 @@
         <file>assets/images/icons/icon_bed.png</file>
         <file>assets/images/icons/icon_chair.png</file>
         <file>assets/images/buttons/button_edit.png</file>
+        <file>assets/images/furniture/settings_2_2.png</file>
+        <file>assets/images/furniture/settings_0_0.png</file>
+        <file>assets/images/furniture/settings_0_1.png</file>
+        <file>assets/images/furniture/settings_0_2.png</file>
+        <file>assets/images/furniture/settings_1_0.png</file>
+        <file>assets/images/furniture/settings_1_1.png</file>
+        <file>assets/images/furniture/settings_1_2.png</file>
+        <file>assets/images/furniture/settings_2_0.png</file>
+        <file>assets/images/furniture/settings_2_1.png</file>
     </qresource>
 </RCC>

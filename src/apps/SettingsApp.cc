@@ -30,8 +30,8 @@ namespace ipn
 
         m_image = new ImageWidget(this);
         m_image->move(0, 48);
-        m_image->setImage(":/assets/images/furniture/karlstad.png");
         m_image->resize(240, 96);
+        m_image->setImage(":/assets/images/furniture/settings_0_0.png");
 
         m_picker = new PickerWidget(this);
         m_picker->move(0, 144);
@@ -64,6 +64,7 @@ namespace ipn
         m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, 0));
         m_size = 0;
         m_color = 0;
+        m_image->setImage(QString(":/assets/images/furniture/settings_%1_%2.png").arg(m_furniture).arg(m_color));
     }
 
     void SettingsApp::emitSettingsDone(){
@@ -90,9 +91,12 @@ namespace ipn
     void SettingsApp::colorSettingChanged(int value, QColor userValue){
         m_color = value;
         m_picker->setValue(1, userValue);
+        m_image->setImage(QString(":/assets/images/furniture/settings_%1_%2.png").arg(m_furniture).arg(m_color));
+
     }
     void SettingsApp::setFurnitureIndex(int value){
         m_furniture = value;
+        m_image->setImage(QString(":/assets/images/furniture/settings_%1_%2.png").arg(m_furniture).arg(m_color));
     }
 
     void SettingsApp::setSettings(int size, int color){
@@ -100,6 +104,7 @@ namespace ipn
         m_color = color;
         m_picker->setValue(0, QString("90 x 90 cm"));
         m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, 0));
+        m_image->setImage(QString(":/assets/images/furniture/settings_%1_%2.png").arg(m_furniture).arg(m_color));
     }
 
 

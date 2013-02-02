@@ -2,6 +2,7 @@
 #define IPN_SETTINGSAPP_H
 
 #include "App.h"
+#include "ImageWidget.h"
 
 namespace ipn
 {
@@ -46,6 +47,7 @@ namespace ipn
             IPodFrameWidget* m_frameWidget;
             NumberPickerApp* m_numberPicker;
             ColorPickerApp* m_colorPicker;
+            ImageWidget* m_previewImage;
 
             int m_size;
             int m_color;
