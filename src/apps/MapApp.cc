@@ -44,7 +44,7 @@ namespace ipn
 
         m_furnitureViewer = new FurnitureViewer(m_frameWidget);
         connect(m_furnitureViewer, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));
-        connect(m_furnitureViewer->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
+        //connect(m_furnitureViewer->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 
         m_furniturePickerApp = new FurniturePickerApp(m_frameWidget);
 
@@ -85,6 +85,7 @@ namespace ipn
 
     void MapApp::editFurniture()
     {
+        m_furnitureViewer->setSettings(0, 0, 0);
         m_frameWidget->pushApp(m_furnitureViewer);
     }
 

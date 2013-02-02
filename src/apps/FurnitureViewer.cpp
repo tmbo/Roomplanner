@@ -12,13 +12,13 @@ namespace ipn
     FurnitureViewer::FurnitureViewer(IPodFrameWidget* frameWidget, QWidget *parent) : App(parent)
     {
 
-        //m_back = new BackgroundWidget(this);
-        //m_back->setColor(BackgroundWidget::BG_GRAY);
-        //m_back->move(0, 0);
+        m_back = new BackgroundWidget(this);
+        m_back->setColor(BackgroundWidget::BG_GRAY);
+        m_back->move(0, 0);
 
         m_titleBar = new TitleBarWidget(this);
         m_titleBar->move(0, 0);
-        m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
+        //m_titleBar->addButton(TitleBarWidget::BUTTON_BACK);
         m_titleBar->addButton(TitleBarWidget::BUTTON_EDIT);
 
         m_frameWidget = frameWidget;
@@ -42,7 +42,8 @@ namespace ipn
     {
         m_image->setImage(":/assets/images/furniture/karlstad.png");
         m_image->resize(240, 200);
-        m_image->show();
+        m_image->move(0, 40);
+        update();
         m_idx = idx;
         m_size = size;
         m_color = color;
