@@ -3,6 +3,7 @@
 #include "widgets/ClickableWidget.h"
 #include "widgets/ButtonWidget.h"
 #include "apps/MapApp.h"
+#include "SettingsMapper.h"
 
 namespace ipn
 {
@@ -42,6 +43,7 @@ namespace ipn
         m_tapTimer->setSingleShot(true);
 
         changePinchScaleFactor(.5);
+        m_settingsMapperList = QList<SettingsMapper>();
     }
 
     void RoomWidget::resize(int width, int height)
@@ -186,16 +188,39 @@ namespace ipn
         item->translate(-item->pixmap().width() / 2, -item->pixmap().height() / 2);
         m_sceneRoot->addToGroup(item);
         selectFurniture(item);
+        SettingsMapper mapItem = SettingsMapper(item, idx, color, size);
+        m_settingsMapperList.push_back(mapItem);
     }
 
     void RoomWidget::deleteFurniture()
     {
         if (m_selectedItem != m_background && m_selectedItem != 0)
         {
+            int deleteItem;
+            for(int i = 0; i < m_settingsMapperList.count(); i++) {
+            SettingsMapper element = m_settingsMapperList.at(i);
+                if(element.m_item == m_selectedItem)
+                {
+                    deleteItem = i;
+                    break;
+                }
+            }
+            m_settingsMapperList.removeAt(deleteItem);
             m_sceneRoot->removeFromGroup(m_selectedItem);
             m_scene->removeItem(m_selectedItem);
             m_selectedItem = 0;
         }
+    }
+
+    SettingsMapper RoomWidget::getSelectedFurniture()
+    {
+        SettingsMapper item;
+        for(int i = 0; i < m_settingsMapperList.count(); i++) {
+        SettingsMapper element = m_settingsMapperList.at(i);
+            if(element.m_item == m_selectedItem)
+                item = element;
+        }
+        return item;
     }
 
     void RoomWidget::unselectFurniture()

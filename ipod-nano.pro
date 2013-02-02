@@ -52,7 +52,8 @@ SOURCES += \
     src/apps/SettingsApp.cc \
     src/apps/ColorPickerApp.cpp \
     src/widgets/CircleWidget.cpp \
-    src/apps/FurnitureViewer.cpp
+    src/apps/FurnitureViewer.cpp \
+    src/SettingsMapper.cpp
 	
 HEADERS += \
 	src/MainWindow.h \
@@ -87,7 +88,8 @@ HEADERS += \
     src/apps/SettingsApp.h \
     src/apps/ColorPickerApp.h \
     src/widgets/CircleWidget.h \
-    src/apps/FurnitureViewer.h
+    src/apps/FurnitureViewer.h \
+    src/SettingsMapper.h
 
 INCLUDEPATH += src src/apps src/widgets
 

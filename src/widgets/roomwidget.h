@@ -9,6 +9,7 @@ namespace ipn
     class ClickableWidget;
     class ButtonWidget;
     class MapApp;
+    class SettingsMapper;
 
     class RoomWidget : public QWidget
     {
@@ -25,6 +26,8 @@ namespace ipn
             virtual void mouseMoveEvent(QMouseEvent *event);
             virtual void mouseReleaseEvent(QMouseEvent *event);
             virtual void mouseTapEvent(QMouseEvent *event);
+            QList<SettingsMapper> m_settingsMapperList;
+            SettingsMapper getSelectedFurniture();
 
 
         protected:

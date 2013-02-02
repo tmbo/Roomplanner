@@ -10,6 +10,7 @@
 #include "apps/ListMenuApp.h"
 #include "apps/FurniturePickerApp.h"
 #include "apps/SettingsApp.h"
+#include "SettingsMapper.h"
 
 
 namespace ipn
@@ -41,10 +42,6 @@ namespace ipn
 
         m_settingsApp = new SettingsApp(m_frameWidget);
         connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(settingsSet(int, int)));
-
-        //m_furnitureViewer = new FurnitureViewer(m_frameWidget);
-        //connect(m_furnitureViewer, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));
-        //connect(m_furnitureViewer->titleBar(), SIGNAL(leftButtonClicked()), m_frameWidget, SLOT(popApp()));
 
         m_furniturePickerApp = new FurniturePickerApp(m_frameWidget);
 
@@ -85,8 +82,9 @@ namespace ipn
 
     void MapApp::editFurniture()
     {
-        m_settingsApp->setFurnitureIndex(0);
-        m_settingsApp->setSettings(0, 0);
+        SettingsMapper element = m_room->getSelectedFurniture();
+        m_settingsApp->setFurnitureIndex(element.m_id);
+        m_settingsApp->setSettings(element.m_color, element.m_size);
         m_frameWidget->pushApp(m_settingsApp);
     }
 
