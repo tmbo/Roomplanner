@@ -36,23 +36,23 @@ namespace ipn
 	{
 		m_buttons[position]->show();
 		m_buttons[position]->setImage(":/img/buttons/default");
-		m_buttons[position]->resize(64, 64);
+        m_buttons[position]->resize(64, 64);
 		m_buttons[position]->setTitle(title);
 		m_buttons[position]->setIconImage(iconImage);
 
 		switch (position)
 		{
 			case TopLeft:
-				m_buttons[position]->move(36, 56);
+                m_buttons[position]->move(36, 56);
 				break;
 			case TopRight:
-				m_buttons[position]->move(138, 56);
+                m_buttons[position]->move(138, 56);
 				break;
 			case BottomLeft:
-				m_buttons[position]->move(36, 148);
+                m_buttons[position]->move(36, 148);
 				break;
 			case BottomRight:
-				m_buttons[position]->move(138, 148);
+                m_buttons[position]->move(138, 148);
 				break;
 		}
 	}
