@@ -7,6 +7,7 @@
 #include "widgets/TextWidget.h"
 #include "widgets/TitleBarWidget.h"
 #include <math.h>
+#include <QMouseEvent>
 
 #define BIG_FONT_SIZE 18
 #define POINTS_TO_PIXELS 1.3
@@ -69,7 +70,6 @@ namespace ipn
         m_bottomshadow->move(20, 166);
         m_bottomshadow->resize(200, 48);
 
-        connect(m_titleBar, SIGNAL(rightButtonClicked()), m_frameWidget, SLOT(popApp()));
         connect(m_titleBar, SIGNAL(rightButtonClicked()), this, SLOT(triggerFinish()));
         hide();
 
@@ -150,11 +150,14 @@ namespace ipn
 	}
 
     void NumberPickerApp::triggerFinish() {
+        m_frameWidget->popApp();
         emit inputFinished(m_selectedIndex, value());
     }
 
-    void NumberPickerApp::mousePressEvent(QMouseEvent *event){
-        //QGraphicsItem *item = m_graphicsView->itemAt(event->pos() - this->pos());
+    void NumberPickerApp::mouseReleaseEvent(QMouseEvent *event){
+        int offset = (event->pos() - this->pos()).y()-125;
+        if(offset > 0 && offset < 36 )
+            triggerFinish();
     }
 
 } // namespace ipn
