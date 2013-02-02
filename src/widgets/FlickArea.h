@@ -20,6 +20,7 @@ namespace ipn
             float innerWidth();
 
             void setSnapEnabled(bool value);
+            void setMovementLockEnabled(bool value);
 
             bool shadowsEnabled() { return m_shadowsEnabled; };
             void setShadowsEnabled(bool value);
@@ -67,6 +68,7 @@ namespace ipn
             bool m_animating;
             bool m_active;
             bool m_snapping;
+            bool m_movementLockEnabled;
 
             float calculateFlickDistance(float realDistance);
             void flick(QPoint offset);

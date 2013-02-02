@@ -25,6 +25,7 @@ namespace ipn
         m_flickArea->resize(240, 200);
         m_flickArea->setMoveAfterRelease(true);
         m_flickArea->setSnapEnabled(true);
+        m_flickArea->setMovementLockEnabled(true);
 
         m_pageIndicator = new PageIndicatorWidget(this);
         m_pageIndicator->setNumberOfSegments(3);
