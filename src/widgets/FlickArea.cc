@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include <qmath.h>
+#include <math.h>
 #include <QtAlgorithms>
 
 QPoint multiplyPoint(QPoint p1, QPoint p2) {
@@ -11,8 +12,16 @@ QPoint multiplyPoint(QPoint p1, QPoint p2) {
     p1.setY(p1.y() * p2.y());
     return p1;
 }
+
+int max(int a, int b) {
+    return a < b ? b : a;
+}
+int min(int a, int b) {
+    return a < b ? a : b;
+}
+
 #define MOVEMENT_LOCK_THRESHOLD 2
-#define SNAPPING_DIRECTION_ASSIST 0.3
+#define SNAPPING_DIRECTION_ASSIST 0.4
 
 namespace ipn
 {
@@ -22,6 +31,7 @@ namespace ipn
         m_active = true;
         m_scrollOffset = QPoint(0, 0);
         m_animating = false;
+        m_movementLockEnabled = false;
 
         // Create the animation timer:
         m_animationTimer = new QTimer(this);
@@ -77,6 +87,12 @@ namespace ipn
     void FlickArea::setSnapEnabled(bool value)
     {
         m_snapping = value;
+    }
+
+
+    void FlickArea::setMovementLockEnabled(bool value)
+    {
+        m_movementLockEnabled = value;
     }
 
     void FlickArea::setInactive()
@@ -153,7 +169,7 @@ namespace ipn
             QPoint moveDifference = event->pos() - m_lastMousePos;
             m_lastMousePos = event->pos();
 
-            if (m_movementLock.x() == 1 && m_movementLock.y() == 1) {
+            if (m_movementLockEnabled && m_movementLock.x() == 1 && m_movementLock.y() == 1) {
                 QPoint movement = m_lastMousePos - m_mouseDownPos;
                 if (abs(movement.x()) > MOVEMENT_LOCK_THRESHOLD || abs(movement.y()) > MOVEMENT_LOCK_THRESHOLD) {
 
@@ -161,24 +177,6 @@ namespace ipn
                         m_movementLock = QPoint(1, 0);
                     else
                         m_movementLock = QPoint(0, 1);
-
-                    qDebug("%i %i\n", m_movementLock.x() ? 0 : movement.x(), m_movementLock.y() ? 0 : movement.y());
-
-//                    foreach (QObject *childObject, children())
-//                    {
-//                        // Don't move our event-catching overlay
-//                        if (childObject == m_overlay)
-//                            continue;
-
-//                        QWidget *childWidget = qobject_cast<QWidget*>(childObject);
-
-//                        if (childWidget)
-//                            childWidget->move(
-//                                childWidget->pos() +
-//                                QPoint(
-//                                    m_movementLock.x() ? 0 : movement.x(),
-//                                    m_movementLock.y() ? 0 : movement.y()));
-//                    }
 
                     m_scrollOffset = multiplyPoint(m_scrollOffset, m_movementLock);
                     moveDifference = multiplyPoint(moveDifference, m_movementLock);
@@ -245,7 +243,7 @@ namespace ipn
             if (m_snapping && !m_mouseDown &&
                 (((abs(m_scrollOffset.x()) < 5) && (qAbs(m_scrollOffset.x() * 0.2) > 0)) || ((abs(m_scrollOffset.y()) < 5) && (qAbs(m_scrollOffset.y() * 0.2) > 0)))) {
                 QRect cRect = QRect();
-                QPoint cCount = QPoint(3,3);
+                QPoint cCount = QPoint(3, 1);
                 QList<QPoint> childPositions = QList<QPoint>();
                 QPoint cActualSize = QPoint(0,0);
 
@@ -273,10 +271,14 @@ namespace ipn
                 QPoint direction = multiplyPoint(QPoint(
                     m_scrollOffset.x() < 0 ? -1 : 1,
                     m_scrollOffset.y() < 0 ? -1 : 1), m_movementLock);
-                QPoint snapIndex = QPoint(cRect.left(), cRect.top());
-                   // - round((float)cCount.x() * cRect.left() / cRect.width()),
-                   // - round((float)cCount.y() * cRect.top() / cRect.height())
-                   // ) + direction * SNAPPING_DIRECTION_ASSIST;
+
+                QPoint snapIndex = QPoint(
+                    - round((float)cCount.x() * cRect.left() / cRect.width()),
+                    - round((float)cCount.y() * cRect.top() / cRect.height())
+                    ) + direction * SNAPPING_DIRECTION_ASSIST;
+
+                snapIndex.setX(max(min(snapIndex.x(), cCount.x()), 0));
+                snapIndex.setY(max(min(snapIndex.y(), cCount.y()), 0));
 
                 QPoint delta = - cRect.topLeft() - childPositions.at(snapIndex.x() * cCount.y() + snapIndex.y());
 
