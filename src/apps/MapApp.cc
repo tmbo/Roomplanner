@@ -39,8 +39,8 @@ namespace ipn
         m_editButton->setHidden(true);
         connect(m_editButton, SIGNAL(clicked()), this, SLOT(editFurniture()));
 
-        m_menu = new ListMenuApp(m_frameWidget);
-        connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(placeFurniture(int, int, int)));
+        //m_menu = new ListMenuApp(m_frameWidget);
+        //connect(m_menu->m_furniturePicker, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(placeFurniture(int, int, int)));
 
         m_furnitureViewer = new FurnitureViewer(m_frameWidget);
         connect(m_furnitureViewer, SIGNAL(furnitureSelected(int, int, int)), this, SLOT(hideAndPropagate(int, int, int)));

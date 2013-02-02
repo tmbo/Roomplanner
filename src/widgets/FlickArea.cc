@@ -273,10 +273,10 @@ namespace ipn
                 QPoint direction = multiplyPoint(QPoint(
                     m_scrollOffset.x() < 0 ? -1 : 1,
                     m_scrollOffset.y() < 0 ? -1 : 1), m_movementLock);
-                QPoint snapIndex = QPoint(
-                    - round((float)cCount.x() * cRect.left() / cRect.width()),
-                    - round((float)cCount.y() * cRect.top() / cRect.height())
-                    ) + direction * SNAPPING_DIRECTION_ASSIST;
+                QPoint snapIndex = QPoint(cRect.left(), cRect.top());
+                   // - round((float)cCount.x() * cRect.left() / cRect.width()),
+                   // - round((float)cCount.y() * cRect.top() / cRect.height())
+                   // ) + direction * SNAPPING_DIRECTION_ASSIST;
 
                 QPoint delta = - cRect.topLeft() - childPositions.at(snapIndex.x() * cCount.y() + snapIndex.y());
 
