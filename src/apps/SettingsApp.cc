@@ -12,6 +12,7 @@
 #include "widgets/TitleBarWidget.h"
 #include "apps/NumberPickerApp.h"
 #include "apps/ColorPickerApp.h"
+#include "widgets/ImageWidget.h"
 #include <QtGui>
 
 #include <stdio.h>
@@ -27,9 +28,13 @@ namespace ipn
 
         m_frameWidget = frameWidget;
 
+        m_image = new ImageWidget(this);
+        m_image->move(0, 48);
+        m_image->setImage(":/assets/images/furniture/karlstad.png");
+        m_image->resize(240, 96);
 
         m_picker = new PickerWidget(this);
-        m_picker->move(0, 48);
+        m_picker->move(0, 144);
 
         m_picker->addEntry("Size", "");
 
