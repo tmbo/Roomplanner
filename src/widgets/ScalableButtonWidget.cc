@@ -10,8 +10,8 @@ namespace ipn
 
 	ScalableButtonWidget::ScalableButtonWidget(QWidget *parent) : ButtonWidget(parent)
 	{
-		m_outerBorder = 8;
-		m_interiorBorder = 8;
+        m_outerBorder = 9;
+        m_interiorBorder = 9;
 
 		m_text = new TextWidget(this);
 		m_text->setFontSize(15);
