@@ -22,7 +22,7 @@ namespace ipn
 
         m_flickArea = new FlickArea(this);
         m_flickArea->move(0, 0);
-        m_flickArea->resize(240, 200);
+        m_flickArea->resize(240, 240);
         m_flickArea->setMoveAfterRelease(true);
         m_flickArea->setSnapEnabled(true);
         m_flickArea->setMovementLockEnabled(true);
@@ -55,12 +55,12 @@ namespace ipn
     void GUIApp::createFurnitureEntry(int idx, QString imagePath){
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
-        m_clickable[idx]->resize(240, 200);
+        m_clickable[idx]->resize(240, 240);
         m_clickable[idx]->move(280 * idx, 0);
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);
-        m_image[idx]->resize(240, 200);
+        m_image[idx]->resize(240, 240);
 
         m_signalMapper->setMapping(m_clickable[idx], idx);
         connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
