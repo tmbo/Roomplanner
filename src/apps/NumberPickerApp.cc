@@ -156,7 +156,7 @@ namespace ipn
 
     void NumberPickerApp::mouseReleaseEvent(QMouseEvent *event){
         int offset = (event->pos() - this->pos()).y()-125;
-        if(offset > 0 && offset < 36 )
+        if(offset > 0 && offset < 36 && !m_flickarea->m_mouseMovedSinceMousePress)
             triggerFinish();
     }
 

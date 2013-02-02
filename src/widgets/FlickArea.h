@@ -36,6 +36,7 @@ namespace ipn
             void setActive();
             void setInactive();
 
+            bool m_mouseMovedSinceMousePress;
         public slots:
             void forwardMouseEvent(QMouseEvent *event, bool simulateMouseRelease = false);
 
@@ -58,7 +59,6 @@ namespace ipn
             QPoint m_mouseDownPos;
             QPoint m_scrollOffset;
             QPoint m_movementLock;
-            bool m_mouseMovedSinceMousePress;
             bool m_shadowsEnabled;
             float m_shadowFadeInDistance;
             QWidget *m_currentChild;
