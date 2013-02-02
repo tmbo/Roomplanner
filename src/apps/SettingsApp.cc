@@ -102,8 +102,8 @@ namespace ipn
     void SettingsApp::setSettings(int size, int color){
         m_size = size;
         m_color = color;
-        m_picker->setValue(0, QString("90 x 90 cm"));
-        m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, 0));
+        m_picker->setValue(0, m_numberPicker->textValue(size));
+        m_picker->setValue(1, m_colorPicker->colorValue(m_furniture, color));
         m_image->setImage(QString(":/assets/images/furniture/settings_%1_%2.png").arg(m_furniture).arg(m_color));
     }
 
