@@ -29,6 +29,7 @@ namespace ipn
         m_selectedItem = 0;
         m_currentScaleFactor = 1.0;
         m_isPressed = false;
+        m_isRotating = false;
 
         connect(parent, SIGNAL(pinchScaleFactorChanged(qreal)), this, SLOT(changePinchScaleFactor(qreal)));
         connect(parent, SIGNAL(pinchRotationAngleChanged(qreal)), this, SLOT(changePinchRotationAngle(qreal)));
@@ -94,6 +95,8 @@ namespace ipn
             );
 
             update();
+
+            m_tapTimer->stop();
         }
     }
 

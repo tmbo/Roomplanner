@@ -41,6 +41,7 @@ namespace ipn
             QPoint m_scrollOffset;
             qreal m_currentScaleFactor;
             bool m_isPressed;
+            bool m_isRotating;
 
             QTimer* m_tapTimer;
             QGraphicsItem *m_selectedItem;
