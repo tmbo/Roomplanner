@@ -16,7 +16,6 @@ namespace ipn
     class RoomWidget;
     class FurniturePickerApp;
     class ListMenuApp;
-    class FurnitureViewer;
     class SettingsApp;
 
 	class MapApp : public App
@@ -39,11 +38,11 @@ namespace ipn
             void furnitureReleased();
             void deleteFurniture();
             void editFurniture();
-            void hideAndPropagate(int, int, int);
+            void settingsSet(int, int);
 
 		private:
             IPodFrameWidget *m_frameWidget;
-            FurnitureViewer *m_furnitureViewer;
+            SettingsApp *m_settingsApp;
             RoomWidget *m_room;
 
             ButtonWidget *m_addButton;

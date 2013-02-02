@@ -15,6 +15,7 @@ namespace ipn
     class DummyApp;
     class NumberPickerApp;
     class ColorPickerApp;
+    class ImageWidget;
 
     class SettingsApp : public App
     {
@@ -25,6 +26,9 @@ namespace ipn
             void resetSettings();
             void setFurnitureIndex(int);
             void setSettings(int, int);
+
+        private:
+            ImageWidget *m_image;
 
         public slots:
             void showValueChanger();
