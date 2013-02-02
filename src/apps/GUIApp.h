@@ -16,6 +16,7 @@ namespace ipn
     class ClickableWidget;
     class SettingsApp;
     class IPodFrameWidget;
+    class PageIndicatorWidget;
 
 	class GUIApp : public App
 	{
@@ -30,6 +31,7 @@ namespace ipn
 		protected slots:
             void openSettings(int);
             void emitFurnitureSelected(int, int);
+            void updatePageIndicator(int);
 
         signals:
             void furnitureSelected(int, int, int);
@@ -38,12 +40,13 @@ namespace ipn
             BackgroundWidget *m_back;
 			SwitchButtonWidget *m_switchButton;
 			SliderWidget *m_slider;
-            ImageWidget *m_image[9];
-            ClickableWidget *m_clickable[9];
+            ImageWidget *m_image[3];
+            ClickableWidget *m_clickable[3];
             QSignalMapper *m_signalMapper;
             SettingsApp* m_settingsApp;
             IPodFrameWidget* m_frameWidget;
             int m_couch;
+            PageIndicatorWidget *m_pageIndicator;
 
             TextWidget *m_scrollText;
             FlickArea *m_flickArea;

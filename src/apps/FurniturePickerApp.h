@@ -6,11 +6,14 @@
 namespace ipn
 {
     class BackgroundWidget;
-    class PickerWidget;
+    class PageIndicatorWidget;
     class GUIApp;
     class IPodFrameWidget;
     class TitleBarWidget;
     class DummyApp;
+    class BackgroundWidget;
+    class TitleBarWidget;
+    class ScalableButtonWidget;
 
     class FurniturePickerApp : public App
     {
@@ -21,6 +24,7 @@ namespace ipn
 
         public slots:
             void openSofaGUI();
+            void openDummy();
             void hideAndPropagate(int, int, int);
 
         signals:
@@ -28,10 +32,12 @@ namespace ipn
 
         private:
             BackgroundWidget* m_back;
-            PickerWidget* m_picker;
             GUIApp *m_guiApp;
             IPodFrameWidget* m_frameWidget;
+            PageIndicatorWidget *m_pageIndicator;
             DummyApp *m_dummyApp;
+            ScalableButtonWidget *m_buttons[8];
+            void addButton(int position, QString title, QString iconImage);
     };
 }
 

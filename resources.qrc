@@ -104,6 +104,9 @@
         <file>assets/images/furniture/couch_2_1_1.png</file>
         <file>assets/images/furniture/couch_2_1_2.png</file>
         <file>assets/images/furniture/couch_2_2_1.png</file>
+        <file>assets/images/icons/icon_couch.png</file>
+        <file>assets/images/icons/icon_bed.png</file>
+        <file>assets/images/icons/icon_chair.png</file>
         <file>assets/images/buttons/button_edit.png</file>
     </qresource>
 </RCC>

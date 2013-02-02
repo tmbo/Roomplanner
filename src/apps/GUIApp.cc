@@ -9,6 +9,7 @@
 #include "widgets/ClickableWidget.h"
 #include "apps/SettingsApp.h"
 #include "IPodFrameWidget.h"
+#include "widgets/PageIndicatorWidget.h"
 #include <stdio.h>
 
 namespace ipn
@@ -26,6 +27,12 @@ namespace ipn
         m_flickArea->setSnapEnabled(true);
         m_flickArea->setMovementLockEnabled(true);
 
+        m_pageIndicator = new PageIndicatorWidget(this);
+        m_pageIndicator->setNumberOfSegments(3);
+        m_pageIndicator->move(120 - m_pageIndicator->width() / 2, 224);
+
+        connect(m_flickArea, SIGNAL(moved(int)), this, SLOT(updatePageIndicator(int)));
+
         m_signalMapper = new QSignalMapper();
 
         m_settingsApp = new SettingsApp(frameWidget);
@@ -40,20 +47,23 @@ namespace ipn
         connect(m_settingsApp, SIGNAL(settingsDone(int, int)), this, SLOT(emitFurnitureSelected(int, int)));
 	}
 
+    void GUIApp::updatePageIndicator(int index)
+    {
+        m_pageIndicator->setActiveSegment(index);
+    }
+
     void GUIApp::createFurnitureEntry(int idx, QString imagePath){
         m_clickable[idx] = new ClickableWidget(m_flickArea);
 
         m_clickable[idx]->resize(240, 240);
-        m_clickable[idx]->move(280 * (idx%3), 0);
+        m_clickable[idx]->move(280 * idx, 0);
 
         m_image[idx] = new ImageWidget(m_clickable[idx]);
         m_image[idx]->setImage(imagePath);
         m_image[idx]->resize(240, 240);
 
-        if(idx < 6 && 2 < idx){
-            m_signalMapper->setMapping(m_clickable[idx], idx-3);
-            connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
-        }
+        m_signalMapper->setMapping(m_clickable[idx], idx);
+        connect(m_clickable[idx], SIGNAL(clicked()), m_signalMapper, SLOT(map()));
     }
 
     void GUIApp::openSettings(int idx)

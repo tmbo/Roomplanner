@@ -3,7 +3,6 @@
 #include "widgets/ClickableWidget.h"
 #include "widgets/ButtonWidget.h"
 #include "apps/MapApp.h"
-#include "FurnitureQGraphicsPixmapItem.h"
 
 namespace ipn
 {
