@@ -84,16 +84,17 @@ namespace ipn
     {
         SettingsMapper element = m_room->getSelectedFurniture();
         m_settingsApp->setFurnitureIndex(element.m_id);
-        m_settingsApp->setSettings(element.m_color, element.m_size);
+        m_settingsApp->setSettings(element.m_size, element.m_color);
         m_frameWidget->pushApp(m_settingsApp);
     }
 
 
     void MapApp::settingsSet(int size, int color){
+        SettingsMapper element = m_room->getSelectedFurniture();
         m_room->deleteFurniture();
-        //get id i
+
         m_frameWidget->popApp(1);
-        m_room->addFurniture(0, size, color);
+        m_room->addFurniture(element.m_id, size, color);
     }
 
 } // namespace ipn
