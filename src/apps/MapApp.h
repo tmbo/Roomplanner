@@ -16,6 +16,8 @@ namespace ipn
     class RoomWidget;
     class FurniturePickerApp;
     class ListMenuApp;
+    class FurnitureViewer;
+    class SettingsApp;
 
 	class MapApp : public App
 	{
@@ -27,6 +29,7 @@ namespace ipn
             inline bool isOpaque() { return true; }
 
             ButtonWidget *m_deleteButton;
+            ButtonWidget *m_editButton;
 
 
         public slots:
@@ -35,10 +38,12 @@ namespace ipn
             void furniturePressed();
             void furnitureReleased();
             void deleteFurniture();
+            void editFurniture();
+            void hideAndPropagate(int, int, int);
 
 		private:
             IPodFrameWidget *m_frameWidget;
-
+            FurnitureViewer *m_furnitureViewer;
             RoomWidget *m_room;
 
             ButtonWidget *m_addButton;
