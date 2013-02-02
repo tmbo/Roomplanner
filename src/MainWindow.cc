@@ -27,7 +27,7 @@ namespace ipn
         m_menuApp = new MenuApp();
         m_menuApp->titleBar()->addButton(TitleBarWidget::BUTTON_QUIT);
         //m_menuApp->addButton(MenuApp::TopLeft, "NumberPicker", ":/img/icons/icon.png");
-        m_menuApp->addButton(MenuApp::TopLeft, "CouchPuzzle", ":/img/icons/icon.png");
+        m_menuApp->addButton(MenuApp::TopLeft, "CouchPuzzle", ":/assets/images/icons/icon_app.png");
         m_menuApp->titleBar()->setTitle("choose\na category");
 
 

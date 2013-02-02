@@ -117,5 +117,6 @@
         <file>assets/images/furniture/settings_1_2.png</file>
         <file>assets/images/furniture/settings_2_0.png</file>
         <file>assets/images/furniture/settings_2_1.png</file>
+        <file>assets/images/icons/icon_app.png</file>
     </qresource>
 </RCC>
