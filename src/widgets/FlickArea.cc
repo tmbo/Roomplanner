@@ -273,8 +273,8 @@ namespace ipn
                     m_scrollOffset.y() < 0 ? -1 : 1), m_movementLock);
 
                 QPoint snapIndex = QPoint(
-                    - round((float)cCount.x() * cRect.left() / cRect.width()),
-                    - round((float)cCount.y() * cRect.top() / cRect.height())
+                    - qRound((float)cCount.x() * cRect.left() / cRect.width()),
+                    - qRound((float)cCount.y() * cRect.top() / cRect.height())
                     ) + direction * SNAPPING_DIRECTION_ASSIST;
 
                 snapIndex.setX(max(min(snapIndex.x(), cCount.x()), 0));
