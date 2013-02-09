@@ -3,6 +3,7 @@
 
 #include <QtCore>
 #include <QtGui>
+#include "SettingsMapper.h"
 
 namespace ipn
 {

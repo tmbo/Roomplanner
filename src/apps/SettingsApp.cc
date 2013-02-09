@@ -73,7 +73,7 @@ namespace ipn
 
     void SettingsApp::showValueChanger(){
         if(m_picker->activeEntry() == 0){
-            m_numberPicker->setIndex(0);
+            m_numberPicker->setIndex(m_size);
             m_frameWidget->pushApp(m_numberPicker);
         }
         else{
